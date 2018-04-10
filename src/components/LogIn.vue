@@ -3,7 +3,7 @@
     <h1>{{ msg }}</h1>
       User name: <input type="text" v-model="user_name"><br />
       Password: <input type="text" v-model="password"><br />
-      <button>Log in</button>
+      <button @click="login">Log in</button>
   </div>
 </template>
 
@@ -18,6 +18,10 @@ export default {
     }
   },
   methods: {
+    login () {
+      // FIXME: use real login
+      this.$router.push('/order')
+    }
   }
 }
 </script>
