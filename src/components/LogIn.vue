@@ -1,8 +1,9 @@
 <template>
   <div>
     <h1>{{ msg }}</h1>
-    <h2>Log In</h2>
-      <input type="text">
+      User name: <input type="text" v-model="user_name"><br />
+      Password: <input type="text" v-model="password"><br />
+      <button>Log in</button>
   </div>
 </template>
 
@@ -11,8 +12,12 @@ export default {
   name: 'LogIn',
   data () {
     return {
-      msg: 'Welcome to Esquire Embroidery!'
+      msg: 'Welcome to Esquire Embroidery!',
+      user_name: '',
+      password: ''
     }
+  },
+  methods: {
   }
 }
 </script>
