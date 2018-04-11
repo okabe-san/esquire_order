@@ -5,16 +5,21 @@ Vue.use(Vuex)
 
 export const store = new Vuex.Store({
   state: {
-    garmet: ''
+    garment: ''
   },
   getters: {
-    updateGramet: state => {
-      return state.garmet + ''
+    grament: state => {
+      return state.garment
     }
   },
   mutations: {
-    getGarment: state => {
-      state.garment = 'hi'
+    updateGarment: (state, payload) => {
+      state.garment = payload
+    }
+  },
+  actions: {
+    updateGarment ({commit}, payload) {
+      commit('updateGarment', payload)
     }
   }
 })

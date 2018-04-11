@@ -1,27 +1,28 @@
 <template>
   <div>
     <h1>order</h1>
-    <button @click="getGarmet"></button>
-    {{updateGramet}}
+    <input type="text" v-model="garment">
+    {{garment}}
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
 
 export default {
   name: 'Order',
-  data () {
-    return {
-      garmet: ''
+  computed: {
+    garment: {
+      get () {
+        return this.$store.state.garment
+      },
+      set (value) {
+        this.$store.commit('updateGarment', value)
+      }
     }
   },
-  computed: mapGetters([
-    'updateGramet'
-  ]),
   methods: {
-    getGarmet () {
-      this.$store.state.garmet = 'store test'
+    updateGarment () {
+      this.$store.commit('updateGarment')
     }
   }
 }
