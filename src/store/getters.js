@@ -9,3 +9,7 @@ export const garment = state => {
 export const method = state => {
   return state.method
 }
+
+export const splitDetails = state => {
+  return state.splitDetails
+}

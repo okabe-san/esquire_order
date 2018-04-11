@@ -9,3 +9,7 @@ export const updateGarment = (state, payload) => {
 export const updateMethod = (state, payload) => {
   state.method = payload
 }
+
+export const updateSplitDetails = (state, payload) => {
+  state.splitDetails = payload
+}

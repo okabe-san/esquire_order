@@ -9,3 +9,7 @@ export const updateGarment = ({commit}, payload) => {
 export const updateMethod = ({commit}, payload) => {
   commit('updateMethod', payload)
 }
+
+export const updateSplitDetails = ({commit}, payload) => {
+  commit('updateSplitDetails', payload)
+}

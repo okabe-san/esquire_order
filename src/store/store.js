@@ -11,7 +11,8 @@ export const store = new Vuex.Store({
   state: {
     rep: '',
     garment: '',
-    method: ''
+    method: '',
+    splitDetails: [{address: '', detail: ''}]
   },
   getters,
   mutations,

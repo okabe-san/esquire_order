@@ -28,7 +28,7 @@
     <input type="checkbox" v-model="split">
     {{split}}
 
-    <!-- add split address details -->
+    <!-- add split shipping address details -->
     <div v-if="split == true">
       <ul>
        <li v-for="(input, index) in inputs" :key="index">
@@ -38,9 +38,10 @@
        </li>
      </ul>
      <button @click="addRow">Add row</button>
+
     </div>
 
-    <!-- Nav Buttons -->
+    <!-- nav buttons -->
     <button @click="next">Next</button>
 
   </div>
@@ -53,8 +54,7 @@ export default {
     return {
       garments: [],
       methods: [],
-      split: false,
-      inputs: [{address: '', detail: ''}]
+      split: false
     }
   },
   created () {
@@ -84,6 +84,14 @@ export default {
       },
       set (value) {
         this.$store.dispatch('updateMethod', value)
+      }
+    },
+    inputs: {
+      get () {
+        return this.$store.state.splitDetails
+      },
+      set (value) {
+        this.$store.dispatch('updateSplitDetails', value)
       }
     }
   },
