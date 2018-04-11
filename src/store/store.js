@@ -10,7 +10,8 @@ Vue.use(Vuex)
 export const store = new Vuex.Store({
   state: {
     rep: '',
-    garment: ''
+    garment: '',
+    method: ''
   },
   getters,
   mutations,

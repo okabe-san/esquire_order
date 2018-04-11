@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>order</h1>
+    <h1>Shipping</h1>
 
     <!-- type rep name -->
     <input type="text" v-model="rep">
@@ -9,11 +9,20 @@
     <!-- garments list -->
     <ul>
       <li v-for="garment in garments" :key="garment">
-        <input type="radio" v-model="checked" :value="garment">
+        <input type="radio" v-model="garmentChecked" :value="garment">
           {{garment}}
       </li>
     </ul>
-    {{checked}}
+    {{garmentChecked}}
+
+    <!-- shipping methods list -->
+    <ul>
+      <li v-for="method in methods" :key="method">
+        <input type="radio" v-model="methodChecked" :value="method">
+          {{method}}
+      </li>
+    </ul>
+    {{methodChecked}}
 
     <button @click="next">Next</button>
 
@@ -25,10 +34,14 @@ export default {
   name: 'Order',
   data () {
     return {
-      garments: []
+      garments: [],
+      methods: []
     }
   },
-  created () { this.load() },
+  created () {
+    this.loadGarments()
+    this.loadMethod()
+  },
   computed: {
     rep: {
       get () {
@@ -38,22 +51,37 @@ export default {
         this.$store.dispatch('updateRep', value)
       }
     },
-    checked: {
+    garmentChecked: {
       get () {
         return this.$store.state.garment
       },
       set (value) {
         this.$store.dispatch('updateGarment', value)
       }
+    },
+    methodChecked: {
+      get () {
+        return this.$store.state.method
+      },
+      set (value) {
+        this.$store.dispatch('updateMethod', value)
+      }
     }
   },
   methods: {
-    async load () {
+    async loadGarments () {
       // FIXME: use query to load garments
       const data = [
         'Sanmar', 'Alphabrorder', 'Other Apparel', 'Drop Off'
       ]
       this.garments = data
+    },
+    async loadMethod () {
+      // FIXME: use query to load shipping methods
+      const data = [
+        'UPS', 'Fed-EX', 'Pickup', 'Other'
+      ]
+      this.methods = data
     },
     next () {
       this.$router.push('/summary')

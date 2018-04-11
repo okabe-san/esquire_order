@@ -5,3 +5,7 @@ export const rep = state => {
 export const garment = state => {
   return state.garment
 }
+
+export const method = state => {
+  return state.method
+}

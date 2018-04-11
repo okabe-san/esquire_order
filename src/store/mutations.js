@@ -5,3 +5,7 @@ export const updateRep = (state, payload) => {
 export const updateGarment = (state, payload) => {
   state.garment = payload
 }
+
+export const updateMethod = (state, payload) => {
+  state.method = payload
+}
