@@ -106,10 +106,10 @@ export default {
     },
     inputs: {
       get () {
-        return this.$store.state.splitDetails
+        return this.$store.state.addresses
       },
       set (value) {
-        this.$store.dispatch('updateSplitDetails', value)
+        this.$store.dispatch('updateAddresses', value)
       }
     }
   },

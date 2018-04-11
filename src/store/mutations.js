@@ -15,5 +15,5 @@ export const updateSplit = (state, payload) => {
 }
 
 export const updateSplitDetails = (state, payload) => {
-  state.splitDetails = payload
+  state.addresses = payload
 }
