@@ -15,6 +15,8 @@
     </ul>
     {{checked}}
 
+    <button @click="next">Next</button>
+
   </div>
 </template>
 
@@ -52,6 +54,9 @@ export default {
         'Sanmar', 'Alphabrorder', 'Other Apparel', 'Drop Off'
       ]
       this.garments = data
+    },
+    next () {
+      this.$router.push('/summary')
     }
   }
 }
