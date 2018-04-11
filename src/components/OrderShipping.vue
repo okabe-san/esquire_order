@@ -26,8 +26,21 @@
 
     <!-- check split shipping -->
     <input type="checkbox" v-model="split">
-    {{ split }}
+    {{split}}
 
+    <!-- add split address details -->
+    <div v-if="split == true">
+      <ul>
+       <li v-for="(input, index) in inputs" :key="index">
+         <input type="text" v-model="input.address"> {{input.address}}
+         <input type="text" v-model="input.detail"> {{input.detail}}
+         <button v-if="index != 0" @click="deleteRow(index)">Delete</button>
+       </li>
+     </ul>
+     <button @click="addRow">Add row</button>
+    </div>
+
+    <!-- Nav Buttons -->
     <button @click="next">Next</button>
 
   </div>
@@ -40,7 +53,8 @@ export default {
     return {
       garments: [],
       methods: [],
-      split: false
+      split: false,
+      inputs: [{address: '', detail: ''}]
     }
   },
   created () {
@@ -87,6 +101,15 @@ export default {
         'UPS', 'Fed-EX', 'Pickup', 'Other'
       ]
       this.methods = data
+    },
+    addRow () {
+      this.inputs.push({
+        address: '',
+        detail: ''
+      })
+    },
+    deleteRow (index) {
+      this.inputs.splice(index, 1)
     },
     next () {
       this.$router.push('/summary')
