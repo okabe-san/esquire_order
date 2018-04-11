@@ -1,5 +1,6 @@
 <template>
   <div>
+    <img src="../assets/logo.png">
     <h1>{{ msg }}</h1>
       User name: <input type="text" v-model="user_name"><br />
       Password: <input type="text" v-model="password"><br />
@@ -20,7 +21,7 @@ export default {
   methods: {
     login () {
       // FIXME: use real login
-      this.$router.push('/order')
+      this.$router.push('/shipping')
     }
   }
 }
