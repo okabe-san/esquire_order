@@ -12,6 +12,7 @@ export const store = new Vuex.Store({
     rep: '',
     garment: '',
     method: '',
+    split: false,
     splitDetails: [{address: '', detail: ''}]
   },
   getters,

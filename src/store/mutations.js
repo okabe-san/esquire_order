@@ -10,6 +10,10 @@ export const updateMethod = (state, payload) => {
   state.method = payload
 }
 
+export const updateSplit = (state, payload) => {
+  state.split = payload
+}
+
 export const updateSplitDetails = (state, payload) => {
   state.splitDetails = payload
 }
