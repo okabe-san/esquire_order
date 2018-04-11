@@ -7,7 +7,6 @@
 </template>
 
 <script>
-
 export default {
   name: 'Order',
   computed: {
@@ -16,13 +15,8 @@ export default {
         return this.$store.state.garment
       },
       set (value) {
-        this.$store.commit('updateGarment', value)
+        this.$store.dispatch('updateGarment', value)
       }
-    }
-  },
-  methods: {
-    updateGarment () {
-      this.$store.commit('updateGarment')
     }
   }
 }
