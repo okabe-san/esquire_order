@@ -1,3 +1,3 @@
-export const grament = state => {
-  return state.garment
+export const rep = state => {
+  return state.rep
 }

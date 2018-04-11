@@ -1,3 +1,3 @@
-export const updateGarment = (state, payload) => {
-  state.garment = payload
+export const updateRep = (state, payload) => {
+  state.rep = payload
 }
