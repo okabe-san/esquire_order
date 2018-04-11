@@ -28,28 +28,32 @@
     </ul>
     {{methodChecked}}
 
-    <!-- shipping address -->
-    Shipping Address
-    <input type="text" v-model="inputs[0].address"> {{inputs[0].address}}
-    <br />
-
     <!-- check split shipping -->
     Need a split shipping?
     <input type="checkbox" v-model="split">
     {{split}}
     <br />
 
-    <!-- add split shipping address details -->
+    <!-- shipping address -->
+    <!-- no split shipping -->
+    <div v-if="split == false">
+      Shipping Address
+      <input type="text" v-model="inputs[0].address"> {{inputs[0].address}}
+      <br />
+    </div>
+
+    <!-- split shipping -->
     <div v-if="split == true">
+      Shipping Address / Garment Detail
       <ul>
-       <li v-for="(input, index) in inputs.slice(1)" :key="index">
+       <li v-for="(input, index) in inputs" :key="index">
+         {{index + 1}}
          <input type="text" v-model="input.address"> {{input.address}}
          <input type="text" v-model="input.detail"> {{input.detail}}
-         <button v-if="index > 0" @click="deleteRow(index)">Delete</button>
+         <button v-if="index > 1" @click="deleteRow(index)">Delete</button>
        </li>
      </ul>
      <button @click="addRow">Add row</button>
-
     </div>
 
     <!-- nav buttons -->

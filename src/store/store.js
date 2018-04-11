@@ -13,7 +13,7 @@ export const store = new Vuex.Store({
     garment: '',
     method: '',
     split: false,
-    addresses: [{address: ''}, {address: '', detail: ''}]
+    addresses: [{address: '', detail: ''}]
   },
   getters,
   mutations,
