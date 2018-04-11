@@ -2,7 +2,7 @@
   <div>
     <h1>order</h1>
 
-    <!-- type in rep name -->
+    <!-- type rep name -->
     <input type="text" v-model="rep">
     {{rep}}
 
@@ -23,7 +23,6 @@ export default {
   name: 'Order',
   data () {
     return {
-      checked: '',
       garments: []
     }
   },
@@ -36,11 +35,19 @@ export default {
       set (value) {
         this.$store.dispatch('updateRep', value)
       }
+    },
+    checked: {
+      get () {
+        return this.$store.state.garment
+      },
+      set (value) {
+        this.$store.dispatch('updateGarment', value)
+      }
     }
   },
   methods: {
     async load () {
-      // FIXME: use query to load garment
+      // FIXME: use query to load garments
       const data = [
         'Sanmar', 'Alphabrorder', 'Other Apparel', 'Drop Off'
       ]
