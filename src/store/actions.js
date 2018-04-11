@@ -10,6 +10,10 @@ export const updateMethod = ({commit}, payload) => {
   commit('updateMethod', payload)
 }
 
+export const updateSplit = ({commit}, payload) => {
+  commit('updateSplit', payload)
+}
+
 export const updateSplitDetails = ({commit}, payload) => {
   commit('updateSplitDetails', payload)
 }

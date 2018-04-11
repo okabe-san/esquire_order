@@ -53,8 +53,7 @@ export default {
   data () {
     return {
       garments: [],
-      methods: [],
-      split: false
+      methods: []
     }
   },
   created () {
@@ -84,6 +83,14 @@ export default {
       },
       set (value) {
         this.$store.dispatch('updateMethod', value)
+      }
+    },
+    split: {
+      get () {
+        return this.$store.state.split
+      },
+      set (value) {
+        this.$store.dispatch('updateSplit', value)
       }
     },
     inputs: {
