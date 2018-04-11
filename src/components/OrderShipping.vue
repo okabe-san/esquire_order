@@ -24,6 +24,10 @@
     </ul>
     {{methodChecked}}
 
+    <!-- check split shipping -->
+    <input type="checkbox" v-model="split">
+    {{ split }}
+
     <button @click="next">Next</button>
 
   </div>
@@ -35,7 +39,8 @@ export default {
   data () {
     return {
       garments: [],
-      methods: []
+      methods: [],
+      split: false
     }
   },
   created () {
