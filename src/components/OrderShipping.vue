@@ -3,10 +3,13 @@
     <h1>Shipping</h1>
 
     <!-- type rep name -->
+    Representative Name
     <input type="text" v-model="rep">
     {{rep}}
+    <br />
 
     <!-- garments list -->
+    Where the garments from?
     <ul>
       <li v-for="garment in garments" :key="garment">
         <input type="radio" v-model="garmentChecked" :value="garment">
@@ -16,6 +19,7 @@
     {{garmentChecked}}
 
     <!-- shipping methods list -->
+    Shipping method
     <ul>
       <li v-for="method in methods" :key="method">
         <input type="radio" v-model="methodChecked" :value="method">
@@ -24,17 +28,24 @@
     </ul>
     {{methodChecked}}
 
+    <!-- shipping address -->
+    Shipping Address
+    <input type="text" v-model="inputs[0].address"> {{inputs[0].address}}
+    <br />
+
     <!-- check split shipping -->
+    Need a split shipping?
     <input type="checkbox" v-model="split">
     {{split}}
+    <br />
 
     <!-- add split shipping address details -->
     <div v-if="split == true">
       <ul>
-       <li v-for="(input, index) in inputs" :key="index">
+       <li v-for="(input, index) in inputs.slice(1)" :key="index">
          <input type="text" v-model="input.address"> {{input.address}}
          <input type="text" v-model="input.detail"> {{input.detail}}
-         <button v-if="index != 0" @click="deleteRow(index)">Delete</button>
+         <button v-if="index > 0" @click="deleteRow(index)">Delete</button>
        </li>
      </ul>
      <button @click="addRow">Add row</button>
