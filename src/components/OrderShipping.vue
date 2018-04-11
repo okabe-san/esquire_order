@@ -5,7 +5,6 @@
     <!-- type rep name -->
     Representative Name
     <input type="text" v-model="rep">
-    {{rep}}
     <br />
 
     <!-- garments list -->
@@ -16,7 +15,6 @@
           {{garment}}
       </li>
     </ul>
-    {{garmentChecked}}
 
     <!-- shipping methods list -->
     Shipping method
@@ -26,7 +24,6 @@
           {{method}}
       </li>
     </ul>
-    {{methodChecked}}
 
     <!-- check split shipping -->
     Need a split shipping?
@@ -38,7 +35,7 @@
     <!-- no split shipping -->
     <div v-if="split == false">
       Shipping Address
-      <input type="text" v-model="inputs[0].address"> {{inputs[0].address}}
+      <input type="text" v-model="inputs[0].address">
       <br />
     </div>
 
@@ -48,8 +45,8 @@
       <ul>
        <li v-for="(input, index) in inputs" :key="index">
          {{index + 1}}
-         <input type="text" v-model="input.address"> {{input.address}}
-         <input type="text" v-model="input.detail"> {{input.detail}}
+         <input type="text" v-model="input.address">
+         <input type="text" v-model="input.detail">
          <button v-if="index > 1" @click="deleteRow(index)">Delete</button>
        </li>
      </ul>
