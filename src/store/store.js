@@ -15,6 +15,7 @@ export const store = new Vuex.Store({
     split: false,
     addresses: [{address: '', detail: ''}],
     // for step 2
+    re_order: null,
     same_order: false,
     order_picked: ''
   },

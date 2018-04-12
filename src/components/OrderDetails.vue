@@ -10,27 +10,24 @@
       <h1>Details</h1>
 
       <!-- check re-order or not -->
-      Re-Order?
-      <input type="radio" v-model="re_order" v-on:change="order()" vaule="1"> No
-      <input type="radio" v-model="re_order" v-on:change="order()" value="2"> Yes
+      New Order
+      <input type="radio" v-model="re_order" v-on:change="order()" vaule="1"> Yes
+      <input type="radio" v-model="re_order" v-on:change="order()" value="2"> No: Re-Order
       <br />
 
       <!-- for re-order -->
       <div v-if="reOrder">
-        <!-- check exact same order or not -->
-        Is this the exact same order?
-        <input type="checkbox" v-model="same_order">
-        {{same_order}}
-
         <!-- select order -->
         Pick Order
         <ul>
           <li v-for="order in orders" :key="order">
-            <input type="radio" v-model="orderPicked" :value="order">
+            <input type="radio" v-model="order_picked" :value="order">
               {{order}}
           </li>
         </ul>
-
+        <!-- check exact same order or not -->
+        Is this the exact same order?
+        <input type="checkbox" v-model="same_order">
       </div>
 
       <!-- for non re-order -->
@@ -77,7 +74,6 @@ export default {
     return {
       orders: [],
       reOrder: null,
-      re_order: null,
       uploadedFiles: [],
       uploadError: null,
       currentStatus: null,
@@ -91,16 +87,17 @@ export default {
     this.reset()
   },
   computed: {
-    same_order: {
+    re_order: {
       get () {
-        return this.$store.state.same_order
+        return this.$store.state.re_order
       },
       set (value) {
-        this.$store.dispatch('updateSameOrder', value)
+        this.$store.dispatch('updateReOrder', value)
         this.$store.dispatch('updateOrderPicked', '')
+        this.$store.dispatch('updateSameOrder', false)
       }
     },
-    orderPicked: {
+    order_picked: {
       get () {
         return this.$store.state.order_picked
       },
@@ -108,6 +105,15 @@ export default {
         this.$store.dispatch('updateOrderPicked', value)
       }
     },
+    same_order: {
+      get () {
+        return this.$store.state.same_order
+      },
+      set (value) {
+        this.$store.dispatch('updateSameOrder', value)
+      }
+    },
+
     // for file upload
     isInitial () {
       return this.currentStatus === STATUS_INITIAL
