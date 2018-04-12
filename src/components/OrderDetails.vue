@@ -9,15 +9,27 @@
     <main>
       <h1>Details</h1>
 
-      <!-- check re-order -->
+      <!-- check re-order or not -->
       Re-Order?
       <input type="checkbox" v-model="re_order">
       {{re_order}}
 
       <div v-if="re_order == true">
-        <!-- check exact same order -->
+        <!-- check exact same order or not -->
+        Is this the exact same order?
         <input type="checkbox" v-model="same_order">
         {{same_order}}
+
+        <!-- select order -->
+        <div v-if="same_order == true">
+          Pick Order
+          <ul>
+            <li v-for="order in orders" :key="order">
+              <input type="radio" v-model="orderPicked" :value="order">
+                {{order}}
+            </li>
+          </ul>
+        </div>
 
       </div>
 
@@ -30,6 +42,14 @@
 <script>
 export default {
   name: 'Detail',
+  data () {
+    return {
+      orders: []
+    }
+  },
+  created () {
+    this.loadOrders()
+  },
   computed: {
     re_order: {
       get () {
@@ -46,10 +66,26 @@ export default {
       },
       set (value) {
         this.$store.dispatch('updateSameOrder', value)
+        this.$store.dispatch('updateOrderPicked', '')
+      }
+    },
+    orderPicked: {
+      get () {
+        return this.$store.state.order_picked
+      },
+      set (value) {
+        this.$store.dispatch('updateOrderPicked', value)
       }
     }
   },
   methods: {
+    async loadOrders () {
+      // FIXME: use query to load orders
+      const data = [
+        'Order 001', 'Order 002', 'Order 003', 'Order 004'
+      ]
+      this.orders = data
+    },
     next () {
       this.$router.push('/summary')
     }

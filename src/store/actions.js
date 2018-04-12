@@ -27,3 +27,7 @@ export const updateReOrder = ({commit}, payload) => {
 export const updateSameOrder = ({commit}, payload) => {
   commit('updateSameOrder', payload)
 }
+
+export const updateOrderPicked = ({commit}, payload) => {
+  commit('updateOrderPicked', payload)
+}
