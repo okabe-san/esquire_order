@@ -1,18 +1,26 @@
 <template>
   <div>
-    <h1>summary</h1>
-    Representative Name: {{rep}} <br />
-    Garments from: {{garmentChecked}} <br />
-    Shipping method: {{methodChecked}} <br />
-    Split Shipping: {{split}} <br />
-    Shipping Address:
-    <ul>
-     <li v-for="(input, index) in inputs" :key="index">
-       {{index + 1}}
-       Address: {{input.address}}
-       Detail: {{input.detail}}
-     </li>
-   </ul>
+    <section>
+      <h3 class="step">Step 1</h3>
+      <h3 class="step">Step 2</h3>
+      <h3 class="step">Step 3</h3>
+      <h3 class="step">Review</h3>
+    </section>
+    <main>
+      <h1>Review</h1>
+      Representative Name: {{rep}} <br />
+      Garments from: {{garmentChecked}} <br />
+      Shipping method: {{methodChecked}} <br />
+      Split Shipping: {{split}} <br />
+      Shipping Address:
+      <ul>
+       <li v-for="(input, index) in inputs" :key="index">
+         {{index + 1}}
+         Address: {{input.address}}
+         Detail: {{input.detail}}
+       </li>
+     </ul>
+   </main>
   </div>
 </template>
 
@@ -51,5 +59,22 @@ export default {
 </script>
 
 <style scoped>
-li { list-style-type: none; }
+main {
+  box-sizing: border-box;
+  float: right;
+  width: 80%;
+
+  padding-right: 10%;
+}
+section {
+  box-sizing: border-box;
+  float: left;
+  width: 20%;
+}
+li {
+  list-style-type: none;
+}
+.step {
+  color: orange;
+}
 </style>

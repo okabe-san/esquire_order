@@ -1,61 +1,68 @@
 <template>
   <div>
-    <h1>Shipping</h1>
+    <section>
+      <h3 class="step">Step 1</h3>
+      <h3>Step 2</h3>
+      <h3>Step 3</h3>
+      <h3>Review</h3>
+    </section>
+    <main>
+      <h1>Shipping</h1>
 
-    <!-- type rep name -->
-    Representative Name
-    <input type="text" v-model="rep">
-    <br />
-
-    <!-- garments list -->
-    Where the garments from?
-    <ul>
-      <li v-for="garment in garments" :key="garment">
-        <input type="radio" v-model="garmentChecked" :value="garment">
-          {{garment}}
-      </li>
-    </ul>
-
-    <!-- shipping methods list -->
-    Shipping method
-    <ul>
-      <li v-for="method in methods" :key="method">
-        <input type="radio" v-model="methodChecked" :value="method">
-          {{method}}
-      </li>
-    </ul>
-
-    <!-- check split shipping -->
-    Need a split shipping?
-    <input type="checkbox" v-model="split">
-    {{split}}
-    <br />
-
-    <!-- shipping address -->
-    <!-- no split shipping -->
-    <div v-if="split == false">
-      Shipping Address
-      <input type="text" v-model="inputs[0].address">
+      <!-- type rep name -->
+      Representative Name
+      <input type="text" v-model="rep">
       <br />
-    </div>
 
-    <!-- split shipping -->
-    <div v-if="split == true">
-      Shipping Address / Garment Detail
+      <!-- garments list -->
+      Where the garments from?
       <ul>
-       <li v-for="(input, index) in inputs" :key="index">
-         {{index + 1}}
-         <input type="text" v-model="input.address">
-         <input type="text" v-model="input.detail">
-         <button v-if="index > 1" @click="deleteRow(index)">Delete</button>
-       </li>
-     </ul>
-     <button @click="addRow">Add row</button>
-    </div>
+        <li v-for="garment in garments" :key="garment">
+          <input type="radio" v-model="garmentChecked" :value="garment">
+            {{garment}}
+        </li>
+      </ul>
 
-    <!-- nav buttons -->
-    <button @click="next">Next</button>
+      <!-- shipping methods list -->
+      Shipping method
+      <ul>
+        <li v-for="method in methods" :key="method">
+          <input type="radio" v-model="methodChecked" :value="method">
+            {{method}}
+        </li>
+      </ul>
 
+      <!-- check split shipping -->
+      Need a split shipping?
+      <input type="checkbox" v-model="split">
+      {{split}}
+      <br />
+
+      <!-- shipping address -->
+      <!-- no split shipping -->
+      <div v-if="split == false">
+        Shipping Address
+        <input type="text" v-model="inputs[0].address">
+        <br />
+      </div>
+
+      <!-- split shipping -->
+      <div v-if="split == true">
+        Shipping Address / Garment Detail
+        <ul>
+         <li v-for="(input, index) in inputs" :key="index">
+           {{index + 1}}
+           <input type="text" v-model="input.address">
+           <input type="text" v-model="input.detail">
+           <button v-if="index > 1" @click="deleteRow(index)">Delete</button>
+         </li>
+       </ul>
+       <button @click="addRow">Add row</button>
+      </div>
+
+      <!-- nav buttons -->
+      <button @click="next">Next</button>
+    </main>
   </div>
 </template>
 
@@ -148,5 +155,22 @@ export default {
 </script>
 
 <style scoped>
-li { list-style-type: none; }
+main {
+  box-sizing: border-box;
+  float: right;
+  width: 80%;
+
+  padding-right: 10%;
+}
+section {
+  box-sizing: border-box;
+  float: left;
+  width: 20%;
+}
+li {
+  list-style-type: none;
+}
+.step {
+  color: orange;
+}
 </style>
