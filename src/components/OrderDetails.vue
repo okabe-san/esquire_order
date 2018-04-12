@@ -11,18 +11,19 @@
 
       <!-- check re-order or not -->
       Re-Order?
-      <input type="checkbox" v-model="re_order">
-      {{re_order}}
+      <input type="radio" v-model="re_order" v-on:change="order()" vaule="1"> No
+      <input type="radio" v-model="re_order" v-on:change="order()" value="2"> Yes
+      <br />
 
       <!-- for re-order -->
-      <div v-if="re_order == true">
+      <div v-if="reOrder">
         <!-- check exact same order or not -->
         Is this the exact same order?
         <input type="checkbox" v-model="same_order">
         {{same_order}}
 
         <!-- select order -->
-        <div v-if="same_order == true">
+        <div v-if="same_order">
           Pick Order
           <ul>
             <li v-for="order in orders" :key="order">
@@ -35,10 +36,11 @@
 
       <!-- for non re-order -->
       <div v-else>
-        <!-- upload -->
+        <h3>Upload file(s)</h3>
+        <!-- upload embroidery file(s) -->
         <form enctype="multipart/form-data" v-if="isInitial || isSaving">
-          <h3>Upload embroidery files</h3>
           <div class="dropbox">
+            <!-- need to add acceptable file types -->
             <input type="file"
               multiple
               :name="uploadFieldName"
@@ -54,6 +56,7 @@
               </p>
           </div>
         </form>
+
       </div>
 
       <!-- nav buttons -->
@@ -74,28 +77,21 @@ export default {
   data () {
     return {
       orders: [],
+      reOrder: null,
+      re_order: null,
       uploadedFiles: [],
       uploadError: null,
       currentStatus: null,
       uploadFieldName: ''
     }
   },
-  mounted () {
-    this.reset()
-  },
   created () {
     this.loadOrders()
   },
+  mounted () {
+    this.reset()
+  },
   computed: {
-    re_order: {
-      get () {
-        return this.$store.state.re_order
-      },
-      set (value) {
-        this.$store.dispatch('updateReOrder', value)
-        this.$store.dispatch('updateSameOrder', false)
-      }
-    },
     same_order: {
       get () {
         return this.$store.state.same_order
@@ -137,6 +133,9 @@ export default {
     },
     next () {
       this.$router.push('/summary')
+    },
+    order () {
+      this.reOrder = !this.reOrder
     },
     // for file upload
     reset () {
@@ -187,35 +186,36 @@ section {
 li {
   list-style-type: none;
 }
+
 .step {
   color: orange;
 }
 .dropbox {
-    outline: 2px dashed grey; /* the dash box */
-    outline-offset: -10px;
-    background: lightcyan;
-    color: dimgray;
-    padding: 10px 10px;
-    min-height: 200px; /* minimum height */
-    position: relative;
-    cursor: pointer;
-  }
+  outline: 2px dashed grey; /* the dash box */
+  outline-offset: -10px;
+  background: lightcyan;
+  color: dimgray;
+  padding: 10px 10px;
+  min-height: 200px; /* minimum height */
+  position: relative;
+  cursor: pointer;
+}
 
-  .input-file {
-    opacity: 0; /* invisible but it's there! */
-    width: 100%;
-    height: 200px;
-    position: absolute;
-    cursor: pointer;
-  }
+.input-file {
+  opacity: 0; /* invisible but it's there! */
+  width: 100%;
+  height: 200px;
+  position: absolute;
+  cursor: pointer;
+}
 
-  .dropbox:hover {
-    background: lightblue; /* when mouse over to the drop zone, change color */
-  }
+.dropbox:hover {
+  background: lightblue; /* when mouse over to the drop zone, change color */
+}
 
-  .dropbox p {
-    font-size: 1.2em;
-    text-align: center;
-    padding: 50px 0;
-  }
+.dropbox p {
+  font-size: 1.2em;
+  text-align: center;
+  padding: 50px 0;
+}
 </style>
