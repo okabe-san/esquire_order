@@ -3,42 +3,54 @@
     <h1>Shipping</h1>
 
     <!-- type rep name -->
+    Representative Name
     <input type="text" v-model="rep">
-    {{rep}}
+    <br />
 
     <!-- garments list -->
+    Where the garments from?
     <ul>
       <li v-for="garment in garments" :key="garment">
         <input type="radio" v-model="garmentChecked" :value="garment">
           {{garment}}
       </li>
     </ul>
-    {{garmentChecked}}
 
     <!-- shipping methods list -->
+    Shipping method
     <ul>
       <li v-for="method in methods" :key="method">
         <input type="radio" v-model="methodChecked" :value="method">
           {{method}}
       </li>
     </ul>
-    {{methodChecked}}
 
     <!-- check split shipping -->
+    Need a split shipping?
     <input type="checkbox" v-model="split">
     {{split}}
+    <br />
 
-    <!-- add split shipping address details -->
+    <!-- shipping address -->
+    <!-- no split shipping -->
+    <div v-if="split == false">
+      Shipping Address
+      <input type="text" v-model="inputs[0].address">
+      <br />
+    </div>
+
+    <!-- split shipping -->
     <div v-if="split == true">
+      Shipping Address / Garment Detail
       <ul>
        <li v-for="(input, index) in inputs" :key="index">
-         <input type="text" v-model="input.address"> {{input.address}}
-         <input type="text" v-model="input.detail"> {{input.detail}}
-         <button v-if="index != 0" @click="deleteRow(index)">Delete</button>
+         {{index + 1}}
+         <input type="text" v-model="input.address">
+         <input type="text" v-model="input.detail">
+         <button v-if="index > 1" @click="deleteRow(index)">Delete</button>
        </li>
      </ul>
      <button @click="addRow">Add row</button>
-
     </div>
 
     <!-- nav buttons -->
@@ -91,14 +103,16 @@ export default {
       },
       set (value) {
         this.$store.dispatch('updateSplit', value)
+        // TODO: to keep first address
+        this.$store.dispatch('updateAddresses', [{address: '', detail: ''}])
       }
     },
     inputs: {
       get () {
-        return this.$store.state.splitDetails
+        return this.$store.state.addresses
       },
       set (value) {
-        this.$store.dispatch('updateSplitDetails', value)
+        this.$store.dispatch('updateAddresses', value)
       }
     }
   },

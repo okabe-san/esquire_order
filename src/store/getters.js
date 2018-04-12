@@ -15,5 +15,5 @@ export const split = state => {
 }
 
 export const splitDetails = state => {
-  return state.splitDetails
+  return state.addresses
 }

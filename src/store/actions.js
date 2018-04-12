@@ -14,6 +14,6 @@ export const updateSplit = ({commit}, payload) => {
   commit('updateSplit', payload)
 }
 
-export const updateSplitDetails = ({commit}, payload) => {
-  commit('updateSplitDetails', payload)
+export const updateAddresses = ({commit}, payload) => {
+  commit('updateAddresses', payload)
 }
