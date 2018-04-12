@@ -68,7 +68,7 @@
 
 <script>
 export default {
-  name: 'Order',
+  name: 'Shipping',
   data () {
     return {
       garments: [],
@@ -148,7 +148,7 @@ export default {
       this.inputs.splice(index, 1)
     },
     next () {
-      this.$router.push('/summary')
+      this.$router.push('/details')
     }
   }
 }
