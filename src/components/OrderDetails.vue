@@ -9,6 +9,12 @@
     <main>
       <h1>Details</h1>
 
+      <!-- check re-order -->
+      Re-Order?
+      <input type="checkbox" v-model="re_order">
+      {{re_order}}
+      <br />
+
       <!-- nav buttons -->
       <button @click="next">Next</button>
     </main>
@@ -18,11 +24,15 @@
 <script>
 export default {
   name: 'Detail',
-  data () {
-  },
-  created () {
-  },
   computed: {
+    re_order: {
+      get () {
+        return this.$store.state.re_order
+      },
+      set (value) {
+        this.$store.dispatch('updateReOrder', value)
+      }
+    }
   },
   methods: {
     next () {
