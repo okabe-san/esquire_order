@@ -13,7 +13,13 @@
       Re-Order?
       <input type="checkbox" v-model="re_order">
       {{re_order}}
-      <br />
+
+      <div v-if="re_order == true">
+        <!-- check exact same order -->
+        <input type="checkbox" v-model="same_order">
+        {{same_order}}
+
+      </div>
 
       <!-- nav buttons -->
       <button @click="next">Next</button>
@@ -31,6 +37,15 @@ export default {
       },
       set (value) {
         this.$store.dispatch('updateReOrder', value)
+        this.$store.dispatch('updateSameOrder', false)
+      }
+    },
+    same_order: {
+      get () {
+        return this.$store.state.same_order
+      },
+      set (value) {
+        this.$store.dispatch('updateSameOrder', value)
       }
     }
   },

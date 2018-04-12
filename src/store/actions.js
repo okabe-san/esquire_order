@@ -23,3 +23,7 @@ export const updateAddresses = ({commit}, payload) => {
 export const updateReOrder = ({commit}, payload) => {
   commit('updateReOrder', payload)
 }
+
+export const updateSameOrder = ({commit}, payload) => {
+  commit('updateSameOrder', payload)
+}

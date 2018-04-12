@@ -23,3 +23,7 @@ export const updateAddresses = (state, payload) => {
 export const updateReOrder = (state, payload) => {
   state.re_order = payload
 }
+
+export const updateSameOrder = (state, payload) => {
+  state.same_order = payload
+}
