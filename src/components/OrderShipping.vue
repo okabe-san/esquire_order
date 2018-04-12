@@ -103,6 +103,7 @@ export default {
       },
       set (value) {
         this.$store.dispatch('updateSplit', value)
+        // TODO: to keep first address
         this.$store.dispatch('updateAddresses', [{address: '', detail: ''}])
       }
     },
