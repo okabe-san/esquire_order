@@ -56,6 +56,7 @@
       </div>
 
       <!-- nav buttons -->
+      <button @click="back">Back</button>
       <button @click="next">Next</button>
     </main>
   </div>
@@ -136,11 +137,14 @@ export default {
       ]
       this.orders = data
     },
-    next () {
-      this.$router.push('/summary')
-    },
     order () {
       this.reOrder = !this.reOrder
+    },
+    back () {
+      this.$router.push('/shipping')
+    },
+    next () {
+      this.$router.push('/summary')
     },
     // FOR FILE UPLOAD
     reset () {
