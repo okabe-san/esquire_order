@@ -23,15 +23,14 @@
         {{same_order}}
 
         <!-- select order -->
-        <div v-if="same_order">
-          Pick Order
-          <ul>
-            <li v-for="order in orders" :key="order">
-              <input type="radio" v-model="orderPicked" :value="order">
-                {{order}}
-            </li>
-          </ul>
-        </div>
+        Pick Order
+        <ul>
+          <li v-for="order in orders" :key="order">
+            <input type="radio" v-model="orderPicked" :value="order">
+              {{order}}
+          </li>
+        </ul>
+
       </div>
 
       <!-- for non re-order -->
