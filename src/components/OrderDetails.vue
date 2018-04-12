@@ -62,7 +62,7 @@
 </template>
 
 <script>
-// for file upload
+// FOR FILE UPLOAD
 const STATUS_INITIAL = 0
 const STATUS_SAVING = 1
 const STATUS_SUCCESS = 2
@@ -114,7 +114,7 @@ export default {
       }
     },
 
-    // for file upload
+    // FOR FILE UPLOAD
     isInitial () {
       return this.currentStatus === STATUS_INITIAL
     },
@@ -142,7 +142,7 @@ export default {
     order () {
       this.reOrder = !this.reOrder
     },
-    // for file upload
+    // FOR FILE UPLOAD
     reset () {
       // reset form to initial state
       this.currentStatus = STATUS_INITIAL
@@ -191,23 +191,24 @@ section {
 li {
   list-style-type: none;
 }
-
 .step {
   color: orange;
 }
+
+/* FOR FILE UPLOAD */
 .dropbox {
-  outline: 2px dashed grey; /* the dash box */
-  outline-offset: -10px;
+  outline: 1px dashed grey;
+  outline-offset: -1rem;
   background: lightcyan;
   color: dimgray;
-  padding: 10px 10px;
-  min-height: 200px; /* minimum height */
+  padding: 2rem;
+  min-height: 200px;
   position: relative;
   cursor: pointer;
 }
 
 .input-file {
-  opacity: 0; /* invisible but it's there! */
+  opacity: 0;
   width: 100%;
   height: 200px;
   position: absolute;
@@ -215,12 +216,12 @@ li {
 }
 
 .dropbox:hover {
-  background: lightblue; /* when mouse over to the drop zone, change color */
+  background: lightblue;
 }
 
 .dropbox p {
-  font-size: 1.2em;
+  font-size: 1.2rem;
   text-align: center;
-  padding: 50px 0;
+  padding: 2rem 0;
 }
 </style>
