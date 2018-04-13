@@ -26,8 +26,8 @@
           </li>
         </ul>
         <!-- check exact same order or not -->
-        Is this the exact same order?
-        <input type="checkbox" v-model="sameOrder">
+        Need edit?
+        <input type="checkbox" v-model="editOrder">
       </div>
 
       <!-- for non re-order -->
@@ -64,6 +64,17 @@
 
       </div>
 
+      <!-- details -->
+      <div v-if="!reOrder || reOrder && editOrder">
+
+        Where you want to put? <br />
+        <img src="../assets/placeholder_350x150.png"> <br />
+
+        Size
+        <input type="text">Inches <br />
+        Color <br />
+      </div>
+
       <!-- nav buttons -->
       <button @click="back">Back</button>
       <button @click="next">Next</button>
@@ -95,7 +106,7 @@ export default {
       set (value) {
         this.$store.dispatch('updateReOrder', value)
         this.$store.dispatch('updateOrderPicked', '')
-        this.$store.dispatch('updateSameOrder', false)
+        this.$store.dispatch('updateEditOrder', false)
       }
     },
     orderPicked: {
@@ -106,12 +117,12 @@ export default {
         this.$store.dispatch('updateOrderPicked', value)
       }
     },
-    sameOrder: {
+    editOrder: {
       get () {
-        return this.$store.state.same_order
+        return this.$store.state.edit_order
       },
       set (value) {
-        this.$store.dispatch('updateSameOrder', value)
+        this.$store.dispatch('updateEditOrder', value)
       }
     }
   },

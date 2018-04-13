@@ -10,13 +10,13 @@
       <h1>Review</h1>
       <!-- step 1 -->
       <h3>Step 1</h3>
-      Representative Name: {{rep}} <br />
-      Garments from: {{garmentChecked}} <br />
-      Shipping method: {{methodChecked}} <br />
-      Split Shipping: {{split}} <br />
+      Representative Name: {{state.rep}} <br />
+      Garments from: {{state.garment}} <br />
+      Shipping method: {{state.method}} <br />
+      Split Shipping: {{state.split}} <br />
       Shipping Address:
       <ul>
-       <li v-for="(input, index) in inputs" :key="index">
+       <li v-for="(input, index) in state.addresses" :key="index">
          {{index + 1}}
          Address: {{input.address}}
          Detail: {{input.detail}}
@@ -25,19 +25,19 @@
 
      <!-- step 2 -->
      <h3>Step 2</h3>
-     Re-order: {{reOrder}} <br />
-     Order {{orderPicked}} <br />
-     Exact same order: {{sameOrder}} <br />
+     Re-order: {{state.re_order}} <br />
+     Order {{state.order_picked}} <br />
+     Need edit: {{state.edit_order}} <br />
 
      <!-- step 3 -->
      <h3>Step 3</h3>
      <ul>
-      <li v-for="(option, index) in optionChecked" :key="index">
+      <li v-for="(option, index) in state.option_checked" :key="index">
         {{index + 1}} {{option}}
       </li>
     </ul>
     Comment(s) <br />
-    {{comments}}
+    {{state.comments}}
    </main>
   </div>
 </template>
@@ -47,56 +47,10 @@
 export default {
   name: 'Summary',
   computed: {
-    rep: {
+    state: {
       get () {
-        return this.$store.state.rep
+        return this.$store.state
       }
-    },
-    garmentChecked: {
-      get () {
-        return this.$store.state.garment
-      }
-    },
-    methodChecked: {
-      get () {
-        return this.$store.state.method
-      }
-    },
-    split: {
-      get () {
-        return this.$store.state.split
-      }
-    },
-    inputs: {
-      get () {
-        return this.$store.state.addresses
-      }
-    },
-    reOrder: {
-      get () {
-        return this.$store.state.re_order
-      }
-    },
-    orderPicked: {
-      get () {
-        return this.$store.state.order_picked
-      }
-    },
-    sameOrder: {
-      get () {
-        return this.$store.state.same_order
-      }
-    },
-    optionChecked: {
-      get () {
-        return this.$store.state.option_checked
-      }
-    },
-    comments: {
-      get () {
-        return this.$store.state.comments
-      }
-
     }
   }
 }
