@@ -69,6 +69,10 @@
 
         Where you want to put? <br />
         <img src="../assets/placeholder_350x150.png"> <br />
+          <span v-for="location in locations" :key="location">
+            <input type="radio" v-model="locationSelected" :value="location">
+              {{location}}
+          </span>
 
         Size
         <input type="text">Inches <br />
@@ -92,11 +96,14 @@ export default {
       options: {
         url: '/details'
       },
-      files: []
+      files: [],
+      locations: [],
+      locationSelected: ''
     }
   },
   created () {
     this.loadOrders()
+    this.loadLocations()
   },
   computed: {
     reOrder: {
@@ -133,6 +140,20 @@ export default {
         'Order 001', 'Order 002', 'Order 003', 'Order 004'
       ]
       this.orders = data
+    },
+    async loadLocations () {
+      // FIXME: use query to load locations
+      const data = [
+        'Left Chest',
+        'Right Chest',
+        'Left Bottom',
+        'Right Bottom',
+        'Upper Left Sleeves',
+        'Upper right Sleeves',
+        'Left Wrist',
+        'Right Wrist'
+      ]
+      this.locations = data
     },
     orderCheck () {
       this.order = !this.order
