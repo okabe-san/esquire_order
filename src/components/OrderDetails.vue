@@ -11,23 +11,23 @@
 
       <!-- check re-order or not -->
       New Order
-      <input type="radio" v-model="re_order" v-on:change="order()" vaule="1"> Yes
-      <input type="radio" v-model="re_order" v-on:change="order()" value="2"> No: Re-Order
+      <input type="radio" v-model="reOrder" v-on:change="orderCheck()" vaule="1"> Yes
+      <input type="radio" v-model="reOrder" v-on:change="orderCheck()" value="2"> No: Re-Order
       <br />
 
       <!-- for re-order -->
-      <div v-if="reOrder">
+      <div v-if="order">
         <!-- select order -->
         Pick Order
         <ul>
           <li v-for="order in orders" :key="order">
-            <input type="radio" v-model="order_picked" :value="order">
+            <input type="radio" v-model="orderPicked" :value="order">
               {{order}}
           </li>
         </ul>
         <!-- check exact same order or not -->
         Is this the exact same order?
-        <input type="checkbox" v-model="same_order">
+        <input type="checkbox" v-model="sameOrder">
       </div>
 
       <!-- for non re-order -->
@@ -37,7 +37,7 @@
         <vue-clip ref="vc" :options="options" :on-added-file="fileAdded">
 
           <template slot="clip-uploader-action" slot-scope="props">
-            <div class="uploader-action" v-bind:class="{dragging: props.dragging}">
+            <div class="uploader-action" :class="{dragging: props.dragging}">
               <div class="dz-message">
                 Drag and Drop file(s)
               </div>
@@ -77,7 +77,7 @@ export default {
   data () {
     return {
       orders: [],
-      reOrder: null,
+      order: null,
       options: {
         url: '/details'
       },
@@ -88,7 +88,7 @@ export default {
     this.loadOrders()
   },
   computed: {
-    re_order: {
+    reOrder: {
       get () {
         return this.$store.state.re_order
       },
@@ -98,7 +98,7 @@ export default {
         this.$store.dispatch('updateSameOrder', false)
       }
     },
-    order_picked: {
+    orderPicked: {
       get () {
         return this.$store.state.order_picked
       },
@@ -106,7 +106,7 @@ export default {
         this.$store.dispatch('updateOrderPicked', value)
       }
     },
-    same_order: {
+    sameOrder: {
       get () {
         return this.$store.state.same_order
       },
@@ -123,8 +123,8 @@ export default {
       ]
       this.orders = data
     },
-    order () {
-      this.reOrder = !this.reOrder
+    orderCheck () {
+      this.order = !this.order
     },
     fileAdded (file) {
       this.files.push(file)
@@ -140,7 +140,7 @@ export default {
       this.$router.push('/shipping')
     },
     next () {
-      this.$router.push('/summary')
+      this.$router.push('/options')
     }
   }
 }

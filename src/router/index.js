@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import LogIn from '@/components/LogIn'
 import Shipping from '@/components/OrderShipping'
 import Details from '@/components/OrderDetails'
+import Options from '@/components/OrderOptions'
 import Summary from '@/components/Summary'
 
 Vue.use(Router)
@@ -23,6 +24,11 @@ export default new Router({
       path: '/details',
       name: 'Details',
       component: Details
+    },
+    {
+      path: '/options',
+      name: 'Options',
+      component: Options
     },
     {
       path: '/summary',
