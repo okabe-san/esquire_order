@@ -56,9 +56,13 @@
               <button @click="removeFileAddedPersonal(index)">Delete</button>
             </div>
           </div>
-
         </li>
       </ul>
+
+      <!-- comments -->
+      Additional Comments
+      <input type="text" v-model="comments">
+      <br />
 
       <!-- nav buttons -->
       <button @click="back">Back</button>
@@ -78,7 +82,8 @@ export default {
         url: '/details'
       },
       baggedByName: [],
-      personalizationName: []
+      personalizationName: [],
+      comments: ''
     }
   },
   created () {
