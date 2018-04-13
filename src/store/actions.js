@@ -36,3 +36,7 @@ export const updateOrderPicked = ({commit}, payload) => {
 export const updateOptionChecked = ({commit}, payload) => {
   commit('updateOptionChecked', payload)
 }
+
+export const updateComments = ({commit}, payload) => {
+  commit('updateComments', payload)
+}

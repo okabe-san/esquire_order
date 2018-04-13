@@ -81,8 +81,7 @@ export default {
         url: '/details'
       },
       baggedByName: [],
-      personalizationName: [],
-      comments: ''
+      personalizationName: []
     }
   },
   created () {
@@ -95,6 +94,14 @@ export default {
       },
       set (value) {
         this.$store.dispatch('updateOptionChecked', value)
+      }
+    },
+    comments: {
+      get () {
+        return this.$store.state.comments
+      },
+      set (value) {
+        this.$store.dispatch('updateComments', value)
       }
     }
   },

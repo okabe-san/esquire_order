@@ -19,7 +19,8 @@ export const store = new Vuex.Store({
     same_order: false,
     order_picked: '',
     // for step 3
-    option_checked: []
+    option_checked: [],
+    comments: ''
   },
   mutations,
   actions

@@ -36,3 +36,7 @@ export const updateOrderPicked = (state, payload) => {
 export const updateOptionChecked = (state, payload) => {
   state.option_checked = payload
 }
+
+export const updateComments = (state, payload) => {
+  state.comments = payload
+}
