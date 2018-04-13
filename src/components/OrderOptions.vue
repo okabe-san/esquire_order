@@ -13,11 +13,11 @@
       <ul>
         <li v-for="option in options" :key="option">
           {{option}}
-          <input type="checkbox" v-model="optionChecked" :value="option">
+          <input type="checkbox" v-model="option_checked" :value="option">
 
           <!-- FOR OPTION 2 -->
           <div v-if="
-            optionChecked.includes(option) &&
+            option_checked.includes(option) &&
             option === 'Poly Bagged by name'">
             <h3>Upload list</h3>
             <!-- upload file -->
@@ -38,7 +38,7 @@
 
           <!-- FOR OPTION 5 -->
           <div v-if="
-            optionChecked.includes(option) &&
+            option_checked.includes(option) &&
             option === 'Personalization'">
             <h3>Upload list</h3>
             <!-- upload file -->
@@ -77,7 +77,6 @@ export default {
   data () {
     return {
       options: [],
-      optionChecked: [],
       optionDetails: {
         url: '/details'
       },
@@ -88,6 +87,16 @@ export default {
   },
   created () {
     this.loadOptions()
+  },
+  computed: {
+    option_checked: {
+      get () {
+        return this.$store.state.option_checked
+      },
+      set (value) {
+        this.$store.dispatch('updateOptionChecked', value)
+      }
+    }
   },
   methods: {
     async loadOptions () {

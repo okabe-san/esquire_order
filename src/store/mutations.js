@@ -31,3 +31,8 @@ export const updateSameOrder = (state, payload) => {
 export const updateOrderPicked = (state, payload) => {
   state.order_picked = payload
 }
+
+// for step 3
+export const updateOptionChecked = (state, payload) => {
+  state.option_checked = payload
+}
