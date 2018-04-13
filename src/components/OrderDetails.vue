@@ -34,7 +34,7 @@
       <div v-else>
         <h3>Upload file(s)</h3>
         <!-- upload embroidery file(s) -->
-        <form enctype="multipart/form-data" v-if="isInitial || isSaving">
+        <form enctype="multipart/form-data" novalidate v-if="isInitial || isSaving">
           <div class="dropbox">
             <!-- need to add acceptable file types -->
             <input type="file"
@@ -43,6 +43,7 @@
               :disabled="isSaving"
               @change="filesChange($event.target.name, $event.target.files);
               fileCount = $event.target.files.length"
+               accept="image/*"
               class="input-file">
               <p v-if="isInitial">
                 Drag your file(s) here to begin<br /> or click to browse
@@ -63,6 +64,8 @@
 </template>
 
 <script>
+import { upload } from 'v-file-upload'
+
 // FOR FILE UPLOAD
 const STATUS_INITIAL = 0
 const STATUS_SAVING = 1
@@ -158,11 +161,20 @@ export default {
       this.currentStatus = STATUS_SAVING
 
       // FIXME: develop upload file(s)
+      upload(formData)
+        .then(x => {
+          this.uploadedFiles = [].concat(x)
+          this.currentStatus = STATUS_SUCCESS
+        })
+        .catch(err => {
+          this.uploadError = err.response
+          this.currentStatus = STATUS_FAILED
+        })
     },
     filesChange (fieldName, fileList) {
       // handle file changes
       const formData = new FormData()
-
+      console.log(formData)
       if (!fileList.length) return
 
       // append the files to FormData
