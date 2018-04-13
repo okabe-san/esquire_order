@@ -8,6 +8,8 @@
     </section>
     <main>
       <h1>Review</h1>
+      <!-- step 1 -->
+      <h3>Step 1</h3>
       Representative Name: {{rep}} <br />
       Garments from: {{garmentChecked}} <br />
       Shipping method: {{methodChecked}} <br />
@@ -20,6 +22,22 @@
          Detail: {{input.detail}}
        </li>
      </ul>
+
+     <!-- step 2 -->
+     <h3>Step 2</h3>
+     Re-order: {{reOrder}} <br />
+     Order {{orderPicked}} <br />
+     Exact same order: {{sameOrder}} <br />
+
+     <!-- step 3 -->
+     <h3>Step 3</h3>
+     <ul>
+      <li v-for="(option, index) in optionChecked" :key="index">
+        {{index + 1}} {{option}}
+      </li>
+    </ul>
+    Comment(s) <br />
+    {{comments}}
    </main>
   </div>
 </template>
@@ -53,6 +71,32 @@ export default {
       get () {
         return this.$store.state.addresses
       }
+    },
+    reOrder: {
+      get () {
+        return this.$store.state.re_order
+      }
+    },
+    orderPicked: {
+      get () {
+        return this.$store.state.order_picked
+      }
+    },
+    sameOrder: {
+      get () {
+        return this.$store.state.same_order
+      }
+    },
+    optionChecked: {
+      get () {
+        return this.$store.state.option_checked
+      }
+    },
+    comments: {
+      get () {
+        return this.$store.state.comments
+      }
+
     }
   }
 }
