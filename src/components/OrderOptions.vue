@@ -8,6 +8,14 @@
     </section>
     <main>
       <h1>Options</h1>
+      <!-- options list -->
+      Select option(s)
+      <ul>
+        <li v-for="option in options" :key="option">
+          {{option}}
+          <input type="checkbox" v-model="optionChecked" :value="option">
+        </li>
+      </ul>
 
       <!-- nav buttons -->
       <button @click="back">Back</button>
@@ -19,7 +27,23 @@
 <script>
 export default {
   name: 'Options',
+  data () {
+    return {
+      options: [],
+      optionChecked: []
+    }
+  },
+  created () {
+    this.loadOptions()
+  },
   methods: {
+    async loadOptions () {
+      // FIXME: use query to load options
+      const data = [
+        'Poly Bagged', 'Poly Bagged by name', 'Pre-Production required', 'Sew-out required', 'Personalization'
+      ]
+      this.options = data
+    },
     back () {
       this.$router.push('/details')
     },
