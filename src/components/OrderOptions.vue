@@ -13,7 +13,7 @@
       <ul>
         <li v-for="option in options" :key="option">
           {{option}}
-          <input type="checkbox" v-model="option_checked" :value="option">
+          <input type="checkbox" v-model="optionChecked" :value="option">
 
           <!-- FOR OPTION 2 -->
           <div v-if="
@@ -23,7 +23,7 @@
             <!-- upload file -->
             <vue-clip ref="vc" :options="optionDetails" :on-added-file="fileAddedBagged">
               <template slot="clip-uploader-action" slot-scope="props">
-                <div class="uploader-action" v-bind:class="{dragging: props.dragging}">
+                <div class="uploader-action" :class="{dragging: props.dragging}">
                   <div class="dz-message">
                     Drag and Drop file
                   </div>
@@ -44,7 +44,7 @@
             <!-- upload file -->
             <vue-clip ref="vc" :options="optionDetails" :on-added-file="fileAddedPersonal">
               <template slot="clip-uploader-action" slot-scope="props">
-                <div class="uploader-action" v-bind:class="{dragging: props.dragging}">
+                <div class="uploader-action" :class="{dragging: props.dragging}">
                   <div class="dz-message">
                     Drag and Drop file
                   </div>
@@ -88,7 +88,7 @@ export default {
     this.loadOptions()
   },
   computed: {
-    option_checked: {
+    optionChecked: {
       get () {
         return this.$store.state.option_checked
       },
