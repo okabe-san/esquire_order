@@ -19,14 +19,42 @@
           <div v-if="
             optionChecked.includes(option) &&
             option === 'Poly Bagged by name'">
-            <h1>Poly Bagged by name</h1>
+            <h3>Upload list</h3>
+            <!-- upload file -->
+            <vue-clip ref="vc" :options="optionDetails" :on-added-file="fileAddedBagged">
+              <template slot="clip-uploader-action" slot-scope="props">
+                <div class="uploader-action" v-bind:class="{dragging: props.dragging}">
+                  <div class="dz-message">
+                    Drag and Drop file
+                  </div>
+                </div>
+              </template>
+            </vue-clip>
+            <div v-for="(file, index) in baggedByName" :key="index">
+              {{file.name}}
+              <button @click="removeFileAddedBagged(index)">Delete</button>
+            </div>
           </div>
 
           <!-- FOR OPTION 5 -->
           <div v-if="
             optionChecked.includes(option) &&
             option === 'Personalization'">
-            <h1>Personalization</h1>
+            <h3>Upload list</h3>
+            <!-- upload file -->
+            <vue-clip ref="vc" :options="optionDetails" :on-added-file="fileAddedPersonal">
+              <template slot="clip-uploader-action" slot-scope="props">
+                <div class="uploader-action" v-bind:class="{dragging: props.dragging}">
+                  <div class="dz-message">
+                    Drag and Drop file
+                  </div>
+                </div>
+              </template>
+            </vue-clip>
+            <div v-for="(file, index) in personalizationName" :key="index">
+              {{file.name}}
+              <button @click="removeFileAddedPersonal(index)">Delete</button>
+            </div>
           </div>
 
         </li>
@@ -45,7 +73,12 @@ export default {
   data () {
     return {
       options: [],
-      optionChecked: []
+      optionChecked: [],
+      optionDetails: {
+        url: '/details'
+      },
+      baggedByName: [],
+      personalizationName: []
     }
   },
   created () {
@@ -58,6 +91,18 @@ export default {
         'Poly Bagged', 'Poly Bagged by name', 'Pre-Production required', 'Sew-out required', 'Personalization'
       ]
       this.options = data
+    },
+    fileAddedBagged (file) {
+      this.baggedByName.push(file)
+    },
+    removeFileAddedBagged (index) {
+      this.baggedByName.splice(index, 1)
+    },
+    fileAddedPersonal (file) {
+      this.personalizationName.push(file)
+    },
+    removeFileAddedPersonal (index) {
+      this.personalizationName.splice(index, 1)
     },
     back () {
       this.$router.push('/details')
