@@ -33,6 +33,34 @@
       <!-- for non re-order -->
       <div v-else>
         <h3>Upload file(s)</h3>
+        <!-- upload file(s) -->
+        <vue-clip ref="vc" :options="options" :on-added-file="fileAdded">
+
+          <template slot="clip-uploader-action" slot-scope="props">
+            <div class="uploader-action" v-bind:class="{dragging: props.dragging}">
+              <div class="dz-message">
+                Drag and Drop file(s)
+              </div>
+            </div>
+          </template>
+
+          <!-- If need more info/features then use template below -->
+
+          <!-- <template slot="clip-uploader-body" slot-scope="props">
+            <div class="uploader-files">
+              <div class="uploader-file" v-for="(file, index) in props.files" :key="index">
+                {{file.name}}
+                <button @click="removeFile(file)">Delete</button>
+              </div>
+            </div>
+          </template> -->
+
+        </vue-clip>
+
+        <div v-for="(file, index) in files" :key="index">
+          {{file.name}}
+          <button @click="removeFile(index)">Delete</button>
+        </div>
 
       </div>
 
@@ -49,7 +77,11 @@ export default {
   data () {
     return {
       orders: [],
-      reOrder: null
+      reOrder: null,
+      options: {
+        url: '/details'
+      },
+      files: []
     }
   },
   created () {
@@ -94,6 +126,16 @@ export default {
     order () {
       this.reOrder = !this.reOrder
     },
+    fileAdded (file) {
+      this.files.push(file)
+    },
+    removeFile (index) {
+      this.files.splice(index, 1)
+    },
+    // FIXME: after connect to the server, turn on actual remove method
+    // removeFile (file) {
+    //   this.$refs.vc.removeFile(file)
+    // },
     back () {
       this.$router.push('/shipping')
     },
@@ -122,5 +164,17 @@ li {
 }
 .step {
   color: orange;
+}
+.uploader-action {
+  padding: 1rem;
+  background: lightgray;
+  cursor: pointer;
+  transition: background 200ms ease;
+}
+.uploader-action.dragging {
+  background: #effff6;
+}
+.uploader-action .dz-messge {
+  text-align: center;
 }
 </style>
