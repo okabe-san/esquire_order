@@ -14,6 +14,21 @@
         <li v-for="option in options" :key="option">
           {{option}}
           <input type="checkbox" v-model="optionChecked" :value="option">
+
+          <!-- FOR OPTION 2 -->
+          <div v-if="
+            optionChecked.includes(option) &&
+            option === 'Poly Bagged by name'">
+            <h1>Poly Bagged by name</h1>
+          </div>
+
+          <!-- FOR OPTION 5 -->
+          <div v-if="
+            optionChecked.includes(option) &&
+            option === 'Personalization'">
+            <h1>Personalization</h1>
+          </div>
+
         </li>
       </ul>
 
