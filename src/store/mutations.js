@@ -1,3 +1,4 @@
+// for step 1
 export const updateRep = (state, payload) => {
   state.rep = payload
 }
@@ -16,4 +17,17 @@ export const updateSplit = (state, payload) => {
 
 export const updateAddresses = (state, payload) => {
   state.addresses = payload
+}
+
+// for step 2
+export const updateReOrder = (state, payload) => {
+  state.re_order = payload
+}
+
+export const updateSameOrder = (state, payload) => {
+  state.same_order = payload
+}
+
+export const updateOrderPicked = (state, payload) => {
+  state.order_picked = payload
 }

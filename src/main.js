@@ -4,6 +4,9 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import { store } from './store/store'
+import VueClip from 'vue-clip'
+
+Vue.use(VueClip)
 
 Vue.config.productionTip = false
 
