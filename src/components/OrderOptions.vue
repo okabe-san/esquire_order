@@ -17,7 +17,7 @@
 
           <!-- FOR OPTION 2 -->
           <div v-if="
-            option_checked.includes(option) &&
+            optionChecked.includes(option) &&
             option === 'Poly Bagged by name'">
             <h3>Upload list</h3>
             <!-- upload file -->
@@ -38,7 +38,7 @@
 
           <!-- FOR OPTION 5 -->
           <div v-if="
-            option_checked.includes(option) &&
+            optionChecked.includes(option) &&
             option === 'Personalization'">
             <h3>Upload list</h3>
             <!-- upload file -->
