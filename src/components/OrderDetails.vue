@@ -140,7 +140,7 @@ export default {
       this.$router.push('/shipping')
     },
     next () {
-      this.$router.push('/summary')
+      this.$router.push('/options')
     }
   }
 }
