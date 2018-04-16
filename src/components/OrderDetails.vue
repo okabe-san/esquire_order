@@ -2,7 +2,7 @@
   <div>
     <section>
       <h3 class="step">Step 1</h3>
-      <h3 class="step">Step 2</h3>
+      <h3>Step 2</h3>
       <h3>Step 3</h3>
       <h3>Review</h3>
     </section>
@@ -69,18 +69,19 @@
 
         Where you want to put? <br />
         <img src="../assets/placeholder_350x150.png"> <br />
-          <span v-for="location in locations" :key="location">
-            <input type="radio" v-model="locationSelected" :value="location">
-              {{location}}
-          </span>
+        <span v-for="location in locations" :key="location">
+          <input type="radio" v-model="locationSelected" :value="location">
+            {{location}}
+        </span>
+        <br />
 
         Size
-        <input type="text">Inches <br />
+        <input type="text" v-model="sizeWidth" placeholder="width"> x
+        <input type="text" v-model="sizeHeight" placeholder="height">Inches<br />
         Color <br />
       </div>
 
       <!-- nav buttons -->
-      <button @click="back">Back</button>
       <button @click="next">Next</button>
     </main>
   </div>
@@ -98,7 +99,9 @@ export default {
       },
       files: [],
       locations: [],
-      locationSelected: ''
+      locationSelected: '',
+      sizeWidth: '',
+      sizeHeight: ''
     }
   },
   created () {
@@ -168,11 +171,8 @@ export default {
     // removeFile (file) {
     //   this.$refs.vc.removeFile(file)
     // },
-    back () {
-      this.$router.push('/shipping')
-    },
     next () {
-      this.$router.push('/options')
+      this.$router.push('/shipping')
     }
   }
 }

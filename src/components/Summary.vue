@@ -67,10 +67,10 @@ export default {
   },
   methods: {
     backToShipping () {
-      this.$router.push('/shipping')
+      this.$router.push('/details')
     },
     backToDetails () {
-      this.$router.push('/details')
+      this.$router.push('/shipping')
     },
     backToOptions () {
       this.$router.push('/options')
