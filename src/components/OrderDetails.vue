@@ -10,9 +10,9 @@
       <h1>Details</h1>
 
       <!-- check re-order or not -->
-      New Order
-      <input type="radio" v-model="reOrder" v-on:change="orderCheck()" vaule="1"> Yes
-      <input type="radio" v-model="reOrder" v-on:change="orderCheck()" value="2"> No: Re-Order
+      Re-Order
+      <input type="radio" v-model="reOrder" v-on:change="orderCheck()" vaule="yes"> Yes
+      <input type="radio" v-model="reOrder" v-on:change="orderCheck()" value="no"> No: New Order
       <br />
 
       <!-- for re-order -->
@@ -65,7 +65,7 @@
       </div>
 
       <!-- details -->
-      <div v-if="!reOrder || reOrder && editOrder">
+      <!-- <div v-if="!reOrder || reOrder && editOrder">
 
         Where you want to put? <br />
         <img src="../assets/placeholder_350x150.png"> <br />
@@ -79,7 +79,7 @@
         <input type="text" v-model="sizeWidth" placeholder="width"> x
         <input type="text" v-model="sizeHeight" placeholder="height">Inches<br />
         Color <br />
-      </div>
+      </div> -->
 
       <!-- nav buttons -->
       <button @click="next">Next</button>
@@ -93,7 +93,7 @@ export default {
   data () {
     return {
       orders: [],
-      order: null,
+      order: true,
       options: {
         url: '/details'
       },

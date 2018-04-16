@@ -9,15 +9,15 @@ Vue.use(Vuex)
 export const store = new Vuex.Store({
   state: {
     // for step 1
+    re_order: null,
+    edit_order: false,
+    order_picked: '',
+    // for step 2
     rep: '',
     garment: '',
     method: '',
     split: false,
     addresses: [{address: '', detail: ''}],
-    // for step 2
-    re_order: null,
-    edit_order: false,
-    order_picked: '',
     // for step 3
     option_checked: [],
     comments: ''
