@@ -36,7 +36,7 @@
 
         <!-- add item(s)  -->
         <select v-model="addedItem.item">
-          <option v-for="(item, index) in items" value="item" :key="index">
+          <option v-for="(item, index) in items" :value="item" :key="index">
             {{item}}
           </option>
         </select>
@@ -123,7 +123,12 @@ export default {
         url: '/details'
       },
       files: [],
-      addedItem: {'item': null, 'location': null, 'image': null, quantity: 0},
+      addedItem: {
+        'item': 'Cap',
+        'location': 'Front Center',
+        'image': null,
+        quantity: 0
+      },
       items: ['Cap', 'Tops', 'Beanie', 'Bag', 'Pants'],
       locationCap: [
         'Front Center',
