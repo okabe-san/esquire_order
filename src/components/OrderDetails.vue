@@ -21,14 +21,18 @@
         Search Order by PO number or image file name.<br />
         <input type="text" placeholder="90000">
         <button @click="search">Search</button>
-        <!-- <ul>
-          <li v-for="order in orders" :key="order">
+        <ul>
+          <li v-for="(order, index) in orders" :key="index">
             <input type="radio" v-model="orderPicked" :value="order">
-              {{order}}
+              PO Number: {{order.po}}
           </li>
-        </ul> -->
-        <!-- check exact same order or not -->
-        <!-- <input type="checkbox" v-model="editOrder"> -->
+        </ul>
+
+        <!-- show order details -->
+        <div v-for="(detail, index) in orderPicked.items" :key="index">
+          {{detail.item}} / {{detail.location}} / {{detail.image}} / {{detail.quantity}}
+          <button @click="removeItem(index)">Delete</button>
+        </div>
       </div>
 
       <!-- for non re-order -->
@@ -154,8 +158,8 @@ export default {
     async search () {
       // FIXME: use query to load orders
       const data = [
-        { 'PO': '100',
-          'Items':
+        { 'po': '100',
+          'items':
           [{
             'item': 'Cap',
             'location': 'Front Center',
@@ -174,6 +178,9 @@ export default {
     },
     orderCheck () {
       this.order = !this.order
+    },
+    removeItem (index) {
+      this.orderPicked.items.splice(index, 1)
     },
     fileAdded (file) {
       this.files.push(file)
