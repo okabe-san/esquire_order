@@ -24,8 +24,8 @@ export const updateReOrder = (state, payload) => {
   state.re_order = payload
 }
 
-export const updateSameOrder = (state, payload) => {
-  state.same_order = payload
+export const updateEditOrder = (state, payload) => {
+  state.edit_order = payload
 }
 
 export const updateOrderPicked = (state, payload) => {

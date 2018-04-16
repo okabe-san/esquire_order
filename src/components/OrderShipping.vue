@@ -2,7 +2,7 @@
   <div>
     <section>
       <h3 class="step">Step 1</h3>
-      <h3>Step 2</h3>
+      <h3 class="step">Step 2</h3>
       <h3>Step 3</h3>
       <h3>Review</h3>
     </section>
@@ -61,6 +61,7 @@
       </div>
 
       <!-- nav buttons -->
+      <button @click="back">Back</button>
       <button @click="next">Next</button>
     </main>
   </div>
@@ -147,8 +148,11 @@ export default {
     deleteRow (index) {
       this.inputs.splice(index, 1)
     },
-    next () {
+    back () {
       this.$router.push('/details')
+    },
+    next () {
+      this.$router.push('/options')
     }
   }
 }

@@ -126,7 +126,7 @@ export default {
       this.personalizationName.splice(index, 1)
     },
     back () {
-      this.$router.push('/details')
+      this.$router.push('/shipping')
     },
     next () {
       this.$router.push('/summary')
