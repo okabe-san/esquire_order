@@ -16,44 +16,8 @@
       <br />
 
       <!-- for re-order -->
-      <reOrder></reOrder>
       <div v-if="order">
-        <!-- select order -->
-        Search Order by PO number or image file name.<br />
-        <input type="text" placeholder="90000">
-        <button @click="search">Search</button>
-        <ul>
-          <li v-for="(order, index) in orders" :key="index">
-            <input type="radio" v-model="orderPicked" :value="order">
-              PO Number: {{order.po}}
-          </li>
-        </ul>
-
-        <!-- show order details -->
-        <div v-for="(detail, index) in orderPicked.items" :key="index">
-          {{detail.item}} / {{detail.location}} / {{detail.image}} / {{detail.quantity}}
-          <button @click="removeItem(index)">Delete</button>
-        </div>
-
-        <!-- add item(s)  -->
-        <select v-model="addedItem.item">
-          <option v-for="(item, index) in items" :value="item" :key="index">
-            {{item}}
-          </option>
-        </select>
-
-        <select v-model="addedItem.location">
-          <option v-for="(location, index) in locationCap" :value="location" :key="index">
-            {{location}}
-          </option>
-        </select>
-
-        <!-- Need to add image uploder -->
-        <input type="text" placeholder="upload image">
-
-        <input type="number" v-model="addedItem.quantity">
-
-        <button @click="addItem">Add</button>
+        <reOrder></reOrder>
       </div>
 
       <!-- for non re-order -->
