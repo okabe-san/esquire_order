@@ -33,6 +33,26 @@
           {{detail.item}} / {{detail.location}} / {{detail.image}} / {{detail.quantity}}
           <button @click="removeItem(index)">Delete</button>
         </div>
+
+        <!-- add item(s)  -->
+        <select v-model="addedItem.item">
+          <option v-for="(item, index) in items" value="item" :key="index">
+            {{item}}
+          </option>
+        </select>
+
+        <select v-model="addedItem.location">
+          <option v-for="(location, index) in locationCap" :value="location" :key="index">
+            {{location}}
+          </option>
+        </select>
+
+        <!-- Need to add image uploder -->
+        <input type="text" placeholder="upload image">
+
+        <input type="number" v-model="addedItem.quantity">
+
+        <button @click="addItem">Add</button>
       </div>
 
       <!-- for non re-order -->
@@ -103,7 +123,9 @@ export default {
         url: '/details'
       },
       files: [],
-      locations_cap: [
+      addedItem: {'item': null, 'location': null, 'image': null, quantity: 0},
+      items: ['Cap', 'Tops', 'Beanie', 'Bag', 'Pants'],
+      locationCap: [
         'Front Center',
         'Front Left',
         'Front Right',
@@ -111,7 +133,7 @@ export default {
         'Right',
         'Back Center'
       ],
-      locations_shirt: [
+      locationShirt: [
         'Left Chest',
         'Right Chest',
         'Left Bottom',
@@ -120,10 +142,7 @@ export default {
         'Upper right Sleeves',
         'Left Wrist',
         'Right Wrist'
-      ],
-      locationSelected: '',
-      sizeWidth: '',
-      sizeHeight: ''
+      ]
     }
   },
   computed: {
@@ -181,6 +200,9 @@ export default {
     },
     removeItem (index) {
       this.orderPicked.items.splice(index, 1)
+    },
+    addItem (item) {
+      this.orderPicked.items.push(this.addedItem)
     },
     fileAdded (file) {
       this.files.push(file)
