@@ -16,6 +16,7 @@
       <br />
 
       <!-- for re-order -->
+      <reOrder></reOrder>
       <div v-if="order">
         <!-- select order -->
         Search Order by PO number or image file name.<br />
@@ -85,8 +86,13 @@
 </template>
 
 <script>
+import ReOrder from './ReOrder.vue'
+
 export default {
   name: 'Detail',
+  components: {
+    ReOrder
+  },
   data () {
     return {
       orders: [],
