@@ -69,17 +69,6 @@
             </div>
           </template>
 
-          <!-- If need more info/features then use template below -->
-
-          <!-- <template slot="clip-uploader-body" slot-scope="props">
-            <div class="uploader-files">
-              <div class="uploader-file" v-for="(file, index) in props.files" :key="index">
-                {{file.name}}
-                <button @click="removeFile(file)">Delete</button>
-              </div>
-            </div>
-          </template> -->
-
         </vue-clip>
 
         <div v-for="(file, index) in files" :key="index">
@@ -88,23 +77,6 @@
         </div>
 
       </div>
-
-      <!-- details -->
-      <!-- <div v-if="!reOrder || reOrder && editOrder">
-
-        Where you want to put? <br />
-        <img src="../assets/placeholder_350x150.png"> <br />
-        <span v-for="location in locations_shirt" :key="location">
-          <input type="radio" v-model="locationSelected" :value="location">
-            {{location}}
-        </span>
-        <br />
-
-        Size
-        <input type="text" v-model="sizeWidth" placeholder="width"> x
-        <input type="text" v-model="sizeHeight" placeholder="height">Inches<br />
-        Color <br />
-      </div> -->
 
       <!-- nav buttons -->
       <button @click="next">Next</button>
@@ -180,7 +152,7 @@ export default {
   },
   methods: {
     async search () {
-      // FIXME: use query to load orders
+      // FIXME: use query to search orders
       const data = [
         { 'po': '100',
           'items':
