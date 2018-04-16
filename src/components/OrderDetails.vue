@@ -18,16 +18,17 @@
       <!-- for re-order -->
       <div v-if="order">
         <!-- select order -->
-        Pick Order
-        <ul>
+        Search Order by PO number or image file name.<br />
+        <input type="text" placeholder="90000">
+        <button @click="search">Search</button>
+        <!-- <ul>
           <li v-for="order in orders" :key="order">
             <input type="radio" v-model="orderPicked" :value="order">
               {{order}}
           </li>
-        </ul>
+        </ul> -->
         <!-- check exact same order or not -->
-        Need edit?
-        <input type="checkbox" v-model="editOrder">
+        <!-- <input type="checkbox" v-model="editOrder"> -->
       </div>
 
       <!-- for non re-order -->
@@ -69,7 +70,7 @@
 
         Where you want to put? <br />
         <img src="../assets/placeholder_350x150.png"> <br />
-        <span v-for="location in locations" :key="location">
+        <span v-for="location in locations_shirt" :key="location">
           <input type="radio" v-model="locationSelected" :value="location">
             {{location}}
         </span>
@@ -98,15 +99,28 @@ export default {
         url: '/details'
       },
       files: [],
-      locations: [],
+      locations_cap: [
+        'Front Center',
+        'Front Left',
+        'Front Right',
+        'Left',
+        'Right',
+        'Back Center'
+      ],
+      locations_shirt: [
+        'Left Chest',
+        'Right Chest',
+        'Left Bottom',
+        'Right Bottom',
+        'Upper Left Sleeves',
+        'Upper right Sleeves',
+        'Left Wrist',
+        'Right Wrist'
+      ],
       locationSelected: '',
       sizeWidth: '',
       sizeHeight: ''
     }
-  },
-  created () {
-    this.loadOrders()
-    this.loadLocations()
   },
   computed: {
     reOrder: {
@@ -137,26 +151,26 @@ export default {
     }
   },
   methods: {
-    async loadOrders () {
+    async search () {
       // FIXME: use query to load orders
       const data = [
-        'Order 001', 'Order 002', 'Order 003', 'Order 004'
+        { 'PO': '100',
+          'Items':
+          [{
+            'item': 'Cap',
+            'location': 'Front Center',
+            'image': 'logo.png',
+            'quantity': 10
+          },
+          {
+            'item': 'Shirt',
+            'location': 'Front Chest',
+            'image': 'logo.png',
+            'quantity': 20
+          }]
+        }
       ]
       this.orders = data
-    },
-    async loadLocations () {
-      // FIXME: use query to load locations
-      const data = [
-        'Left Chest',
-        'Right Chest',
-        'Left Bottom',
-        'Right Bottom',
-        'Upper Left Sleeves',
-        'Upper right Sleeves',
-        'Left Wrist',
-        'Right Wrist'
-      ]
-      this.locations = data
     },
     orderCheck () {
       this.order = !this.order
