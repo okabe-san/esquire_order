@@ -6,9 +6,9 @@
       <h3>Step 3</h3>
       <h3>Review</h3>
     </section>
+
     <main>
       <h1>Details</h1>
-
       <!-- check re-order or not -->
       Re-Order
       <input type="radio" v-model="reOrder" v-on:change="orderCheck()" vaule="yes"> Yes
@@ -81,9 +81,6 @@ section {
   box-sizing: border-box;
   float: left;
   width: 20%;
-}
-li {
-  list-style-type: none;
 }
 .step {
   color: orange;

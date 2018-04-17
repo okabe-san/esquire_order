@@ -1,6 +1,6 @@
 <template>
   <div>
-    <!-- select order -->
+    <!-- search/select order -->
     Search Order by PO number or image file name.<br />
     <input type="text" placeholder="90000">
     <button @click="search">Search</button>
@@ -17,25 +17,26 @@
       <button @click="removeItem(index)">Delete</button>
     </div>
 
-    <!-- add item(s)  -->
-    <select v-model="addedItem.item">
-      <option v-for="(item, index) in items" :value="item" :key="index">
-        {{item}}
-      </option>
-    </select>
-
-    <select v-model="addedItem.location">
-      <option v-for="(location, index) in locationCap" :value="location" :key="index">
-        {{location}}
-      </option>
-    </select>
-
-    <!-- Need to add image uploder -->
-    <input type="text" placeholder="upload image">
-
-    <input type="number" v-model="addedItem.quantity">
-
-    <button @click="addItem">Add</button>
+    <!-- add item  -->
+    <div v-if="orderPicked">
+      <!-- item -->
+      <select v-model="addedItem.item">
+        <option v-for="(item, index) in items" :value="item" :key="index">
+          {{item}}
+        </option>
+      </select>
+      <!-- location -->
+      <select v-model="addedItem.location">
+        <option v-for="(location, index) in locationCap" :value="location" :key="index">
+          {{location}}
+        </option>
+      </select>
+      <!-- image -->
+      <input type="text" placeholder="upload image">
+      <!-- quantity -->
+      <input type="number" v-model="addedItem.quantity">
+      <button @click="addItem">Add</button>
+    </div>
   </div>
 </template>
 
@@ -91,7 +92,7 @@ export default {
   },
   methods: {
     async search () {
-      // FIXME: use query to search orders
+      // FIXME: use query to search orders (fuzzy search)
       const data = [
         { 'po': '100',
           'items':
@@ -126,4 +127,7 @@ export default {
 </script>
 
 <style scoped>
+li {
+  list-style-type: none;
+}
 </style>
