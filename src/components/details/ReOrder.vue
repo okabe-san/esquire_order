@@ -79,6 +79,14 @@ export default {
       set (value) {
         this.$store.dispatch('updateOrderPicked', value)
       }
+    },
+    editOrder: {
+      get () {
+        return this.$store.state.edit_order
+      },
+      set (value) {
+        this.$store.dispatch('updateEditOrder', value)
+      }
     }
   },
   methods: {
@@ -103,6 +111,10 @@ export default {
       ]
       this.orders = data
     },
+    // FIXME: after connect to the server, turn on actual remove method
+    // removeFile (file) {
+    //   this.$refs.vc.removeFile(file)
+    // },
     removeItem (index) {
       this.orderPicked.items.splice(index, 1)
     },
