@@ -22,6 +22,7 @@
 
       <!-- for non re-order -->
       <div v-else>
+        <newOrder></newOrder>
         <h3>Upload file(s)</h3>
         <!-- upload file(s) -->
         <vue-clip ref="vc" :options="options" :on-added-file="fileAdded">
@@ -50,12 +51,14 @@
 </template>
 
 <script>
-import ReOrder from './ReOrder.vue'
+import ReOrder from './details/ReOrder.vue'
+import NewOrder from './details/NewOrder.vue'
 
 export default {
   name: 'Detail',
   components: {
-    ReOrder
+    ReOrder,
+    NewOrder
   },
   data () {
     return {
