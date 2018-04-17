@@ -31,10 +31,22 @@
           {{location}}
         </option>
       </select>
-      <!-- image -->
-      <input type="text" placeholder="upload image">
       <!-- quantity -->
       <input type="number" v-model="addedItem.quantity">
+      <!-- image -->
+      <vue-clip v-if="files.length===0" ref="vc" :options="options" :on-added-file="fileAdded">
+        <template slot="clip-uploader-action" slot-scope="props">
+          <div class="uploader-action" :class="{dragging: props.dragging}">
+            <div class="dz-message">
+              Select file
+            </div>
+          </div>
+        </template>
+      </vue-clip>
+      <div v-for="(file, index) in files" :key="index">
+        {{file.name}}
+        <button @click="removeFile(index)">Delete</button>
+      </div>
       <button @click="addItem">Add</button>
     </div>
   </div>
@@ -44,11 +56,16 @@
 export default {
   data () {
     return {
+      options: {
+        url: '/details',
+        maxFiles: 1
+      },
+      files: [],
       orders: [],
       addedItem: {
         'item': 'Cap',
         'location': 'Front Center',
-        'image': null,
+        'image': '',
         quantity: 0
       },
       items: ['Cap', 'Tops', 'Beanie', 'Bag', 'Pants'],
@@ -112,6 +129,12 @@ export default {
       ]
       this.orders = data
     },
+    fileAdded (file) {
+      this.files.push(file)
+    },
+    removeFile (index) {
+      this.files.splice(index, 1)
+    },
     // FIXME: after connect to the server, turn on actual remove method
     // removeFile (file) {
     //   this.$refs.vc.removeFile(file)
@@ -120,7 +143,9 @@ export default {
       this.orderPicked.items.splice(index, 1)
     },
     addItem (item) {
+      this.addedItem.image = this.files[0].name
       this.orderPicked.items.push(this.addedItem)
+      // TODO: refresh all add item inputs
     }
   }
 }
