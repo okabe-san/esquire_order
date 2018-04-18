@@ -34,7 +34,7 @@
       <!-- quantity -->
       <input type="number" v-model="addedItem.quantity">
       <!-- image -->
-      <vue-clip v-if="files.length===0" ref="vc" :options="options" :on-added-file="fileAdded">
+      <vue-clip v-if="files.length === 0" ref="vc" :options="options" :on-added-file="fileAdded">
         <template slot="clip-uploader-action" slot-scope="props">
           <div class="uploader-action" :class="{dragging: props.dragging}">
             <div class="dz-message">
