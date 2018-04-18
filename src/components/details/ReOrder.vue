@@ -13,27 +13,32 @@
 
     <!-- show order details -->
     <div v-for="(detail, index) in orderPicked.items" :key="index">
+
       <!-- edit item -->
       <span v-if="edit && index === indexNum">
+        <!-- item -->
         <select v-model="editOrder.item">
           <option v-for="(item, index) in items" :value="item" :key="index">
             {{item}}
           </option>
         </select>
-      </span>
-      <span v-else>
-        {{detail.item}}
-      </span>
 
-      {{detail.location}} / {{detail.image}} /
+        <!-- location -->
+        <select v-model="editOrder.location">
+          <option v-for="(location, index) in locationCap" :value="location" :key="index">
+            {{location}}
+          </option>
+        </select>
 
-      <!-- edit quantity -->
-      <span v-if="edit && index === indexNum">
+        <!-- quantity -->
         <input type="number" v-model="editOrder.quantity">
       </span>
+
       <span v-else>
-        {{detail.quantity}}
+        {{detail.item}} / {{detail.location}} / {{detail.quantity}}
       </span>
+
+      {{detail.image}}
 
       <button @click="editItem(index, detail)">Edit</button>
       <button v-if="edit" @click="updateItem(index)">Update</button>
@@ -176,6 +181,8 @@ export default {
       this.editOrder.quantity = detail.quantity
     },
     updateItem (index) {
+      this.orderPicked.items[index].item = this.editOrder.item
+      this.orderPicked.items[index].location = this.editOrder.location
       this.orderPicked.items[index].quantity = this.editOrder.quantity
       this.edit = !this.edit
     },
