@@ -17,7 +17,7 @@
 
       <!-- edit quantity -->
       <span v-if="edit && index === indexNum">
-        <input type="number" :value="editOrder.quantity">
+        <input type="number" v-model="editOrder.quantity">
       </span>
       <span v-else>
         {{detail.quantity}}
@@ -76,8 +76,8 @@ export default {
       edit: false,
       indexNum: 0,
       editOrder: {
-        item: '',
-        locaton: '',
+        'item': 'Cap',
+        'location': 'Front Center',
         quantity: 0
       },
       addedItem: {
@@ -163,7 +163,7 @@ export default {
       this.editOrder.quantity = detail.quantity
     },
     updateItem (index) {
-      this.orderPicked.items[index].quantity = this.order.quantity
+      this.orderPicked.items[index].quantity = this.editOrder.quantity
       this.edit = !this.edit
     },
     removeItem (index) {
