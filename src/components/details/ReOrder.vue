@@ -13,7 +13,19 @@
 
     <!-- show order details -->
     <div v-for="(detail, index) in orderPicked.items" :key="index">
-      {{detail.item}} / {{detail.location}} / {{detail.image}} /
+      <!-- edit item -->
+      <span v-if="edit && index === indexNum">
+        <select v-model="editOrder.item">
+          <option v-for="(item, index) in items" :value="item" :key="index">
+            {{item}}
+          </option>
+        </select>
+      </span>
+      <span v-else>
+        {{detail.item}}
+      </span>
+
+      {{detail.location}} / {{detail.image}} /
 
       <!-- edit quantity -->
       <span v-if="edit && index === indexNum">
@@ -138,7 +150,7 @@ export default {
             'quantity': 10
           },
           {
-            'item': 'Shirt',
+            'item': 'Tops',
             'location': 'Front Chest',
             'image': 'logo.png',
             'quantity': 20
@@ -160,6 +172,7 @@ export default {
     editItem (index, detail) {
       this.edit = !this.edit
       this.indexNum = index
+      this.editOrder.item = detail.item
       this.editOrder.quantity = detail.quantity
     },
     updateItem (index) {
