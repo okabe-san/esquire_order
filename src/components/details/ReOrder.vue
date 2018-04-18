@@ -13,7 +13,19 @@
 
     <!-- show order details -->
     <div v-for="(detail, index) in orderPicked.items" :key="index">
-      {{detail.item}} / {{detail.location}} / {{detail.image}} / {{detail.quantity}}
+      {{detail.item}} / {{detail.location}} / {{detail.image}} /
+
+      <!-- edit quantity -->
+      <span v-if="edit && index === indexNum">
+        <input type="number" v-model="num">
+      </span>
+
+      <span v-else>
+        {{detail.quantity}}
+      </span>
+
+      <button @click="editItem(index)">Edit</button>
+      <button v-if="edit" @click="updateItem(index)">Update</button>
       <button @click="removeItem(index)">Delete</button>
     </div>
 
@@ -62,6 +74,9 @@ export default {
       },
       files: [],
       orders: [],
+      edit: false,
+      indexNum: 0,
+      num: 0,
       addedItem: {
         'item': 'Cap',
         'location': 'Front Center',
@@ -139,6 +154,14 @@ export default {
     // removeFile (file) {
     //   this.$refs.vc.removeFile(file)
     // },
+    editItem (index) {
+      this.edit = !this.edit
+      this.indexNum = index
+    },
+    updateItem (index) {
+      this.orderPicked.items[index].quantity = this.num
+      this.edit = !this.edit
+    },
     removeItem (index) {
       this.orderPicked.items.splice(index, 1)
     },
