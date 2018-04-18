@@ -17,14 +17,13 @@
 
       <!-- edit quantity -->
       <span v-if="edit && index === indexNum">
-        <input type="number" v-model="num">
+        <input type="number" :value="editOrder.quantity">
       </span>
-
       <span v-else>
         {{detail.quantity}}
       </span>
 
-      <button @click="editItem(index)">Edit</button>
+      <button @click="editItem(index, detail)">Edit</button>
       <button v-if="edit" @click="updateItem(index)">Update</button>
       <button @click="removeItem(index)">Delete</button>
     </div>
@@ -76,7 +75,11 @@ export default {
       orders: [],
       edit: false,
       indexNum: 0,
-      num: 0,
+      editOrder: {
+        item: '',
+        locaton: '',
+        quantity: 0
+      },
       addedItem: {
         'item': 'Cap',
         'location': 'Front Center',
@@ -113,7 +116,7 @@ export default {
         this.$store.dispatch('updateOrderPicked', value)
       }
     },
-    editOrder: {
+    order: {
       get () {
         return this.$store.state.edit_order
       },
@@ -154,12 +157,13 @@ export default {
     // removeFile (file) {
     //   this.$refs.vc.removeFile(file)
     // },
-    editItem (index) {
+    editItem (index, detail) {
       this.edit = !this.edit
       this.indexNum = index
+      this.editOrder.quantity = detail.quantity
     },
     updateItem (index) {
-      this.orderPicked.items[index].quantity = this.num
+      this.orderPicked.items[index].quantity = this.order.quantity
       this.edit = !this.edit
     },
     removeItem (index) {
