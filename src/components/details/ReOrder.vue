@@ -41,7 +41,7 @@
       {{detail.image}}
 
       <button @click="editItem(index, detail)">Edit</button>
-      <button v-if="edit" @click="updateItem(index)">Update</button>
+      <button v-if="edit && index === indexNum" @click="updateItem(index)">Update</button>
       <button @click="removeItem(index)">Delete</button>
     </div>
 
