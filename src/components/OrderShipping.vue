@@ -9,10 +9,10 @@
     <main>
       <h1>Garment and Shipping info</h1>
 
+      Company Name: Test<br />
       <!-- type rep name -->
-      Representative Name
-      <input type="text" v-model="rep">
-      <br />
+      Representative Name:
+      <input type="text" v-model="rep"><br />
 
       <!-- garments list -->
       Where the garments from?
