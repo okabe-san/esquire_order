@@ -29,43 +29,30 @@
       {{split}}
       <br />
 
+      <div v-for="(address, index) in addresses" :key="index">
+        {{address.address}} {{address.method}}
+      </div>
+
       <!-- shipping address -->
       <!-- no split shipping -->
       <div v-if="split == false">
         Shipping Address
-        <input type="text" v-model="inputs[0].address">
 
+        <input type="text" v-model="addedAddress.address">
         <!-- shipping methods -->
         Shipping method
-        <select>
-          <option v-for="method in methods" :key="method">
+        <select v-model="addedAddress.method">
+          <option v-for="(method, index) in methods" :value="method" :key="index">
              {{method}}
           </option>
         </select>
-
+        <button @click="addAddress">Add</button>
       </div>
 
       <!-- split shipping -->
       <div v-if="split == true">
-        Shipping Address / Garment Detail
-        <ul>
-         <li v-for="(input, index) in inputs" :key="index">
-           {{index + 1}}
-           <input type="text" v-model="input.address">
-           <input type="text" v-model="input.detail">
-
-           <!-- shipping methods -->
-           Shipping method
-           <select>
-             <option v-for="method in methods" :key="method">
-                {{method}}
-             </option>
-           </select>
-
-           <button v-if="index > 1" @click="deleteRow(index)">Delete</button>
-         </li>
-       </ul>
-       <button @click="addRow">Add row</button>
+        <button v-if="index > 1" @click="deleteRow(index)">Delete</button>
+        <button @click="addRow">Add row</button>
       </div>
 
       <!-- nav buttons -->
@@ -81,7 +68,12 @@ export default {
   data () {
     return {
       garments: [],
-      methods: []
+      methods: [],
+      addedAddress: {
+        'address': '',
+        'method': '',
+        'detail': ''
+      }
     }
   },
   created () {
@@ -105,12 +97,12 @@ export default {
         this.$store.dispatch('updateGarment', value)
       }
     },
-    methodChecked: {
+    addresses: {
       get () {
-        return this.$store.state.method
+        return this.$store.state.addresses
       },
       set (value) {
-        this.$store.dispatch('updateMethod', value)
+        this.$store.dispatch('updateAddress', value)
       }
     },
     split: {
@@ -121,14 +113,6 @@ export default {
         this.$store.dispatch('updateSplit', value)
         // TODO: to keep first address
         this.$store.dispatch('updateAddresses', [{address: '', detail: ''}])
-      }
-    },
-    inputs: {
-      get () {
-        return this.$store.state.addresses
-      },
-      set (value) {
-        this.$store.dispatch('updateAddresses', value)
       }
     }
   },
@@ -147,14 +131,23 @@ export default {
       ]
       this.methods = data
     },
+    updateAddress (index) {
+      this.address[index].address = this.edit.address.address
+      this.address[index].method = this.edit.address.method
+      this.address[index].detail = this.edit.address.detail
+    },
     addRow () {
       this.inputs.push({
         address: '',
+        method: '',
         detail: ''
       })
     },
     deleteRow (index) {
       this.inputs.splice(index, 1)
+    },
+    addAddress (item) {
+      this.addresses.push(this.addedAddress)
     },
     back () {
       this.$router.push('/details')

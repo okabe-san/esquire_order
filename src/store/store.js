@@ -16,7 +16,7 @@ export const store = new Vuex.Store({
     rep: '',
     garment: '',
     split: false,
-    addresses: [{address: '', method: '', detail: ''}],
+    addresses: [],
     // for step 3
     option_checked: [],
     comments: ''
