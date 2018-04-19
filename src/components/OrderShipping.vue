@@ -7,7 +7,7 @@
       <h3>Review</h3>
     </section>
     <main>
-      <h1>Shipping</h1>
+      <h1>Garment and Shipping info</h1>
 
       <!-- type rep name -->
       Representative Name
