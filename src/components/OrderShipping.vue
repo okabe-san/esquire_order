@@ -71,7 +71,7 @@ export default {
       methods: [],
       addedAddress: {
         'address': '',
-        'method': '',
+        'method': 'UPS',
         'detail': ''
       }
     }
