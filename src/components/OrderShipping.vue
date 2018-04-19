@@ -23,15 +23,6 @@
         </li>
       </ul>
 
-      <!-- shipping methods list -->
-      Shipping method
-      <ul>
-        <li v-for="method in methods" :key="method">
-          <input type="radio" v-model="methodChecked" :value="method">
-            {{method}}
-        </li>
-      </ul>
-
       <!-- check split shipping -->
       Need a split shipping?
       <input type="checkbox" v-model="split">
@@ -43,7 +34,15 @@
       <div v-if="split == false">
         Shipping Address
         <input type="text" v-model="inputs[0].address">
-        <br />
+
+        <!-- shipping methods -->
+        Shipping method
+        <select>
+          <option v-for="method in methods" :key="method">
+             {{method}}
+          </option>
+        </select>
+
       </div>
 
       <!-- split shipping -->
@@ -54,6 +53,15 @@
            {{index + 1}}
            <input type="text" v-model="input.address">
            <input type="text" v-model="input.detail">
+
+           <!-- shipping methods -->
+           Shipping method
+           <select>
+             <option v-for="method in methods" :key="method">
+                {{method}}
+             </option>
+           </select>
+
            <button v-if="index > 1" @click="deleteRow(index)">Delete</button>
          </li>
        </ul>
