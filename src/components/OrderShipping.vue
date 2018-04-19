@@ -7,12 +7,12 @@
       <h3>Review</h3>
     </section>
     <main>
-      <h1>Shipping</h1>
+      <h1>Garment and Shipping info</h1>
 
+      Company Name: Test<br />
       <!-- type rep name -->
-      Representative Name
-      <input type="text" v-model="rep">
-      <br />
+      Representative Name:
+      <input type="text" v-model="rep"><br />
 
       <!-- garments list -->
       Where the garments from?
@@ -23,41 +23,36 @@
         </li>
       </ul>
 
-      <!-- shipping methods list -->
-      Shipping method
-      <ul>
-        <li v-for="method in methods" :key="method">
-          <input type="radio" v-model="methodChecked" :value="method">
-            {{method}}
-        </li>
-      </ul>
-
       <!-- check split shipping -->
       Need a split shipping?
       <input type="checkbox" v-model="split">
       {{split}}
       <br />
 
+      <div v-for="(address, index) in addresses" :key="index">
+        {{address.address}} {{address.method}}
+      </div>
+
       <!-- shipping address -->
       <!-- no split shipping -->
       <div v-if="split == false">
         Shipping Address
-        <input type="text" v-model="inputs[0].address">
-        <br />
+
+        <input type="text" v-model="addedAddress.address">
+        <!-- shipping methods -->
+        Shipping method
+        <select v-model="addedAddress.method">
+          <option v-for="(method, index) in methods" :value="method" :key="index">
+             {{method}}
+          </option>
+        </select>
+        <button @click="addAddress">Add</button>
       </div>
 
       <!-- split shipping -->
       <div v-if="split == true">
-        Shipping Address / Garment Detail
-        <ul>
-         <li v-for="(input, index) in inputs" :key="index">
-           {{index + 1}}
-           <input type="text" v-model="input.address">
-           <input type="text" v-model="input.detail">
-           <button v-if="index > 1" @click="deleteRow(index)">Delete</button>
-         </li>
-       </ul>
-       <button @click="addRow">Add row</button>
+        <button v-if="index > 1" @click="deleteRow(index)">Delete</button>
+        <button @click="addRow">Add row</button>
       </div>
 
       <!-- nav buttons -->
@@ -73,7 +68,12 @@ export default {
   data () {
     return {
       garments: [],
-      methods: []
+      methods: [],
+      addedAddress: {
+        'address': '',
+        'method': '',
+        'detail': ''
+      }
     }
   },
   created () {
@@ -97,12 +97,12 @@ export default {
         this.$store.dispatch('updateGarment', value)
       }
     },
-    methodChecked: {
+    addresses: {
       get () {
-        return this.$store.state.method
+        return this.$store.state.addresses
       },
       set (value) {
-        this.$store.dispatch('updateMethod', value)
+        this.$store.dispatch('updateAddress', value)
       }
     },
     split: {
@@ -113,14 +113,6 @@ export default {
         this.$store.dispatch('updateSplit', value)
         // TODO: to keep first address
         this.$store.dispatch('updateAddresses', [{address: '', detail: ''}])
-      }
-    },
-    inputs: {
-      get () {
-        return this.$store.state.addresses
-      },
-      set (value) {
-        this.$store.dispatch('updateAddresses', value)
       }
     }
   },
@@ -139,14 +131,23 @@ export default {
       ]
       this.methods = data
     },
+    updateAddress (index) {
+      this.address[index].address = this.edit.address.address
+      this.address[index].method = this.edit.address.method
+      this.address[index].detail = this.edit.address.detail
+    },
     addRow () {
       this.inputs.push({
         address: '',
+        method: '',
         detail: ''
       })
     },
     deleteRow (index) {
       this.inputs.splice(index, 1)
+    },
+    addAddress (item) {
+      this.addresses.push(this.addedAddress)
     },
     back () {
       this.$router.push('/details')
