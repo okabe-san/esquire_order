@@ -180,13 +180,10 @@ export default {
     editItem (index, detail) {
       this.edit = !this.edit
       this.indexNum = index
-      this.editOrder.item = detail.item
-      this.editOrder.quantity = detail.quantity
+      this.editOrder = detail
     },
     updateItem (index) {
-      this.orderPicked.items[index].item = this.editOrder.item
-      this.orderPicked.items[index].location = this.editOrder.location
-      this.orderPicked.items[index].quantity = this.editOrder.quantity
+      this.orderPicked.items[index] = this.editOrder
       this.edit = !this.edit
     },
     removeItem (index) {
