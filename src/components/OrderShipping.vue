@@ -23,34 +23,13 @@
         </li>
       </ul>
 
-      <!-- check split shipping -->
-      Need a split shipping?
-      <input type="checkbox" v-model="split">
-      {{split}}
-      <br />
-
+      Need split shipping? Then, please write shipping details.
       <div v-for="(address, index) in addresses" :key="index">
-        {{address.address}} {{address.method}}
+        {{address.address}} {{address.method}} {{address.detail}}
         <button @click="editAddress(index, detail)">Edit</button>
       </div>
 
-      <!-- shipping address -->
-      <!-- no split shipping -->
-      <div v-if="split == false">
-        Shipping Address
-        <input type="text" v-model="addedAddress.address">
-        <!-- shipping methods -->
-        Shipping method
-        <select v-model="addedAddress.method">
-          <option v-for="(method, index) in methods" :value="method" :key="index">
-             {{method}}
-          </option>
-        </select>
-        <button @click="addAddress">Add</button>
-      </div>
-
-      <!-- split shipping -->
-      <div v-if="split == true">
+      <div>
         Address:
         <input type="text" v-model="addedAddress.address">
         <!-- shipping methods -->
