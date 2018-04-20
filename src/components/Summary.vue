@@ -50,6 +50,9 @@
       </ul>
       Comment(s) <br />
       {{state.comments}}
+
+      <!-- nav buttons -->
+      <button @click="submit">Submit</button>
     </main>
   </div>
 </template>
@@ -74,6 +77,9 @@ export default {
     },
     backToOptions () {
       this.$router.push('/options')
+    },
+    submit () {
+      this.$router.push('/thanks')
     }
   }
 }

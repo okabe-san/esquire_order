@@ -5,6 +5,7 @@ import Shipping from '@/components/OrderShipping'
 import Details from '@/components/OrderDetails'
 import Options from '@/components/OrderOptions'
 import Summary from '@/components/Summary'
+import Thanks from '@/components/Thanks'
 
 Vue.use(Router)
 
@@ -34,6 +35,11 @@ export default new Router({
       path: '/summary',
       name: 'Summary',
       component: Summary
+    },
+    {
+      path: '/thanks',
+      name: 'Thanks',
+      component: Thanks
     }
   ]
 })
