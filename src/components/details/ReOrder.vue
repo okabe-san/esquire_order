@@ -75,7 +75,7 @@
         {{file.name}}
         <button @click="removeFile(index)">Delete</button>
       </div>
-      <p v-if="!check">Please add file.</p>
+      <p v-if="!fileCheck && files.length === 0">Please add file.</p>
       <button @click="addItem">Add</button>
     </div>
   </div>
@@ -99,7 +99,7 @@ export default {
         'location': 'Front Center',
         quantity: 0
       },
-      check: true,
+      fileCheck: true,
       addedItem: {
         'item': 'Cap',
         'location': 'Front Center',
@@ -193,9 +193,13 @@ export default {
       this.orderPicked.items.splice(index, 1)
     },
     addItem (item) {
-      this.addedItem.image = this.files[0].name
-      this.orderPicked.items.push(this.addedItem)
-      // TODO: refresh all add item inputs
+      if (this.files.length > 0) {
+        this.addedItem.image = this.files[0].name
+        this.orderPicked.items.push(this.addedItem)
+        // TODO: refresh all add item inputs
+      } else {
+        this.fileCheck = false
+      }
     }
   }
 }
