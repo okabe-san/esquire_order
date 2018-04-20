@@ -23,10 +23,13 @@
         </li>
       </ul>
 
+      <!-- address(es) -->
       Need split shipping? Then, please write shipping details.
       <div v-for="(address, index) in addresses" :key="index">
         {{address.address}} {{address.method}} {{address.detail}}
         <button @click="editAddress(index, detail)">Edit</button>
+        <button v-if="edit && index === indexNum" @click="updateAddress(index)">Update</button>
+        <button @click="removeAddress(index)">Delete</button>
       </div>
 
       <div>
