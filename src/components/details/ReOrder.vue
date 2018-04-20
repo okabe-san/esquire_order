@@ -73,7 +73,7 @@
       </vue-clip>
       <div v-for="(file, index) in files" :key="index">
         {{file.name}}
-        <button @click="removeFile(index)">Delete</button>
+        <button @click="removeFile">Delete</button>
       </div>
       <p v-if="!fileCheck && files.length === 0">Please add file.</p>
       <button @click="addItem">Add</button>
@@ -95,8 +95,8 @@ export default {
       edit: false,
       indexNum: 0,
       editOrder: {
-        'item': 'Cap',
-        'location': 'Front Center',
+        'item': '',
+        'location': '',
         quantity: 0
       },
       fileCheck: true,
@@ -170,8 +170,8 @@ export default {
     fileAdded (file) {
       this.files.push(file)
     },
-    removeFile (index) {
-      this.files.splice(index, 1)
+    removeFile () {
+      this.files.splice(0, 1)
     },
     // FIXME: after connect to the server, turn on actual remove method
     // removeFile (file) {
@@ -193,7 +193,11 @@ export default {
       if (this.files.length > 0) {
         this.addedItem.image = this.files[0].name
         this.orderPicked.items.push(this.addedItem)
-        // TODO: refresh all add item inputs
+        // back to default values
+        this.addedItem.item = 'Cap'
+        this.addedItem.location = 'Front Center'
+        this.addedItem.quantity = 1
+        this.files.splice(0, 1)
       } else {
         this.fileCheck = false
       }
