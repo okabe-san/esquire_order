@@ -31,13 +31,13 @@
 
       <div v-for="(address, index) in addresses" :key="index">
         {{address.address}} {{address.method}}
+        <button @click="editAddress(index, detail)">Edit</button>
       </div>
 
       <!-- shipping address -->
       <!-- no split shipping -->
       <div v-if="split == false">
         Shipping Address
-
         <input type="text" v-model="addedAddress.address">
         <!-- shipping methods -->
         Shipping method
@@ -51,8 +51,17 @@
 
       <!-- split shipping -->
       <div v-if="split == true">
-        <button v-if="index > 1" @click="deleteRow(index)">Delete</button>
-        <button @click="addRow">Add row</button>
+        Address:
+        <input type="text" v-model="addedAddress.address">
+        <!-- shipping methods -->
+        <select v-model="addedAddress.method">
+          <option v-for="(method, index) in methods" :value="method" :key="index">
+             {{method}}
+          </option>
+        </select>
+        Detail:
+        <input type="text" v-model="addedAddress.detail">
+        <button @click="addAddress">Add</button>
       </div>
 
       <!-- nav buttons -->
@@ -112,7 +121,7 @@ export default {
       set (value) {
         this.$store.dispatch('updateSplit', value)
         // TODO: to keep first address
-        this.$store.dispatch('updateAddresses', [{address: '', detail: ''}])
+        this.$store.dispatch('updateAddresses', [])
       }
     }
   },
@@ -135,16 +144,6 @@ export default {
       this.address[index].address = this.edit.address.address
       this.address[index].method = this.edit.address.method
       this.address[index].detail = this.edit.address.detail
-    },
-    addRow () {
-      this.inputs.push({
-        address: '',
-        method: '',
-        detail: ''
-      })
-    },
-    deleteRow (index) {
-      this.inputs.splice(index, 1)
     },
     addAddress (item) {
       this.addresses.push(this.addedAddress)
