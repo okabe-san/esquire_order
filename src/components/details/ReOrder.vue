@@ -106,7 +106,7 @@ export default {
         'image': '',
         quantity: 1
       },
-      items: ['Cap', 'Tops', 'Beanie', 'Bag', 'Pants'],
+      items: [],
       locationCap: [
         'Front Center',
         'Front Left',
@@ -126,6 +126,9 @@ export default {
         'Right Wrist'
       ]
     }
+  },
+  created () {
+    this.item()
   },
   computed: {
     orderPicked: {
@@ -166,6 +169,11 @@ export default {
         }
       ]
       this.orders = data
+    },
+    async item () {
+      // FIXME: use query to get items
+      const data = ['Cap', 'Tops', 'Beanie', 'Bag', 'Pants']
+      this.items = data
     },
     fileAdded (file) {
       this.files.push(file)
