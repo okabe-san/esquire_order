@@ -26,8 +26,23 @@
       <!-- address(es) -->
       Need split shipping? Then, please write shipping details.
       <div v-for="(address, index) in addresses" :key="index">
-        {{address.address}} {{address.method}} {{address.detail}}
-        <button @click="editAddress(index, detail)">Edit</button>
+        <span v-if="edit && index === indexNum">
+          <input type="text" v-model="editShipping.address">
+          <!-- shipping methods -->
+          <select v-model="editShipping.method">
+            <option v-for="(method, index) in methods" :value="method" :key="index">
+               {{method}}
+            </option>
+          </select>
+          Detail:
+          <input type="text" v-model="editShipping.detail">
+        </span>
+
+        <span v-else>
+          {{address.address}} {{address.method}} {{address.detail}}
+        </span>
+
+        <button @click="editAddress(index, address)">Edit</button>
         <button v-if="edit && index === indexNum" @click="updateAddress(index)">Update</button>
         <button @click="removeAddress(index)">Delete</button>
       </div>
@@ -60,6 +75,13 @@ export default {
     return {
       garments: [],
       methods: [],
+      edit: false,
+      indexNum: 0,
+      editShipping: {
+        'address': '',
+        'method': '',
+        'detail': ''
+      },
       addedAddress: {
         'address': '',
         'method': 'UPS',
@@ -95,16 +117,6 @@ export default {
       set (value) {
         this.$store.dispatch('updateAddress', value)
       }
-    },
-    split: {
-      get () {
-        return this.$store.state.split
-      },
-      set (value) {
-        this.$store.dispatch('updateSplit', value)
-        // TODO: to keep first address
-        this.$store.dispatch('updateAddresses', [])
-      }
     }
   },
   methods: {
@@ -122,10 +134,19 @@ export default {
       ]
       this.methods = data
     },
+    editAddress (index, detail) {
+      this.edit = !this.edit
+      this.indexNum = index
+      this.editShipping = detail
+    },
     updateAddress (index) {
-      this.address[index].address = this.edit.address.address
-      this.address[index].method = this.edit.address.method
-      this.address[index].detail = this.edit.address.detail
+      this.addresses[index].address = this.editShipping.address
+      this.addresses[index].method = this.editShipping.method
+      this.addresses[index].detail = this.editShipping.detail
+      this.edit = !this.edit
+    },
+    removeAddress (index) {
+      this.addresses.splice(index, 1)
     },
     addAddress (item) {
       this.addresses.push(this.addedAddress)
