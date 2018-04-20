@@ -11,6 +11,16 @@
       <!-- step 1 -->
       <h3>
         Step 1
+         <button @click="backToDetails">Edit</button>
+       </h3>
+
+       Re-order: {{state.re_order}} <br />
+       Order {{state.order_picked}} <br />
+       Need edit: {{state.edit_order}} <br />
+
+      <!-- step 2 -->
+      <h3>
+        Step 2
         <button @click="backToShipping">Edit</button>
       </h3>
 
@@ -20,37 +30,27 @@
       Split Shipping: {{state.split}} <br />
       Shipping Address:
       <ul>
-       <li v-for="(input, index) in state.addresses" :key="index">
-         {{index + 1}}
-         Address: {{input.address}}
-         Detail: {{input.detail}}
-       </li>
-     </ul>
+        <li v-for="(input, index) in state.addresses" :key="index">
+          {{index + 1}}
+          Address: {{input.address}}
+          Detail: {{input.detail}}
+        </li>
+      </ul>
 
-     <!-- step 2 -->
-     <h3>
-       Step 2
-        <button @click="backToDetails">Edit</button>
+      <!-- step 3 -->
+      <h3>
+        Step 3
+        <button @click="backToOptions">Edit</button>
       </h3>
 
-     Re-order: {{state.re_order}} <br />
-     Order {{state.order_picked}} <br />
-     Need edit: {{state.edit_order}} <br />
-
-     <!-- step 3 -->
-     <h3>
-       Step 3
-       <button @click="backToOptions">Edit</button>
-     </h3>
-
-     <ul>
-      <li v-for="(option, index) in state.option_checked" :key="index">
-        {{index + 1}} {{option}}
-      </li>
-    </ul>
-    Comment(s) <br />
-    {{state.comments}}
-   </main>
+      <ul>
+        <li v-for="(option, index) in state.option_checked" :key="index">
+          {{index + 1}} {{option}}
+        </li>
+      </ul>
+      Comment(s) <br />
+      {{state.comments}}
+    </main>
   </div>
 </template>
 

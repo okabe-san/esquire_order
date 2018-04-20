@@ -150,6 +150,7 @@ export default {
     },
     addAddress (item) {
       this.addresses.push(this.addedAddress)
+      // TODO: refresh all add item inputs
     },
     back () {
       this.$router.push('/details')
