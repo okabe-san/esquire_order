@@ -60,7 +60,7 @@
         </option>
       </select>
       <!-- quantity -->
-      <input type="number" v-model="addedItem.quantity">
+      <input type="number" min="1" v-model="addedItem.quantity">
       <!-- image -->
       <vue-clip v-if="files.length === 0" ref="vc" :options="options" :on-added-file="fileAdded">
         <template slot="clip-uploader-action" slot-scope="props">
@@ -75,6 +75,7 @@
         {{file.name}}
         <button @click="removeFile(index)">Delete</button>
       </div>
+      <p v-if="!check">Please add file.</p>
       <button @click="addItem">Add</button>
     </div>
   </div>
@@ -86,7 +87,8 @@ export default {
     return {
       options: {
         url: '/details',
-        maxFiles: 1
+        maxFiles: 1,
+        acceptedFiles: ['image/jpeg', 'application/pdf']
       },
       files: [],
       orders: [],
@@ -97,11 +99,12 @@ export default {
         'location': 'Front Center',
         quantity: 0
       },
+      check: true,
       addedItem: {
         'item': 'Cap',
         'location': 'Front Center',
         'image': '',
-        quantity: 0
+        quantity: 1
       },
       items: ['Cap', 'Tops', 'Beanie', 'Bag', 'Pants'],
       locationCap: [
