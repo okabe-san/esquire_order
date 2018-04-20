@@ -153,7 +153,7 @@ export default {
       // TODO: refresh all add item inputs
     },
     back () {
-      this.$router.push('/details')
+      this.$router.push('/entry')
     },
     next () {
       this.$router.push('/options')
