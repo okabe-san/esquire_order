@@ -7,8 +7,8 @@
     <ul>
       <li v-for="(order, index) in orders" :key="index">
         <input type="radio" v-model="orderPicked" :value="order">
-          PO Number: {{order.po}}
-          <img :src="order.items[0].image">
+        <p style="padding-left: .5rem">PO Number: {{order.po}}</p>
+        <img class="image" :src="order.items[0].image">
       </li>
     </ul>
 
@@ -38,8 +38,6 @@
       <span v-else>
         {{detail.item}} / {{detail.location}} / {{detail.quantity}}
       </span>
-
-      {{detail.image}}
 
       <button @click="editItem(index, detail)">Edit</button>
       <button v-if="edit && index === indexNum" @click="updateItem(index)">Update</button>
@@ -186,6 +184,8 @@ export default {
           }]
         }
       ]
+      // max results
+      data.slice(0, 5)
       this.orders = data
     },
     async item () {
@@ -239,5 +239,19 @@ export default {
 <style scoped>
 li {
   list-style-type: none;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  height: 40px;
+}
+.image {
+  max-width: 100px;
+  max-height: 70px;
+  width: auto;
+  height: auto;
+
+  padding-left: 1rem;
 }
 </style>
