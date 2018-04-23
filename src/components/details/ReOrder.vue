@@ -8,6 +8,7 @@
       <li v-for="(order, index) in orders" :key="index">
         <input type="radio" v-model="orderPicked" :value="order">
           PO Number: {{order.po}}
+          <img :src="order.items[0].image">
       </li>
     </ul>
 
@@ -157,13 +158,12 @@ export default {
           [{
             'item': 'Cap',
             'location': 'Front Center',
-            'image': 'sanmar_bg.png',
+            'image': require(`@/assets/sanmar.png`),
             'quantity': 10
           },
           {
             'item': 'Tops',
             'location': 'Front Chest',
-            'image': 'sanmar_bg.png',
             'quantity': 20
           }]
         },
@@ -172,7 +172,7 @@ export default {
           [{
             'item': 'Cap',
             'location': 'Front Center',
-            'image': 'Alphabrorder.jpg',
+            'image': require(`@/assets/alphabroder.jpg`),
             'quantity': 30
           }]
         },
@@ -181,7 +181,7 @@ export default {
           [{
             'item': 'Cap',
             'location': 'Front Center',
-            'image': 'Alphabrorder2.jpg',
+            'image': require(`@/assets/alphabroder2.jpg`),
             'quantity': 30
           }]
         }
