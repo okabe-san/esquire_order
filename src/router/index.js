@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import LogIn from '@/components/LogIn'
+import OrderEntry from '@/components/OrderEntry'
 import Shipping from '@/components/OrderShipping'
-import Details from '@/components/OrderDetails'
 import Options from '@/components/OrderOptions'
 import Summary from '@/components/Summary'
 import Thanks from '@/components/Thanks'
@@ -17,14 +17,14 @@ export default new Router({
       component: LogIn
     },
     {
+      path: '/entry',
+      name: 'Entry',
+      component: OrderEntry
+    },
+    {
       path: '/shipping',
       name: 'Shipping',
       component: Shipping
-    },
-    {
-      path: '/details',
-      name: 'Details',
-      component: Details
     },
     {
       path: '/options',

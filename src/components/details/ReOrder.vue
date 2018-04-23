@@ -60,7 +60,7 @@
         </option>
       </select>
       <!-- quantity -->
-      <input type="number" v-model="addedItem.quantity">
+      <input type="number" min="1" v-model="addedItem.quantity">
       <!-- image -->
       <vue-clip v-if="files.length === 0" ref="vc" :options="options" :on-added-file="fileAdded">
         <template slot="clip-uploader-action" slot-scope="props">
@@ -73,8 +73,9 @@
       </vue-clip>
       <div v-for="(file, index) in files" :key="index">
         {{file.name}}
-        <button @click="removeFile(index)">Delete</button>
+        <button @click="removeFile">Delete</button>
       </div>
+      <p v-if="!fileCheck && files.length === 0">Please add file.</p>
       <button @click="addItem">Add</button>
     </div>
   </div>
@@ -86,24 +87,26 @@ export default {
     return {
       options: {
         url: '/details',
-        maxFiles: 1
+        maxFiles: 1,
+        acceptedFiles: ['image/jpeg', 'application/pdf']
       },
       files: [],
       orders: [],
       edit: false,
       indexNum: 0,
       editOrder: {
-        'item': 'Cap',
-        'location': 'Front Center',
+        'item': '',
+        'location': '',
         quantity: 0
       },
+      fileCheck: true,
       addedItem: {
         'item': 'Cap',
         'location': 'Front Center',
         'image': '',
-        quantity: 0
+        quantity: 1
       },
-      items: ['Cap', 'Tops', 'Beanie', 'Bag', 'Pants'],
+      items: [],
       locationCap: [
         'Front Center',
         'Front Left',
@@ -123,6 +126,9 @@ export default {
         'Right Wrist'
       ]
     }
+  },
+  created () {
+    this.item()
   },
   computed: {
     orderPicked: {
@@ -164,11 +170,16 @@ export default {
       ]
       this.orders = data
     },
+    async item () {
+      // FIXME: use query to get items
+      const data = ['Cap', 'Tops', 'Beanie', 'Bag', 'Pants']
+      this.items = data
+    },
     fileAdded (file) {
       this.files.push(file)
     },
-    removeFile (index) {
-      this.files.splice(index, 1)
+    removeFile () {
+      this.files.splice(0, 1)
     },
     // FIXME: after connect to the server, turn on actual remove method
     // removeFile (file) {
@@ -177,22 +188,32 @@ export default {
     editItem (index, detail) {
       this.edit = !this.edit
       this.indexNum = index
-      this.editOrder.item = detail.item
-      this.editOrder.quantity = detail.quantity
+      this.editOrder = detail
     },
     updateItem (index) {
-      this.orderPicked.items[index].item = this.editOrder.item
-      this.orderPicked.items[index].location = this.editOrder.location
-      this.orderPicked.items[index].quantity = this.editOrder.quantity
+      this.orderPicked.items[index] = this.editOrder
       this.edit = !this.edit
     },
     removeItem (index) {
       this.orderPicked.items.splice(index, 1)
     },
     addItem (item) {
-      this.addedItem.image = this.files[0].name
-      this.orderPicked.items.push(this.addedItem)
-      // TODO: refresh all add item inputs
+      console.log(this.orderPicked.items)
+      if (this.files.length > 0) {
+        this.addedItem.image = this.files[0].name
+        this.orderPicked.items.push(this.addedItem)
+        this.fileCheck = true
+        // back to default values
+        this.addedItem = {
+          'item': 'Cap',
+          'location': 'Front Center',
+          'image': '',
+          'quantity': 1
+        }
+        this.files.splice(0, 1)
+      } else {
+        this.fileCheck = false
+      }
     }
   }
 }

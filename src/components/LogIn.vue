@@ -21,7 +21,7 @@ export default {
   methods: {
     login () {
       // FIXME: use real login
-      this.$router.push('/details')
+      this.$router.push('/entry')
     }
   }
 }

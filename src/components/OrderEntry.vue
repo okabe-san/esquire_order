@@ -8,7 +8,7 @@
     </section>
 
     <main>
-      <h1>Details</h1>
+      <h1>Order Entry</h1>
       <!-- check re-order or not -->
       Re-Order
       <input type="radio" v-model="reOrder" v-on:change="orderCheck()" vaule="yes"> Yes
@@ -36,7 +36,7 @@ import ReOrder from './details/ReOrder.vue'
 import NewOrder from './details/NewOrder.vue'
 
 export default {
-  name: 'Detail',
+  name: 'Entry',
   components: {
     ReOrder,
     NewOrder
