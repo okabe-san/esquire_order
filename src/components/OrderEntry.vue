@@ -25,6 +25,11 @@
         <newOrder></newOrder>
       </div>
 
+      <!-- error message -->
+      <div>
+        {{message}}
+      </div>
+
       <!-- nav buttons -->
       <button @click="next">Next</button>
     </main>
@@ -43,7 +48,8 @@ export default {
   },
   data () {
     return {
-      order: true
+      order: true,
+      message: ''
     }
   },
   computed: {
@@ -63,7 +69,11 @@ export default {
       this.order = !this.order
     },
     next () {
-      this.$router.push('/shipping')
+      if (this.order && this.$store.state.order_picked.length === 0) {
+        this.message = 'Please search and select the order.'
+      } else {
+        this.$router.push('/shipping')
+      }
     }
   }
 }
