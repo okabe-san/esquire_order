@@ -157,14 +157,32 @@ export default {
           [{
             'item': 'Cap',
             'location': 'Front Center',
-            'image': 'logo.png',
+            'image': 'sanmar_bg.png',
             'quantity': 10
           },
           {
             'item': 'Tops',
             'location': 'Front Chest',
-            'image': 'logo.png',
+            'image': 'sanmar_bg.png',
             'quantity': 20
+          }]
+        },
+        { 'po': '101',
+          'items':
+          [{
+            'item': 'Cap',
+            'location': 'Front Center',
+            'image': 'Alphabrorder.jpg',
+            'quantity': 30
+          }]
+        },
+        { 'po': '106',
+          'items':
+          [{
+            'item': 'Cap',
+            'location': 'Front Center',
+            'image': 'Alphabrorder2.jpg',
+            'quantity': 30
           }]
         }
       ]
