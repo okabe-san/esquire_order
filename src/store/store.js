@@ -15,7 +15,7 @@ export const store = new Vuex.Store({
     // for step 2
     rep: '',
     garment: '',
-    addresses: [],
+    shipping: [],
     // for step 3
     option_checked: [],
     comments: ''

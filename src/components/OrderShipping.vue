@@ -25,7 +25,7 @@
 
       <!-- address(es) -->
       Need split shipping? Then, please write shipping details.
-      <div v-for="(address, index) in addresses" :key="index">
+      <div v-for="(detail, index) in shipping" :key="index">
         <span v-if="edit && index === indexNum">
           <input type="text" v-model="editShipping.address">
           <!-- shipping methods -->
@@ -39,10 +39,10 @@
         </span>
 
         <span v-else>
-          {{address.address}} {{address.method}} {{address.detail}}
+          {{detail}} {{detail.method}} {{detail.detail}}
         </span>
 
-        <button @click="editAddress(index, address)">Edit</button>
+        <button @click="editAddress(index, detail)">Edit</button>
         <button v-if="edit && index === indexNum" @click="updateAddress(index)">Update</button>
         <button @click="removeAddress(index)">Delete</button>
       </div>
@@ -59,6 +59,7 @@
         Detail:
         <input type="text" v-model="addedAddress.detail">
         <button @click="addAddress">Add</button>
+        <p v-if="!addressCheck">Please put Address</p>
       </div>
 
       <!-- nav buttons -->
@@ -86,7 +87,8 @@ export default {
         'address': '',
         'method': 'UPS',
         'detail': ''
-      }
+      },
+      addressCheck: true
     }
   },
   created () {
@@ -110,9 +112,9 @@ export default {
         this.$store.dispatch('updateGarment', value)
       }
     },
-    addresses: {
+    shipping: {
       get () {
-        return this.$store.state.addresses
+        return this.$store.state.shipping
       },
       set (value) {
         this.$store.dispatch('updateAddress', value)
@@ -140,17 +142,26 @@ export default {
       this.editShipping = detail
     },
     updateAddress (index) {
-      this.addresses[index].address = this.editShipping.address
-      this.addresses[index].method = this.editShipping.method
-      this.addresses[index].detail = this.editShipping.detail
+      this.shipping[index].address = this.editShipping
       this.edit = !this.edit
     },
     removeAddress (index) {
-      this.addresses.splice(index, 1)
+      this.shipping.splice(index, 1)
     },
     addAddress (item) {
-      this.addresses.push(this.addedAddress)
-      // TODO: refresh all add item inputs
+      console.log(this.shipping)
+      if (this.addedAddress.address.length > 0) {
+        this.shipping.push(this.addedAddress)
+        this.addressCheck = true
+        // back to default values
+        this.addedAddress = {
+          'address': '',
+          'method': 'UPS',
+          'detail': ''
+        }
+      } else {
+        this.addressCheck = false
+      }
     },
     back () {
       this.$router.push('/entry')

@@ -198,13 +198,18 @@ export default {
       this.orderPicked.items.splice(index, 1)
     },
     addItem (item) {
+      console.log(this.orderPicked.items)
       if (this.files.length > 0) {
         this.addedItem.image = this.files[0].name
         this.orderPicked.items.push(this.addedItem)
+        this.fileCheck = true
         // back to default values
-        this.addedItem.item = 'Cap'
-        this.addedItem.location = 'Front Center'
-        this.addedItem.quantity = 1
+        this.addedItem = {
+          'item': 'Cap',
+          'location': 'Front Center',
+          'image': '',
+          'quantity': 1
+        }
         this.files.splice(0, 1)
       } else {
         this.fileCheck = false
