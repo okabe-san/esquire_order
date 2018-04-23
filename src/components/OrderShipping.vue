@@ -149,7 +149,6 @@ export default {
       this.shipping.splice(index, 1)
     },
     addAddress (item) {
-      console.log(this.shipping)
       if (this.addedAddress.address.length > 0) {
         this.shipping.push(this.addedAddress)
         this.addressCheck = true

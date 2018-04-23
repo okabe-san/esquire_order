@@ -7,7 +7,8 @@
     <ul>
       <li v-for="(order, index) in orders" :key="index">
         <input type="radio" v-model="orderPicked" :value="order">
-          PO Number: {{order.po}}
+        <p style="padding-left: .5rem">PO Number: {{order.po}}</p>
+        <img class="image" :src="order.items[0].image">
       </li>
     </ul>
 
@@ -37,8 +38,6 @@
       <span v-else>
         {{detail.item}} / {{detail.location}} / {{detail.quantity}}
       </span>
-
-      {{detail.image}}
 
       <button @click="editItem(index, detail)">Edit</button>
       <button v-if="edit && index === indexNum" @click="updateItem(index)">Update</button>
@@ -157,17 +156,36 @@ export default {
           [{
             'item': 'Cap',
             'location': 'Front Center',
-            'image': 'logo.png',
+            'image': require(`@/assets/sanmar.png`),
             'quantity': 10
           },
           {
             'item': 'Tops',
             'location': 'Front Chest',
-            'image': 'logo.png',
             'quantity': 20
+          }]
+        },
+        { 'po': '101',
+          'items':
+          [{
+            'item': 'Cap',
+            'location': 'Front Center',
+            'image': require(`@/assets/alphabroder.jpg`),
+            'quantity': 30
+          }]
+        },
+        { 'po': '106',
+          'items':
+          [{
+            'item': 'Cap',
+            'location': 'Front Center',
+            'image': require(`@/assets/alphabroder2.jpg`),
+            'quantity': 30
           }]
         }
       ]
+      // max results
+      data.slice(0, 5)
       this.orders = data
     },
     async item () {
@@ -198,7 +216,6 @@ export default {
       this.orderPicked.items.splice(index, 1)
     },
     addItem (item) {
-      console.log(this.orderPicked.items)
       if (this.files.length > 0) {
         this.addedItem.image = this.files[0].name
         this.orderPicked.items.push(this.addedItem)
@@ -222,5 +239,19 @@ export default {
 <style scoped>
 li {
   list-style-type: none;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  height: 40px;
+}
+.image {
+  max-width: 100px;
+  max-height: 70px;
+  width: auto;
+  height: auto;
+
+  padding-left: 1rem;
 }
 </style>
