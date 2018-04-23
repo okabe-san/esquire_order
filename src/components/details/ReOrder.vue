@@ -198,7 +198,6 @@ export default {
       this.orderPicked.items.splice(index, 1)
     },
     addItem (item) {
-      console.log(this.orderPicked.items)
       if (this.files.length > 0) {
         this.addedItem.image = this.files[0].name
         this.orderPicked.items.push(this.addedItem)
