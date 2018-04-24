@@ -62,6 +62,11 @@
         <p v-if="!addressCheck">Please put Address</p>
       </div>
 
+      <!-- error message -->
+      <div>
+        {{message}}
+      </div>
+
       <!-- nav buttons -->
       <button @click="back">Back</button>
       <button @click="next">Next</button>
@@ -88,7 +93,8 @@ export default {
         'method': 'UPS',
         'detail': ''
       },
-      addressCheck: true
+      addressCheck: true,
+      message: ''
     }
   },
   created () {
@@ -166,7 +172,11 @@ export default {
       this.$router.push('/entry')
     },
     next () {
-      this.$router.push('/options')
+      if (this.$store.state.rep.length === 0) {
+        this.message = 'Please add representative name.'
+      } else {
+        this.$router.push('/options')
+      }
     }
   }
 }
