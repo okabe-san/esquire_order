@@ -64,7 +64,9 @@
 
       <!-- error message -->
       <div>
-        {{message}}
+        {{messageRep}}
+        {{messageGarment}}
+        {{messageShipping}}
       </div>
 
       <!-- nav buttons -->
@@ -94,7 +96,9 @@ export default {
         'detail': ''
       },
       addressCheck: true,
-      message: ''
+      messageRep: '',
+      messageGarment: '',
+      messageShipping: ''
     }
   },
   created () {
@@ -130,7 +134,17 @@ export default {
   watch: {
     rep () {
       if (this.$store.state.rep.length > 0) {
-        this.message = ''
+        this.messageRep = ''
+      }
+    },
+    garmentChecked () {
+      if (this.$store.state.garment.length > 0) {
+        this.messageGarment = ''
+      }
+    },
+    shipping () {
+      if (this.$store.state.shipping.length > 0) {
+        this.messageShipping = ''
       }
     }
   },
@@ -180,7 +194,13 @@ export default {
     },
     next () {
       if (this.$store.state.rep.length === 0) {
-        this.message = 'Please add representative name.'
+        this.messageRep = 'Please add representative name.'
+      }
+      if (this.$store.state.garment.length === 0) {
+        this.messageGarment = 'Please select garment.'
+      }
+      if (this.$store.state.shipping.length === 0) {
+        this.messageShipping = 'Please add shipping address.'
       } else {
         this.$router.push('/options')
       }
