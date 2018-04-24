@@ -62,6 +62,18 @@ export default {
         this.$store.dispatch('updateOrderPicked', '')
         this.$store.dispatch('updateEditOrder', false)
       }
+    },
+    orderPicked: {
+      get () {
+        return this.$store.state.order_picked
+      }
+    }
+  },
+  watch: {
+    orderPicked () {
+      if (!this.$store.state.orderPicked) {
+        this.message = ''
+      }
     }
   },
   methods: {

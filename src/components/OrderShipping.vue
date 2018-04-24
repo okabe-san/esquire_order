@@ -159,7 +159,13 @@ export default {
       }
     },
     shipping () {
+      // check address detail is not empty
+      let detail = this.$store.state.shipping.every(add => add.detail)
+
       if (this.$store.state.shipping.length > 0) {
+        this.messageShipping = ''
+      }
+      if (this.$store.state.shipping.length > 1 && !detail) {
         this.messageShipping = ''
       }
     }
