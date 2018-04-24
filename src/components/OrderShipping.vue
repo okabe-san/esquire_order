@@ -23,23 +23,32 @@
         </li>
       </ul>
 
-      <!-- address(es) -->
+      <!-- show shipping details -->
       Need split shipping? Then, please write shipping details.
       <div v-for="(detail, index) in shipping" :key="index">
+
+        <!-- edit shipping -->
         <span v-if="edit && index === indexNum">
+
+          <!-- address -->
           <input type="text" v-model="editShipping.address">
-          <!-- shipping methods -->
+
+          <!-- shipping method -->
           <select v-model="editShipping.method">
             <option v-for="(method, index) in methods" :value="method" :key="index">
                {{method}}
             </option>
           </select>
+
+          <!-- detail -->
           Detail:
           <input type="text" v-model="editShipping.detail">
         </span>
 
         <span v-else>
-          {{detail}} {{detail.method}} {{detail.detail}}
+          Address: {{detail.address}} <br />
+          Method: {{detail.method}} <br />
+          Detail: {{detail.detail || 'No Shipping Detail'}} <br />
         </span>
 
         <button @click="editAddress(index, detail)">Edit</button>
@@ -47,19 +56,33 @@
         <button @click="removeAddress(index)">Delete</button>
       </div>
 
+      <!-- add shipping -->
       <div>
+
+        <!-- address -->
         Address:
         <input type="text" v-model="addedAddress.address">
-        <!-- shipping methods -->
+
+        <!-- shipping method -->
         <select v-model="addedAddress.method">
           <option v-for="(method, index) in methods" :value="method" :key="index">
              {{method}}
           </option>
         </select>
+
+        <!-- detail -->
         Detail:
         <input type="text" v-model="addedAddress.detail">
+
         <button @click="addAddress">Add</button>
         <p v-if="!addressCheck">Please put Address</p>
+      </div>
+
+      <!-- error message -->
+      <div>
+        {{messageRep}}
+        {{messageGarment}}
+        {{messageShipping}}
       </div>
 
       <!-- nav buttons -->
@@ -80,7 +103,7 @@ export default {
       indexNum: 0,
       editShipping: {
         'address': '',
-        'method': '',
+        'method': 'UPS',
         'detail': ''
       },
       addedAddress: {
@@ -88,7 +111,10 @@ export default {
         'method': 'UPS',
         'detail': ''
       },
-      addressCheck: true
+      addressCheck: true,
+      messageRep: '',
+      messageGarment: '',
+      messageShipping: ''
     }
   },
   created () {
@@ -121,6 +147,29 @@ export default {
       }
     }
   },
+  watch: {
+    rep () {
+      if (this.$store.state.rep.length > 0) {
+        this.messageRep = ''
+      }
+    },
+    garmentChecked () {
+      if (this.$store.state.garment.length > 0) {
+        this.messageGarment = ''
+      }
+    },
+    shipping () {
+      // check address detail is not empty
+      let detail = this.$store.state.shipping.every(add => add.detail)
+
+      if (this.$store.state.shipping.length > 0) {
+        this.messageShipping = ''
+      }
+      if (this.$store.state.shipping.length > 1 && !detail) {
+        this.messageShipping = ''
+      }
+    }
+  },
   methods: {
     async loadGarments () {
       // FIXME: use query to load garments
@@ -142,13 +191,13 @@ export default {
       this.editShipping = detail
     },
     updateAddress (index) {
-      this.shipping[index].address = this.editShipping
+      this.shipping[index] = this.editShipping
       this.edit = !this.edit
     },
     removeAddress (index) {
       this.shipping.splice(index, 1)
     },
-    addAddress (item) {
+    addAddress () {
       if (this.addedAddress.address.length > 0) {
         this.shipping.push(this.addedAddress)
         this.addressCheck = true
@@ -166,7 +215,31 @@ export default {
       this.$router.push('/entry')
     },
     next () {
-      this.$router.push('/options')
+      const store = this.$store.state
+
+      // check address detail is not empty
+      let detail = store.shipping.every(add => add.detail)
+
+      if (store.rep.length === 0 ||
+        store.garment.length === 0 ||
+        store.shipping.length === 0 ||
+        (store.shipping.length > 1 && !detail)) {
+        // add error messages
+        if (store.rep.length === 0) {
+          this.messageRep = 'Please add representative name.'
+        }
+        if (store.garment.length === 0) {
+          this.messageGarment = 'Please select garment.'
+        }
+        if (store.shipping.length === 0) {
+          this.messageShipping = 'Please add shipping address.'
+        }
+        if (store.shipping.length > 1 && !detail) {
+          this.messageShipping = 'Please add shipping address detail for split.'
+        }
+      } else {
+        this.$router.push('/options')
+      }
     }
   }
 }

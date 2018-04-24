@@ -13,8 +13,8 @@
     </ul>
 
     <!-- show order details -->
-    <div v-for="(detail, index) in orderPicked.items" :key="index">
 
+    <div v-for="(detail, index) in orderPicked.items" :key="index">
       <!-- edit item -->
       <span v-if="edit && index === indexNum">
         <!-- item -->
@@ -215,7 +215,7 @@ export default {
     removeItem (index) {
       this.orderPicked.items.splice(index, 1)
     },
-    addItem (item) {
+    addItem () {
       if (this.files.length > 0) {
         this.addedItem.image = this.files[0].name
         this.orderPicked.items.push(this.addedItem)
