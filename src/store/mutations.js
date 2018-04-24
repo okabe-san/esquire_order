@@ -20,8 +20,8 @@ export const updateGarment = (state, payload) => {
   state.garment = payload
 }
 
-export const updateAddresses = (state, payload) => {
-  state.addresses = payload
+export const updateAddress = (state, payload) => {
+  state.shipping = payload
 }
 
 // for step 3

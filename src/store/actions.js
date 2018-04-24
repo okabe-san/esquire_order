@@ -20,8 +20,8 @@ export const updateGarment = ({commit}, payload) => {
   commit('updateGarment', payload)
 }
 
-export const updateAddresses = ({commit}, payload) => {
-  commit('updateAddresses', payload)
+export const updateAddress = ({commit}, payload) => {
+  commit('updateAddress', payload)
 }
 
 // for step 3

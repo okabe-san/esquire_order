@@ -23,17 +23,24 @@
         </li>
       </ul>
 
-      <!-- address(es) -->
+      <!-- show shipping details -->
       Need split shipping? Then, please write shipping details.
       <div v-for="(detail, index) in shipping" :key="index">
+
+        <!-- edit shipping -->
         <span v-if="edit && index === indexNum">
+
+          <!-- address -->
           <input type="text" v-model="editShipping.address">
-          <!-- shipping methods -->
+
+          <!-- shipping method -->
           <select v-model="editShipping.method">
             <option v-for="(method, index) in methods" :value="method" :key="index">
                {{method}}
             </option>
           </select>
+
+          <!-- detail -->
           Detail:
           <input type="text" v-model="editShipping.detail">
         </span>
@@ -49,17 +56,24 @@
         <button @click="removeAddress(index)">Delete</button>
       </div>
 
+      <!-- add shipping -->
       <div>
+
+        <!-- address -->
         Address:
         <input type="text" v-model="addedAddress.address">
-        <!-- shipping methods -->
+
+        <!-- shipping method -->
         <select v-model="addedAddress.method">
           <option v-for="(method, index) in methods" :value="method" :key="index">
              {{method}}
           </option>
         </select>
+
+        <!-- detail -->
         Detail:
         <input type="text" v-model="addedAddress.detail">
+
         <button @click="addAddress">Add</button>
         <p v-if="!addressCheck">Please put Address</p>
       </div>
@@ -89,7 +103,7 @@ export default {
       indexNum: 0,
       editShipping: {
         'address': '',
-        'method': '',
+        'method': 'UPS',
         'detail': ''
       },
       addedAddress: {
@@ -171,13 +185,13 @@ export default {
       this.editShipping = detail
     },
     updateAddress (index) {
-      this.shipping[index].address = this.editShipping
+      this.shipping[index] = this.editShipping
       this.edit = !this.edit
     },
     removeAddress (index) {
       this.shipping.splice(index, 1)
     },
-    addAddress (item) {
+    addAddress () {
       if (this.addedAddress.address.length > 0) {
         this.shipping.push(this.addedAddress)
         this.addressCheck = true
