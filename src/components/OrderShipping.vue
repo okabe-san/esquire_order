@@ -127,6 +127,13 @@ export default {
       }
     }
   },
+  watch: {
+    rep () {
+      if (this.$store.state.rep.length > 0) {
+        this.message = ''
+      }
+    }
+  },
   methods: {
     async loadGarments () {
       // FIXME: use query to load garments
