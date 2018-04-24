@@ -195,14 +195,28 @@ export default {
       this.$router.push('/entry')
     },
     next () {
-      if (this.$store.state.rep.length === 0) {
-        this.messageRep = 'Please add representative name.'
-      }
-      if (this.$store.state.garment.length === 0) {
-        this.messageGarment = 'Please select garment.'
-      }
-      if (this.$store.state.shipping.length === 0) {
-        this.messageShipping = 'Please add shipping address.'
+      const store = this.$store.state
+
+      // check address detail is not empty
+      let detail = store.shipping.every(add => add.detail)
+
+      if (store.rep.length === 0 ||
+        store.garment.length === 0 ||
+        store.shipping.length === 0 ||
+        (store.shipping.length > 1 && !detail)) {
+        // add error messages
+        if (store.rep.length === 0) {
+          this.messageRep = 'Please add representative name.'
+        }
+        if (store.garment.length === 0) {
+          this.messageGarment = 'Please select garment.'
+        }
+        if (store.shipping.length === 0) {
+          this.messageShipping = 'Please add shipping address.'
+        }
+        if (store.shipping.length > 1 && !detail) {
+          this.messageShipping = 'Please add shipping address detail for split.'
+        }
       } else {
         this.$router.push('/options')
       }
