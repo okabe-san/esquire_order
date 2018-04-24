@@ -39,7 +39,9 @@
         </span>
 
         <span v-else>
-          {{detail}} {{detail.method}} {{detail.detail}}
+          Address: {{detail.address}} <br />
+          Method: {{detail.method}} <br />
+          Detail: {{detail.detail || 'No Shipping Detail'}} <br />
         </span>
 
         <button @click="editAddress(index, detail)">Edit</button>
