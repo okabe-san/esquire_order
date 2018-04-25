@@ -13,7 +13,6 @@
     </ul>
 
     <!-- show order details -->
-
     <div v-for="(detail, index) in orderPicked.items" :key="index">
       <!-- edit item -->
       <span v-if="edit && index === indexNum">
@@ -86,8 +85,7 @@ export default {
     return {
       options: {
         url: '/details',
-        maxFiles: 1,
-        acceptedFiles: ['image/jpeg', 'application/pdf']
+        maxFiles: 1
       },
       files: [],
       orders: [],
@@ -99,6 +97,7 @@ export default {
         quantity: 0
       },
       fileCheck: true,
+      // for adding item
       addedItem: {
         'item': 'Cap',
         'location': 'Front Center',
