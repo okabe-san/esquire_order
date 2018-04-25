@@ -15,8 +15,10 @@
   </div>
   <div class="image-wrapper">
     <img class="img-left" src="../assets/sample2.jpg">
-    <!-- <img class="img-right" src="../assets/sample3.jpg"> -->
-    <img class="img-mid" src="../assets/sample1.jpeg">
+    <h3 class="mid">
+      Our mission is excellent communication, customer service, high quality, and quick turn around.   Once you place your order with us– you can cross it off your list.  If there is anything further you need to do– we will contact you.
+    </h3>
+    <img class="img-right" src="../assets/sample1.jpeg">
   </div>
 </div>
 </template>
@@ -90,11 +92,13 @@ export default {
     float: left;
     clip-path: polygon(0 0, 100% 0%, 75% 100%, 0% 100%);
   }
-  .img-mid {
+  .img-right {
     float: right;
     clip-path: polygon(25% 0, 100% 0, 100% 100%, 0 100%);
   }
-  .img-right {
-    float: right;
+  .mid {
+    display: inline-block;
+    width: 300px;
+    color: #fff;
   }
 </style>
