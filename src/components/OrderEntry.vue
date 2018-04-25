@@ -24,7 +24,6 @@
       <div v-else>
         <newOrder></newOrder>
       </div>
-
       <!-- error message -->
       <div>
         {{message}}
@@ -52,6 +51,14 @@ export default {
       message: ''
     }
   },
+  mounted () {
+    // check order was selected
+    this.$store.watch(this.$store.getters.order, order => {
+      if (order.po) {
+        this.message = ''
+      }
+    })
+  },
   computed: {
     reOrder: {
       get () {
@@ -66,13 +73,6 @@ export default {
     orderPicked: {
       get () {
         return this.$store.state.order_picked
-      }
-    }
-  },
-  watch: {
-    orderPicked () {
-      if (!this.$store.state.orderPicked) {
-        this.message = ''
       }
     }
   },

@@ -21,5 +21,8 @@ export const store = new Vuex.Store({
     comments: ''
   },
   mutations,
-  actions
+  actions,
+  getters: {
+    order: state => () => state.order_picked
+  }
 })
