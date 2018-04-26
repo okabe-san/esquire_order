@@ -39,12 +39,12 @@
 
           <!-- for re-order -->
           <div v-if="order">
-            <reOrder></reOrder>
+            <reOrder class="order_entry"></reOrder>
           </div>
 
           <!-- for new-order -->
           <div v-else>
-            <newOrder></newOrder>
+            <newOrder class="order_entry"></newOrder>
           </div>
           <!-- error message -->
           <div>
@@ -117,4 +117,7 @@ export default {
 
 <style scoped>
 @import '../assets/css/order_lib.css';
+.order_entry {
+  padding-top: 2rem;
+}
 </style>
