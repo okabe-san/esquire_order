@@ -1,12 +1,11 @@
 h3 {
-  font-weight: normal;
+  margin: 0;
 }
-
 /* for display steps */
 section {
   position: absolute;
   top: 220px;
-  left: 55px;
+  left: 67px;
   text-align: left;
 }
 .step {
@@ -20,6 +19,6 @@ main {
   width: 85%;
   min-height: 80vh;
 
-  padding-right: 10%;
+  padding-right: 7%;
   border-left: 1px solid #dcdcdc;
 }

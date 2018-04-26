@@ -1,6 +1,9 @@
 h1, h2 {
   font-weight: normal;
 }
+h5 {
+  text-decoration: underline;
+}
 header {
   align-items: center;
   width: 100%;
@@ -53,7 +56,7 @@ input::placeholder {
   border-radius: 50%;
   background: #fff;
   border: 2px dotted #666;
-  margin: 15px 30px;
+  margin: 20px 48px;
   padding: 5px;
 }
 .required {

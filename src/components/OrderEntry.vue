@@ -2,9 +2,13 @@
   <div>
     <!-- display steps -->
     <section>
+      <h5>ORDER STEPS</h5>
       <h3 class="step">STEP 1</h3>
+      <i class="material-icons step">keyboard_arrow_down</i>
       <h3>STEP 2</h3>
+      <i class="material-icons">keyboard_arrow_down</i>
       <h3>STEP 3</h3>
+      <i class="material-icons">keyboard_arrow_down</i>
       <h3>REVIEW</h3>
     </section>
 
