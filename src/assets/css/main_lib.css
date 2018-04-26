@@ -32,6 +32,9 @@ input:focus {
     outline: none !important;
     border: 1px solid #555;
 }
+input::placeholder {
+    color: #e4e4e4;
+}
 .nav {
   display: flex;
   align-items: center;

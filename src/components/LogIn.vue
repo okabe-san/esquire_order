@@ -5,7 +5,7 @@
     <div class="login-wrapper">
       <div class="login">
         <h3>User name<span class="required"> *</span></h3>
-        <input type="email" v-model="user_name"><br />
+        <input type="email" v-model="user_name" placeholder="Embroidery@gmail.com"><br />
         <h3>Password<span class="required"> *</span></h3>
         <input type="text" v-model="password"><br />
         <button @click="login">LOGIN</button>
@@ -20,6 +20,32 @@
     </h3>
     <img class="img-right" src="../assets/sample1.jpeg">
   </div>
+  <footer>
+    <div class="info-wrapper">
+      <div class="info">
+        <h3>Services</h3>
+        <p>Embroidery</p>
+        <p>Rhinestone</p>
+        <p>Laser Etching</p>
+        <p>Vinyl Heat Press</p>
+      </div>
+    </div>
+    <div class="info-wrapper">
+      <div class="info">
+        <h3>Socila</h3>
+        <p>Twitter</p>
+        <p>Facebook</p>
+        <p>Instagram</p>
+      </div>
+    </div>
+    <div class="info-wrapper">
+      <div class="info">
+        <h3>Supports</h3>
+        <p>support@esquireembroiery.com</p>
+        <p>(303)xxx-xxxx</p>
+      </div>
+    </div>
+  </footer>
 </div>
 </template>
 
@@ -57,7 +83,8 @@ export default {
   }
   input {
     padding: 7px 10px;
-    font-size: 120%
+    font-size: 125%;
+    width: 250px;
   }
   .body {
     padding: 1rem 6rem;
@@ -100,5 +127,15 @@ export default {
     display: inline-block;
     width: 300px;
     color: #fff;
+    padding-top: 5px;
+  }
+  .info-wrapper {
+    display: flex;
+    justify-content: center;
+    float: left;
+    width: calc(100% / 3);
+  }
+  .info {
+    text-align: left;
   }
 </style>
