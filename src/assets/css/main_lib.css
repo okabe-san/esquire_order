@@ -4,6 +4,9 @@ h1, h2 {
 h5 {
   text-decoration: underline;
 }
+p {
+  font-size: 1.2rem;
+}
 header {
   align-items: center;
   width: 100%;
