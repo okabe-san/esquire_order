@@ -21,8 +21,8 @@
         <h1>Order Entry</h1>
         <div class="form">
           <!-- check re-order or not -->
-          <p>
-            Re-Order? &nbsp;&nbsp;
+          <h3>
+            Is this Re-Order? &nbsp;&nbsp;
 
             <label>YES
               <input type="radio" v-model="reOrder" v-on:change="orderCheck()" vaule="yes">
@@ -34,7 +34,7 @@
               <span class="radio"></span>
             </label>
 
-          </p>
+          </h3>
           <hr />
 
           <!-- for re-order -->
