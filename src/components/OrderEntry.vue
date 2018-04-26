@@ -1,12 +1,14 @@
 <template>
   <div>
+    <!-- display steps -->
     <section>
-      <h3 class="step">Step 1</h3>
-      <h3>Step 2</h3>
-      <h3>Step 3</h3>
-      <h3>Review</h3>
+      <h3 class="step">STEP 1</h3>
+      <h3>STEP 2</h3>
+      <h3>STEP 3</h3>
+      <h3>REVIEW</h3>
     </section>
 
+    <!-- order form -->
     <main>
       <h1>Order Entry</h1>
       <!-- check re-order or not -->
@@ -92,19 +94,5 @@ export default {
 </script>
 
 <style scoped>
-main {
-  box-sizing: border-box;
-  float: right;
-  width: 80%;
-
-  padding-right: 10%;
-}
-section {
-  box-sizing: border-box;
-  float: left;
-  width: 20%;
-}
-.step {
-  color: orange;
-}
+@import '../assets/css/order_lib.css';
 </style>

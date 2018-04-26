@@ -1,0 +1,25 @@
+h3 {
+  font-weight: normal;
+}
+
+/* for display steps */
+section {
+  position: absolute;
+  top: 220px;
+  left: 55px;
+  text-align: left;
+}
+.step {
+  color: #56c0c4;
+}
+
+/* for order form */
+main {
+  box-sizing: border-box;
+  float: right;
+  width: 85%;
+  min-height: 80vh;
+
+  padding-right: 10%;
+  border-left: 1px solid #dcdcdc;
+}

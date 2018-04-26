@@ -1,52 +1,52 @@
 <template>
   <div>
-  <div class="body">
-    <h2>CUSTOMER LOGIN</h2>
-    <div class="login-wrapper">
-      <div class="login">
-        <h3>User name<span class="required"> *</span></h3>
-        <input type="email" v-model="user_name" placeholder="Embroidery@gmail.com"><br />
-        <h3>Password<span class="required"> *</span></h3>
-        <input type="text" v-model="password"><br />
-        <button @click="login">LOGIN</button>
-        Forgot password?
+    <div class="body">
+      <h2>CUSTOMER LOGIN</h2>
+      <div class="login-wrapper">
+        <div class="login">
+          <h3>User name<span class="required"> *</span></h3>
+          <input type="email" v-model="user_name" placeholder="Embroidery@gmail.com"><br />
+          <h3>Password<span class="required"> *</span></h3>
+          <input type="text" v-model="password"><br />
+          <button @click="login">LOGIN</button>
+          Forgot password?
+        </div>
       </div>
     </div>
+    <div class="image-wrapper">
+      <img class="img-left" src="../assets/sample2.jpg">
+      <h3 class="mid">
+        Our mission is excellent communication, customer service, high quality, and quick turn around.   Once you place your order with us– you can cross it off your list.  If there is anything further you need to do– we will contact you.
+      </h3>
+      <img class="img-right" src="../assets/sample1.jpeg">
+    </div>
+    <footer>
+      <div class="info-wrapper">
+        <div class="info">
+          <h3>Services</h3>
+          <p>Embroidery</p>
+          <p>Rhinestone</p>
+          <p>Laser Etching</p>
+          <p>Vinyl Heat Press</p>
+        </div>
+      </div>
+      <div class="info-wrapper">
+        <div class="info">
+          <h3>Socila</h3>
+          <p>Twitter</p>
+          <p>Facebook</p>
+          <p>Instagram</p>
+        </div>
+      </div>
+      <div class="info-wrapper">
+        <div class="info">
+          <h3>Supports</h3>
+          <p>support@esquireembroiery.com</p>
+          <p>(303)xxx-xxxx</p>
+        </div>
+      </div>
+    </footer>
   </div>
-  <div class="image-wrapper">
-    <img class="img-left" src="../assets/sample2.jpg">
-    <h3 class="mid">
-      Our mission is excellent communication, customer service, high quality, and quick turn around.   Once you place your order with us– you can cross it off your list.  If there is anything further you need to do– we will contact you.
-    </h3>
-    <img class="img-right" src="../assets/sample1.jpeg">
-  </div>
-  <footer>
-    <div class="info-wrapper">
-      <div class="info">
-        <h3>Services</h3>
-        <p>Embroidery</p>
-        <p>Rhinestone</p>
-        <p>Laser Etching</p>
-        <p>Vinyl Heat Press</p>
-      </div>
-    </div>
-    <div class="info-wrapper">
-      <div class="info">
-        <h3>Socila</h3>
-        <p>Twitter</p>
-        <p>Facebook</p>
-        <p>Instagram</p>
-      </div>
-    </div>
-    <div class="info-wrapper">
-      <div class="info">
-        <h3>Supports</h3>
-        <p>support@esquireembroiery.com</p>
-        <p>(303)xxx-xxxx</p>
-      </div>
-    </div>
-  </footer>
-</div>
 </template>
 
 <script>
@@ -93,6 +93,7 @@ export default {
     display: flex;
     justify-content: center;
     border-top: 1px solid #dcdcdc;
+    padding-top: 30px;
   }
   .login {
     width: 250px;
