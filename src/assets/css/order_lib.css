@@ -1,0 +1,23 @@
+h3 {
+  margin: 0;
+}
+/* for display steps */
+section {
+  position: absolute;
+  top: 220px;
+  left: 67px;
+  text-align: left;
+}
+.step {
+  color: #56c0c4;
+}
+
+/* for order form */
+main {
+  position: absolute;
+  top: 120px;
+  left: 210px;
+  width: 80%;
+  min-height: 80vh;
+  border-left: 1px solid #dcdcdc;
+}
