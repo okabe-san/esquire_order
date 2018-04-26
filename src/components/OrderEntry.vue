@@ -1,9 +1,12 @@
 <template>
-  <div>
+  <div id="order">
     <!-- display steps -->
     <section>
       <h5>ORDER STEPS</h5>
-      <h3 class="step">STEP 1</h3>
+      <h3 class="step">
+        STEP 1<br />
+        <small>Order Entry</small>
+      </h3>
       <i class="material-icons step">keyboard_arrow_down</i>
       <h3>STEP 2</h3>
       <i class="material-icons">keyboard_arrow_down</i>
@@ -14,29 +17,44 @@
 
     <!-- order form -->
     <main>
-      <h1>Order Entry</h1>
-      <!-- check re-order or not -->
-      Re-Order
-      <input type="radio" v-model="reOrder" v-on:change="orderCheck()" vaule="yes"> Yes
-      <input type="radio" v-model="reOrder" v-on:change="orderCheck()" value="no"> No: New Order
-      <br />
+      <div class="form_wrapper">
+        <h1>Order Entry</h1>
+        <div class="form">
+          <!-- check re-order or not -->
+          <p>
+            Re-Order? &nbsp;&nbsp;
 
-      <!-- for re-order -->
-      <div v-if="order">
-        <reOrder></reOrder>
-      </div>
+            <label>YES
+              <input type="radio" v-model="reOrder" v-on:change="orderCheck()" vaule="yes">
+              <span class="radio"></span>
+            </label>
 
-      <!-- for new-order -->
-      <div v-else>
-        <newOrder></newOrder>
-      </div>
-      <!-- error message -->
-      <div>
-        {{message}}
-      </div>
+            <label>NO (new order)
+              <input type="radio" v-model="reOrder" v-on:change="orderCheck()" value="no">
+              <span class="radio"></span>
+            </label>
 
-      <!-- nav buttons -->
-      <button @click="next">Next</button>
+          </p>
+          <hr />
+
+          <!-- for re-order -->
+          <div v-if="order">
+            <reOrder></reOrder>
+          </div>
+
+          <!-- for new-order -->
+          <div v-else>
+            <newOrder></newOrder>
+          </div>
+          <!-- error message -->
+          <div>
+            {{message}}
+          </div>
+
+          <!-- nav buttons -->
+          <button @click="next">Next</button>
+        </div>
+      </div>
     </main>
   </div>
 </template>
