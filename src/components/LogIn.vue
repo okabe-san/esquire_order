@@ -68,7 +68,11 @@ export default {
 </script>
 
 <style scoped>
-  h2 { text-align: left; }
+  h2 {
+    text-align: left;
+    margin-left: 100px;
+    border-bottom: 1px solid #dcdcdc;
+  }
   h3 { margin-bottom: .5rem; }
   button {
     margin-top: 20px;
@@ -92,8 +96,7 @@ export default {
   .login-wrapper {
     display: flex;
     justify-content: center;
-    border-top: 1px solid #dcdcdc;
-    padding-top: 30px;
+    padding-right: 30px;
   }
   .login {
     width: 250px;
