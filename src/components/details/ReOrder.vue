@@ -1,27 +1,37 @@
 <template>
   <div>
     <!-- search/select order -->
-    Search Order by PO number or image file name.<br />
+    <p>Search Order by PO number or image file name.</p>
     <input type="text" placeholder="90000">
     <button @click="search">Search</button>
-    <ul>
-      <li v-for="(order, index) in orders" :key="index">
-        <input type="radio" v-model="orderPicked" :value="order">
-        <p style="padding-left: .5rem">PO Number: {{order.po}}</p>
-        <img class="image" :src="order.items[0].image">
-      </li>
-    </ul>
+
+    <div class="po_wrapper">
+      <div class="po" v-for="(order, index) in orders" :key="index">
+        <label class="po_label">PO Number: {{order.po}}
+          <input class="po_radio" type="radio" v-model="orderPicked" :value="order">
+          <span class="radio po_radio"></span>
+        </label>
+        <div class="po_image">
+          <img class="image" :src="order.items[0].image">
+        </div>
+      </div>
+    </div>
+    <hr v-if="orderPicked">
 
     <!-- show order details -->
-    <div v-for="(detail, index) in orderPicked.items" :key="index">
+    <p v-if="orderPicked">Order Detail</p>
+    <div class="order_wrapper" v-for="(detail, index) in orderPicked.items" :key="index">
+
       <!-- edit item -->
-      <span v-if="edit && index === indexNum">
+      <span class="order_item" v-if="edit && index === indexNum">
         <!-- item -->
-        <select v-model="editOrder.item">
-          <option v-for="(item, index) in items" :value="item" :key="index">
-            {{item}}
-          </option>
-        </select>
+        <span class="select">
+          <select v-model="editOrder.item">
+            <option v-for="(item, index) in items" :value="item" :key="index">
+              {{item}}
+            </option>
+          </select>
+        </span>
 
         <!-- location -->
         <select v-model="editOrder.location">
@@ -31,16 +41,20 @@
         </select>
 
         <!-- quantity -->
-        <input type="number" v-model="editOrder.quantity">
+        <input class="input_quantity" type="number" v-model="editOrder.quantity">
       </span>
 
-      <span v-else>
+      <span class="order_item" v-else>
         {{detail.item}} / {{detail.location}} / {{detail.quantity}}
       </span>
 
-      <button @click="editItem(index, detail)">Edit</button>
-      <button v-if="edit && index === indexNum" @click="updateItem(index)">Update</button>
-      <button @click="removeItem(index)">Delete</button>
+      <!-- for edit item buttons -->
+      <div class="order_buttons">
+        <button @click="editItem(index, detail)">Edit</button>
+        <button v-if="edit && index === indexNum" @click="updateItem(index)">Update</button>
+        <button @click="removeItem(index)">Delete</button>
+      </div>
+
     </div>
 
     <!-- add item  -->
@@ -236,21 +250,54 @@ export default {
 </script>
 
 <style scoped>
-li {
-  list-style-type: none;
+@import '../../assets/css/button_lib.css';
+input {
+  padding: 7px 10px;
+  font-size: 100%;
+}
 
+/* for order(po number) selection */
+.po_wrapper {
+  margin: 2rem 0;
+}
+.po {
   display: flex;
-  justify-content: center;
   align-items: center;
-
-  height: 40px;
+  height: 50px;
+}
+.po_label {
+  width: 350px;
+}
+.po_radio {
+  float: right;
+}
+.po_image {
+  flex: 1;
 }
 .image {
   max-width: 100px;
-  max-height: 70px;
+  max-height: 50px;
   width: auto;
   height: auto;
-
   padding-left: 1rem;
 }
+
+/* for order detail */
+.order_wrapper {
+  display: flex;
+  align-items: center;
+  height: 40px;
+}
+.order_item {
+  width: 400px;
+}
+.order_buttons {
+  flex: 1;
+}
+
+/* for edit item */
+.input_quantity {
+  width: 50px;
+}
+
 </style>
