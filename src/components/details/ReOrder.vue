@@ -25,16 +25,14 @@
       <!-- edit item -->
       <span class="order_item" v-if="edit && index === indexNum">
         <!-- item -->
-        <span class="select">
-          <select v-model="editOrder.item">
-            <option v-for="(item, index) in items" :value="item" :key="index">
-              {{item}}
-            </option>
-          </select>
-        </span>
+        <select class="item" v-model="editOrder.item">
+          <option v-for="(item, index) in items" :value="item" :key="index">
+            {{item}}
+          </option>
+        </select>
 
         <!-- location -->
-        <select v-model="editOrder.location">
+        <select class="location" style="width:150px" v-model="editOrder.location">
           <option v-for="(location, index) in locationCap" :value="location" :key="index">
             {{location}}
           </option>
@@ -60,13 +58,13 @@
     <!-- add item  -->
     <div v-if="orderPicked">
       <!-- item -->
-      <select v-model="addedItem.item">
+      <select class="item" v-model="addedItem.item">
         <option v-for="(item, index) in items" :value="item" :key="index">
           {{item}}
         </option>
       </select>
       <!-- location -->
-      <select v-model="addedItem.location">
+      <select class="location" v-model="addedItem.location">
         <option v-for="(location, index) in locationCap" :value="location" :key="index">
           {{location}}
         </option>
@@ -295,9 +293,34 @@ input {
   flex: 1;
 }
 
-/* for edit item */
+/* for input/select style */
 .input_quantity {
   width: 50px;
+  height: 13px;
+}
+select.item {
+  width: 100px;
+  padding: .25rem;
+  font-size: 1rem;
+  border-radius: 0;
+  background: #fff;
+  background-image: url(../../assets/arrow-down.png);
+  background-repeat: no-repeat;
+  background-position: 69px;
+  -webkit-appearance: none;
+  outline: none
+}
+select.location {
+  width: 150px;
+  padding: .25rem;
+  font-size: 1rem;
+  border-radius: 0;
+  background: #fff;
+  background-image: url(../../assets/arrow-down.png);
+  background-repeat: no-repeat;
+  background-position: 120px;
+  -webkit-appearance: none;
+  outline: none
 }
 
 </style>

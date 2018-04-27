@@ -116,17 +116,3 @@ input[type=radio]:checked + .radio {
   border-radius: 50%;
   background: #0099cc;
 }
-
-/* select option style */
-select {
-  width: 120px;
-  padding: .25rem;
-  font-size: 1rem;
-  border-radius: 0;
-  background: #fff;
-  background-image: url(../arrow-down.png);
-  background-repeat: no-repeat;
-  background-position: 80px;
-  -webkit-appearance: none;
-  outline: none
-}
