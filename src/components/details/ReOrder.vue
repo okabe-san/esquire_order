@@ -58,36 +58,62 @@
     <!-- add item  -->
     <div v-if="orderPicked">
       <p>Need to add new item(s) to this order?</p>
-      <!-- item -->
-      <select class="item" v-model="addedItem.item">
-        <option v-for="(item, index) in items" :value="item" :key="index">
-          {{item}}
-        </option>
-      </select>
-      <!-- location -->
-      <select class="location" v-model="addedItem.location">
-        <option v-for="(location, index) in locationCap" :value="location" :key="index">
-          {{location}}
-        </option>
-      </select>
-      <!-- quantity -->
-      <input class="quantity" type="number" min="1" v-model="addedItem.quantity">
-      <!-- image -->
-      <vue-clip v-if="files.length === 0" ref="vc" :options="options" :on-added-file="fileAdded">
-        <template slot="clip-uploader-action" slot-scope="props">
-          <div class="uploader-action" :class="{dragging: props.dragging}">
-            <div class="dz-message">
-              Select file
-            </div>
-          </div>
-        </template>
-      </vue-clip>
-      <div v-for="(file, index) in files" :key="index">
-        {{file.name}}
-        <button @click="removeFile">Delete</button>
-      </div>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Item</th>
+            <th>Location</th>
+            <th>Quantity</th>
+            <th>File/Image</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <!-- item -->
+            <td>
+              <select class="item" v-model="addedItem.item">
+                <option v-for="(item, index) in items" :value="item" :key="index">
+                  {{item}}
+                </option>
+              </select>
+            </td>
+            <!-- location -->
+            <td>
+              <select class="location" v-model="addedItem.location">
+                <option v-for="(location, index) in locationCap" :value="location" :key="index">
+                  {{location}}
+                </option>
+              </select>
+            </td>
+            <!-- quantity -->
+            <td>
+              <input class="quantity" type="number" min="1" v-model="addedItem.quantity">
+            </td>
+            <!-- image -->
+            <td>
+              <vue-clip class="clip" v-if="files.length === 0" ref="vc" :options="options" :on-added-file="fileAdded">
+                <template slot="clip-uploader-action" slot-scope="props">
+                  <div class="uploader-action" :class="{dragging: props.dragging}">
+                    <div class="dz-message">
+                      Select file
+                    </div>
+                  </div>
+                </template>
+              </vue-clip>
+              <div v-for="(file, index) in files" :key="index">
+                {{file.name}}
+                <button @click="removeFile">Delete</button>
+              </div>
+            </td>
+            <td>
+              <button @click="addItem">Add</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
       <p v-if="!fileCheck && files.length === 0">Please add file.</p>
-      <button @click="addItem">Add</button>
     </div>
   </div>
 </template>
@@ -292,6 +318,11 @@ input {
 }
 .order_buttons {
   flex: 1;
+}
+
+/* for display add item */
+.clip {
+  display: inline-block;
 }
 
 /* for input/select style */
