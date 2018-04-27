@@ -39,7 +39,7 @@
         </select>
 
         <!-- quantity -->
-        <input class="input_quantity" type="number" v-model="editOrder.quantity">
+        <input class="quantity" type="number" v-model="editOrder.quantity">
       </span>
 
       <span class="order_item" v-else>
@@ -57,6 +57,7 @@
 
     <!-- add item  -->
     <div v-if="orderPicked">
+      <p>Need to add new item(s) to this order?</p>
       <!-- item -->
       <select class="item" v-model="addedItem.item">
         <option v-for="(item, index) in items" :value="item" :key="index">
@@ -70,7 +71,7 @@
         </option>
       </select>
       <!-- quantity -->
-      <input type="number" min="1" v-model="addedItem.quantity">
+      <input class="quantity" type="number" min="1" v-model="addedItem.quantity">
       <!-- image -->
       <vue-clip v-if="files.length === 0" ref="vc" :options="options" :on-added-file="fileAdded">
         <template slot="clip-uploader-action" slot-scope="props">
@@ -294,10 +295,6 @@ input {
 }
 
 /* for input/select style */
-.input_quantity {
-  width: 50px;
-  height: 13px;
-}
 select.item {
   width: 100px;
   padding: .25rem;
@@ -321,6 +318,10 @@ select.location {
   background-position: 120px;
   -webkit-appearance: none;
   outline: none
+}
+input.quantity {
+  width: 50px;
+  height: 13px;
 }
 
 </style>
