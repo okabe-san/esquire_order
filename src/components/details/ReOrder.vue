@@ -25,11 +25,13 @@
       <!-- edit item -->
       <span class="order_item" v-if="edit && index === indexNum">
         <!-- item -->
-        <select v-model="editOrder.item">
-          <option v-for="(item, index) in items" :value="item" :key="index">
-            {{item}}
-          </option>
-        </select>
+        <span class="select">
+          <select v-model="editOrder.item">
+            <option v-for="(item, index) in items" :value="item" :key="index">
+              {{item}}
+            </option>
+          </select>
+        </span>
 
         <!-- location -->
         <select v-model="editOrder.location">
@@ -287,7 +289,7 @@ input {
   height: 40px;
 }
 .order_item {
-  width: 300px;
+  width: 400px;
 }
 .order_buttons {
   flex: 1;
