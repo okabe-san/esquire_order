@@ -18,7 +18,6 @@
     <!-- order form -->
     <main>
       <div class="form_wrapper">
-        <h1>Order Entry</h1>
         <div class="form">
           <!-- check re-order or not -->
           <h3>
@@ -118,6 +117,6 @@ export default {
 <style scoped>
 @import '../assets/css/order_lib.css';
 .order_entry {
-  padding-top: 1rem;
+  padding-top: .5rem;
 }
 </style>

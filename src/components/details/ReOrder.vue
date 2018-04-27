@@ -16,11 +16,14 @@
         </div>
       </div>
     </div>
+    <hr v-if="orderPicked">
 
     <!-- show order details -->
-    <div v-for="(detail, index) in orderPicked.items" :key="index">
+    <p v-if="orderPicked">Order Detail</p>
+    <div class="order_wrapper" v-for="(detail, index) in orderPicked.items" :key="index">
+
       <!-- edit item -->
-      <span v-if="edit && index === indexNum">
+      <span class="order_item" v-if="edit && index === indexNum">
         <!-- item -->
         <select v-model="editOrder.item">
           <option v-for="(item, index) in items" :value="item" :key="index">
@@ -36,16 +39,20 @@
         </select>
 
         <!-- quantity -->
-        <input type="number" v-model="editOrder.quantity">
+        <input class="input_quantity" type="number" v-model="editOrder.quantity">
       </span>
 
-      <span v-else>
+      <span class="order_item" v-else>
         {{detail.item}} / {{detail.location}} / {{detail.quantity}}
       </span>
 
-      <button @click="editItem(index, detail)">Edit</button>
-      <button v-if="edit && index === indexNum" @click="updateItem(index)">Update</button>
-      <button @click="removeItem(index)">Delete</button>
+      <!-- for edit item buttons -->
+      <div class="order_buttons">
+        <button @click="editItem(index, detail)">Edit</button>
+        <button v-if="edit && index === indexNum" @click="updateItem(index)">Update</button>
+        <button @click="removeItem(index)">Delete</button>
+      </div>
+
     </div>
 
     <!-- add item  -->
@@ -271,6 +278,24 @@ input {
   width: auto;
   height: auto;
   padding-left: 1rem;
+}
+
+/* for order detail */
+.order_wrapper {
+  display: flex;
+  align-items: center;
+  height: 40px;
+}
+.order_item {
+  width: 300px;
+}
+.order_buttons {
+  flex: 1;
+}
+
+/* for edit item */
+.input_quantity {
+  width: 50px;
 }
 
 </style>
