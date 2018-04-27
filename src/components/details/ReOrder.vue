@@ -4,13 +4,18 @@
     <p>Search Order by PO number or image file name.</p>
     <input type="text" placeholder="90000">
     <button @click="search">Search</button>
-    <ul>
-      <li v-for="(order, index) in orders" :key="index">
-        <input type="radio" v-model="orderPicked" :value="order">
-        <p style="padding-left: .5rem">PO Number: {{order.po}}</p>
-        <img class="image" :src="order.items[0].image">
-      </li>
-    </ul>
+
+    <div class="po_wrapper">
+      <div class="po" v-for="(order, index) in orders" :key="index">
+        <label class="po_label">PO Number: {{order.po}}
+          <input class="po_radio" type="radio" v-model="orderPicked" :value="order">
+          <span class="radio po_radio"></span>
+        </label>
+        <div class="po_image">
+          <img class="image" :src="order.items[0].image">
+        </div>
+      </div>
+    </div>
 
     <!-- show order details -->
     <div v-for="(detail, index) in orderPicked.items" :key="index">
@@ -240,14 +245,32 @@ export default {
 input {
   padding: 7px 10px;
   font-size: 100%;
-  width: 200px;
+}
+
+/* for order(po number) selection */
+.po_wrapper {
+  margin: 2rem 0;
+}
+.po {
+  display: flex;
+  align-items: center;
+  height: 50px;
+}
+.po_label {
+  width: 350px;
+}
+.po_radio {
+  float: right;
+}
+.po_image {
+  flex: 1;
 }
 .image {
   max-width: 100px;
-  max-height: 70px;
+  max-height: 50px;
   width: auto;
   height: auto;
-
   padding-left: 1rem;
 }
+
 </style>
