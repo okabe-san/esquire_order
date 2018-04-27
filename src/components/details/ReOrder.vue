@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- search/select order -->
-    Search Order by PO number or image file name.<br />
+    <p>Search Order by PO number or image file name.</p>
     <input type="text" placeholder="90000">
     <button @click="search">Search</button>
     <ul>
@@ -236,14 +236,11 @@ export default {
 </script>
 
 <style scoped>
-li {
-  list-style-type: none;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  height: 40px;
+@import '../../assets/css/button_lib.css';
+input {
+  padding: 7px 10px;
+  font-size: 100%;
+  width: 200px;
 }
 .image {
   max-width: 100px;

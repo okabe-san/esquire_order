@@ -118,6 +118,6 @@ export default {
 <style scoped>
 @import '../assets/css/order_lib.css';
 .order_entry {
-  padding-top: 2rem;
+  padding-top: 1rem;
 }
 </style>
