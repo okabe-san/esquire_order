@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- search/select order -->
-    <p>Search Order by PO number or image file name.</p>
+    <h3>Search Order by PO number or image file name.</h3>
     <input type="text" placeholder="90000">
     <button @click="search">Search</button>
 
@@ -19,7 +19,7 @@
     <hr v-if="orderPicked">
 
     <!-- show order details -->
-    <p v-if="orderPicked">Order Detail</p>
+    <h3 v-if="orderPicked">Order Detail</h3>
     <div class="order_wrapper" v-for="(detail, index) in orderPicked.items" :key="index">
 
       <!-- edit item -->
@@ -57,11 +57,10 @@
 
     <!-- add item  -->
     <div v-if="orderPicked">
-      <p>Need to add new item(s) to this order?</p>
-
-      <table>
+      <h3>Need to add new item(s) to this order?</h3>
+      <table style="width:100%">
         <thead>
-          <tr>
+          <tr style="color:#56c0c4">
             <th>Item</th>
             <th>Location</th>
             <th>Quantity</th>

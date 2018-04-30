@@ -1,5 +1,10 @@
 <template>
   <div>
+    <div class="logo_wrapper">
+      <div class="logo">
+        <img src="../assets/logo.png">
+      </div>
+    </div>
     <div class="body">
       <h2>CUSTOMER LOGIN</h2>
       <div class="login-wrapper">
@@ -68,78 +73,78 @@ export default {
 </script>
 
 <style scoped>
-  h2 {
-    text-align: left;
-    margin-left: 100px;
-    border-bottom: 1px solid #dcdcdc;
-  }
-  h3 { margin-bottom: .5rem; }
-  button {
-    margin-top: 20px;
-    padding: 10px 20px;
-    font-size: 17px;
-    color: white;
-    background: #7dcdc8;
-    border: none;
-  }
-  button:hover {
-    background: #56c0c4;
-  }
-  input {
-    padding: 7px 10px;
-    font-size: 125%;
-    width: 250px;
-  }
-  .body {
-    padding: 1rem 6rem;
-  }
-  .login-wrapper {
-    display: flex;
-    justify-content: center;
-    padding-right: 30px;
-  }
-  .login {
-    width: 250px;
-    text-align: left;
-  }
-  .image-wrapper {
-    position: relative;
-    display: block;
-    margin-top: 70px;
-    width: 100%;
-    height: 250px;
-    background: #56c0c4;
-  }
-  /* hide background color top: 3px */
-  .image-wrapper::after {
-    content: '';
-    display: block;
-    position: absolute;
-    width: 100%;
-    top:0;
-    border: 3px solid #fff;
-  }
-  .img-left {
-    float: left;
-    clip-path: polygon(0 0, 100% 0%, 75% 100%, 0% 100%);
-  }
-  .img-right {
-    float: right;
-    clip-path: polygon(25% 0, 100% 0, 100% 100%, 0 100%);
-  }
-  .mid {
-    display: inline-block;
-    width: 300px;
-    color: #fff;
-    padding-top: 5px;
-  }
-  .info-wrapper {
-    display: flex;
-    justify-content: center;
-    float: left;
-    width: calc(100% / 3);
-  }
-  .info {
-    text-align: left;
-  }
+h2 {
+  text-align: left;
+  margin-left: 100px;
+  border-bottom: 1px solid #dcdcdc;
+}
+h3 { margin-bottom: .5rem; }
+button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 17px;
+  color: white;
+  background: #7dcdc8;
+  border: none;
+}
+button:hover {
+  background: #56c0c4;
+}
+input {
+  padding: 7px 10px;
+  font-size: 125%;
+  width: 250px;
+}
+.body {
+  padding: 3rem 6rem;
+}
+.login-wrapper {
+  display: flex;
+  justify-content: center;
+  padding-right:
+}
+.login {
+  width: 250px;
+  text-align: left;
+}
+.image-wrapper {
+  position: relative;
+  display: block;
+  margin-top: 70px;
+  width: 100%;
+  height: 250px;
+  background: #56c0c4;
+}
+/* hide background color top: 3px */
+.image-wrapper::after {
+  content: '';
+  display: block;
+  position: absolute;
+  width: 100%;
+  top:0;
+  border: 3px solid #fff;
+}
+.img-left {
+  float: left;
+  clip-path: polygon(0 0, 100% 0%, 75% 100%, 0% 100%);
+}
+.img-right {
+  float: right;
+  clip-path: polygon(25% 0, 100% 0, 100% 100%, 0 100%);
+}
+.mid {
+  display: inline-block;
+  width: 300px;
+  color: #fff;
+  padding-top: 5px;
+}
+.info-wrapper {
+  display: flex;
+  justify-content: center;
+  float: left;
+  width: calc(100% / 3);
+}
+.info {
+  text-align: left;
+}
 </style>
