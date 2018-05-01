@@ -193,7 +193,7 @@ export default {
           [{
             'item': 'Cap',
             'location': 'Front Center',
-            'image': require(`@/assets/sanmar.png`),
+            'image': require(`@/assets/images/sanmar.png`),
             'quantity': 10
           },
           {
@@ -207,7 +207,7 @@ export default {
           [{
             'item': 'Cap',
             'location': 'Front Center',
-            'image': require(`@/assets/alphabroder.jpg`),
+            'image': require(`@/assets/images/alphabroder.jpg`),
             'quantity': 30
           }]
         },
@@ -216,7 +216,7 @@ export default {
           [{
             'item': 'Cap',
             'location': 'Front Center',
-            'image': require(`@/assets/alphabroder2.jpg`),
+            'image': require(`@/assets/images/alphabroder2.jpg`),
             'quantity': 30
           }]
         }
@@ -331,7 +331,7 @@ select.item {
   font-size: 1rem;
   border-radius: 0;
   background: #fff;
-  background-image: url(../../assets/arrow-down.png);
+  background-image: url(../../assets/images/arrow-down.png);
   background-repeat: no-repeat;
   background-position: 69px;
   -webkit-appearance: none;
@@ -343,7 +343,7 @@ select.location {
   font-size: 1rem;
   border-radius: 0;
   background: #fff;
-  background-image: url(../../assets/arrow-down.png);
+  background-image: url(../../assets/images/arrow-down.png);
   background-repeat: no-repeat;
   background-position: 120px;
   -webkit-appearance: none;

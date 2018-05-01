@@ -2,7 +2,7 @@
   <div>
     <div class="logo_wrapper">
       <div class="logo">
-        <img src="../assets/logo.png">
+        <img src="../assets/images/logo.png">
       </div>
     </div>
     <div class="body">
@@ -19,11 +19,11 @@
       </div>
     </div>
     <div class="image-wrapper">
-      <img class="img-left" src="../assets/sample2.jpg">
+      <img class="img-left" src="../assets/images/sample2.jpg">
       <h3 class="mid">
         Our mission is excellent communication, customer service, high quality, and quick turn around.   Once you place your order with us– you can cross it off your list.  If there is anything further you need to do– we will contact you.
       </h3>
-      <img class="img-right" src="../assets/sample1.jpeg">
+      <img class="img-right" src="../assets/images/sample1.jpeg">
     </div>
     <footer>
       <div class="info-wrapper">
