@@ -115,7 +115,11 @@ export default {
 </script>
 
 <style scoped>
+@import '../assets/css/button_lib.css';
 @import '../assets/css/order_lib.css';
+h3 {
+  margin: 0 0 1.5rem;
+}
 .order_entry {
   padding-top: .5rem;
 }

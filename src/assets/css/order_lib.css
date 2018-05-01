@@ -1,4 +1,4 @@
-h1, h3 {
+h1 {
   margin: 0;
 }
 
@@ -11,9 +11,11 @@ h1, h3 {
 section {
   box-sizing: border-box;
   width: 210px;
-  padding-top: 100px;
-  padding-left: 60px;
+  padding-top: 2rem;
+  padding-left: 55px;
   text-align: left;
+  color: #fff;
+  background: #fcd020;
 }
 .step {
   color: #56c0c4;
@@ -23,9 +25,9 @@ section {
 main {
   box-sizing: border-box;
   flex: 1;
-  margin-right: 20px;
-  min-height: 80vh;
-  border-left: 1px solid #dcdcdc;
+  min-height: 100vh;
+  padding-bottom: 3rem;
+  background: #56c0c4;
 }
 .form_wrapper {
   display: flex;
@@ -36,6 +38,8 @@ main {
   box-sizing: border-box;
   width: 70%;
   min-height: 60vh;
+  margin-top: 3rem;
   padding: 3rem;
-  background: #b0eaf4;
+  background: #fff;
+  border-radius: 3px;
 }

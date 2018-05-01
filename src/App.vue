@@ -8,11 +8,6 @@
         </span>
         LOGIN
       </div>
-      <div class="logo_wrapper">
-        <div class="logo">
-          <img src="./assets/logo.png">
-        </div>
-      </div>
     </header>
     <router-view/>
   </div>
