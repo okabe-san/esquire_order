@@ -78,7 +78,7 @@
       <div v-if="orderPicked" style="margin-top:2rem">
         <h3 style="display:inline-block;padding-right:2rem">Need to add new item(s) to this order?</h3>
         <button @click="add=true">Add</button>
-        <addItem v-if="add" @close="add=false"></addItem>
+        <addItem v-if="add"></addItem>
         <p v-if="!fileCheck && files.length === 0">Please add file.</p>
       </div>
     </div>
@@ -110,7 +110,32 @@ export default {
       },
       fileCheck: true,
       // for adding item
-      add: false
+      add: false,
+      addedItem: {
+        'item': 'Cap',
+        'location': 'Front Center',
+        'image': '',
+        quantity: 1
+      },
+      items: [],
+      locationCap: [
+        'Front Center',
+        'Front Left',
+        'Front Right',
+        'Left',
+        'Right',
+        'Back Center'
+      ],
+      locationShirt: [
+        'Left Chest',
+        'Right Chest',
+        'Left Bottom',
+        'Right Bottom',
+        'Upper Left Sleeves',
+        'Upper right Sleeves',
+        'Left Wrist',
+        'Right Wrist'
+      ]
     }
   },
   created () {
