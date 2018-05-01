@@ -11,11 +11,14 @@ h1 {
 section {
   box-sizing: border-box;
   width: 210px;
-  padding-top: 2rem;
+  padding-top: 3.5rem;
   padding-left: 55px;
   text-align: left;
   color: #fff;
   background: #fcd020;
+}
+section h3 {
+  margin: 0;
 }
 .step {
   color: #56c0c4;

@@ -2,7 +2,6 @@
   <div id="order">
     <!-- display steps -->
     <section>
-      <h5>ORDER STEPS</h5>
       <h3 class="step">
         STEP 1<br />
         <small>Order Entry</small>
