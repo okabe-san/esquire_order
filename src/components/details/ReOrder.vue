@@ -32,35 +32,37 @@
         </thead>
         <tbody>
           <tr v-for="(detail, index) in orderPicked.items" :key="index">
-              <!-- item -->
-              <td v-if="edit && index === indexNum" class="order_item">
-                <select class="item" v-model="editOrder.item">
-                  <option v-for="(item, index) in items" :value="item" :key="index">
-                    {{item}}
-                  </option>
-                </select>
-              </td>
-              <td v-else>{{detail.item}}</td>
 
-              <!-- location -->
-              <td v-if="edit && index === indexNum">
-                <select class="location" style="width:150px" v-model="editOrder.location">
-                  <option v-for="(location, index) in locationCap" :value="location" :key="index">
-                    {{location}}
-                  </option>
-                </select>
-              </td>
-              <td v-else>{{detail.location}}</td>
+            <!-- item -->
+            <td v-if="edit && index === indexNum">
+              <select class="item" v-model="editOrder.item">
+                <option v-for="(item, index) in items" :value="item" :key="index">
+                  {{item}}
+                </option>
+              </select>
+            </td>
+            <td v-else>{{detail.item}}</td>
 
-              <!-- quantity -->
-              <td v-if="edit && index === indexNum">
-                <input class="quantity" type="number" v-model="editOrder.quantity">
-              </td>
-              <td v-else>{{detail.quantity}}</td>
+            <!-- location -->
+            <td v-if="edit && index === indexNum">
+              <select class="location" style="width:150px" v-model="editOrder.location">
+                <option v-for="(location, index) in locationCap" :value="location" :key="index">
+                  {{location}}
+                </option>
+              </select>
+            </td>
+            <td v-else>{{detail.location}}</td>
 
-              <td class="po_image">
-                <img class="image" :src="detail.image">
-              </td>
+            <!-- quantity -->
+            <td v-if="edit && index === indexNum">
+              <input class="quantity" type="number" v-model="editOrder.quantity">
+            </td>
+            <td v-else>{{detail.quantity}}</td>
+
+            <!-- image -->
+            <td class="po_image">
+              <img class="image" :src="detail.image">
+            </td>
 
             <!-- for edit item buttons -->
             <td class="order_buttons">
@@ -68,6 +70,7 @@
               <button v-if="edit && index === indexNum" @click="updateItem(index)">Update</button>
               <button @click="removeItem(index)">Delete</button>
             </td>
+
           </tr>
         </tbody>
       </table>
@@ -123,6 +126,7 @@
                   <button @click="removeFile">Delete</button>
                 </div>
               </td>
+              <!-- button -->
               <td>
                 <button @click="addItem">Add</button>
               </td>
@@ -324,6 +328,20 @@ input {
   height: auto;
   padding-left: 1rem;
   border: 1px solid #ededed;
+}
+
+/* for display order */
+td:nth-child(1) {
+  width: 110px;
+}
+td:nth-child(2) {
+  width: 170px;
+}
+td:nth-child(3) {
+  width: 70px;
+}
+td:nth-child(4) {
+  width: 120px;
 }
 
 /* for display add item */

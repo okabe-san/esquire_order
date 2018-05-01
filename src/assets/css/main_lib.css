@@ -109,11 +109,11 @@ input[type=radio] {
   left: -1rem;
   height: .75rem;
   width: .75rem;
-  border: 3px solid #56c0c4;
+  border: 3px solid #666;
   border-radius: 50%;
   -webkit-transition: all 0.25s linear;
 }
 input[type=radio]:checked + .radio {
   border-radius: 50%;
-  background: #b0eaf4;
+  background: #dcdcdc;
 }

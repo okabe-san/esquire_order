@@ -30,7 +30,6 @@
                 <span class="radio"></span>
               </label>
             </div>
-          <hr />
 
           <!-- for re-order -->
           <div v-if="order">
