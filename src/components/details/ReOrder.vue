@@ -78,7 +78,7 @@
       <div v-if="orderPicked" style="margin-top:2rem">
         <h3 style="display:inline-block;padding-right:2rem">Need to add new item(s) to this order?</h3>
         <button @click="add=true">Add</button>
-        <addItem v-if="add"></addItem>
+        <addItem v-if="add" @close="add=false"></addItem>
         <p v-if="!fileCheck && files.length === 0">Please add file.</p>
       </div>
     </div>

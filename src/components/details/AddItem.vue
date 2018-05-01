@@ -94,6 +94,9 @@ export default {
       ]
     }
   },
+  created () {
+    this.item()
+  },
   computed: {
     orderPicked: {
       get () {
@@ -113,6 +116,11 @@ export default {
     }
   },
   methods: {
+    async item () {
+      // FIXME: use query to get items
+      const data = ['Cap', 'Tops', 'Beanie', 'Bag', 'Pants']
+      this.items = data
+    },
     fileAdded (file) {
       this.files.push(file)
     },
@@ -141,5 +149,71 @@ export default {
 </script>
 
 <style scoped>
+@import '../../assets/css/button_lib.css';
+.image {
+  max-width: 100px;
+  max-height: 30px;
+  width: auto;
+  height: auto;
+  padding-left: 1rem;
+  border: 1px solid #ededed;
+}
 
+/* for display order */
+.order_detail {
+  padding: 0 2rem;
+  border-radius: 7px;
+  border: 1px solid #dccd;
+}
+table {
+  border-collapse: collapse;
+}
+thead {
+  border-bottom: 1px solid #666;
+  margin-bottom: 1rem;
+}
+th {
+  padding: 0 0 .5rem;
+}
+td {
+  padding: .5rem 0 0;
+}
+td {
+  flex: 1;
+}
+
+/* for display add item */
+.clip {
+  display: inline-block;
+}
+
+/* for input/select style */
+select.item {
+  width: 100px;
+  padding: .25rem;
+  font-size: 1rem;
+  border-radius: 0;
+  background: #fff;
+  background-image: url(../../assets/images/arrow-down.png);
+  background-repeat: no-repeat;
+  background-position: 69px;
+  -webkit-appearance: none;
+  outline: none
+}
+select.location {
+  width: 150px;
+  padding: .25rem;
+  font-size: 1rem;
+  border-radius: 0;
+  background: #fff;
+  background-image: url(../../assets/images/arrow-down.png);
+  background-repeat: no-repeat;
+  background-position: 120px;
+  -webkit-appearance: none;
+  outline: none
+}
+input.quantity {
+  width: 50px;
+  height: 13px;
+}
 </style>
