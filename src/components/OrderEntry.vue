@@ -19,20 +19,17 @@
       <div class="form_wrapper">
         <div class="form">
           <!-- check re-order or not -->
-          <h3>
-            Is this Re-Order? &nbsp;&nbsp;
-
-            <label>YES
-              <input type="radio" v-model="reOrder" v-on:change="orderCheck()" vaule="yes">
-              <span class="radio"></span>
-            </label>
-
-            <label>NO (new order)
-              <input type="radio" v-model="reOrder" v-on:change="orderCheck()" value="no">
-              <span class="radio"></span>
-            </label>
-
-          </h3>
+          <div>
+            <h2 style="display:inline-block;padding-right:2rem">Re-Order?</h2>
+              <label>YES (able to edit)
+                <input type="radio" v-model="reOrder" v-on:change="orderCheck()" vaule="yes">
+                <span class="radio"></span>
+              </label>
+              <label>NO (new order)
+                <input type="radio" v-model="reOrder" v-on:change="orderCheck()" value="no">
+                <span class="radio"></span>
+              </label>
+            </div>
           <hr />
 
           <!-- for re-order -->
@@ -44,13 +41,17 @@
           <div v-else>
             <newOrder class="order_entry"></newOrder>
           </div>
+
           <!-- error message -->
-          <div>
-            {{message}}
+          <div class="action">
+            <div class="required" style="margin-bottom:1rem">
+              {{message}}
+            </div>
+
+            <!-- nav buttons -->
+            <button class="next" @click="next">Next</button>
           </div>
 
-          <!-- nav buttons -->
-          <button @click="next">Next</button>
         </div>
       </div>
     </main>
@@ -121,5 +122,13 @@ h3 {
 }
 .order_entry {
   padding-top: .5rem;
+}
+.action {
+  margin-top: 3rem;
+}
+.next {
+  position: absolute;
+  bottom: .75rem;
+  right: 1rem;
 }
 </style>

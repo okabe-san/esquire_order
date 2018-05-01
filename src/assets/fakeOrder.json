@@ -1,0 +1,34 @@
+{"orders":[
+  { "po": 100,
+    "items":
+    [{
+      "item": "Cap",
+      "location": "Front Center",
+      "image": "require(`@/assets/images/sanmar.png`)",
+      "quantity": 10
+    },
+    {
+      "item": "Tops",
+      "location": "Front Chest",
+      "quantity": 20
+    }]
+  },
+  { "po": 101,
+    "items":
+    [{
+      "item": "Cap",
+      "location": "Front Center",
+      "image": "require(@/assets/images/alphabroder.jpg`)",
+      "quantity": 30
+    }]
+  },
+  { "po": 106,
+    "items":
+    [{
+      "item": "Cap",
+      "location": "Front Center",
+      "image": "require(`@/assets/images/alphabroder2.jpg`)",
+      "quantity": 30
+    }]
+  }
+]}

@@ -1,63 +1,25 @@
 <template>
   <div>
     <!-- search/select order -->
-    <h3>Search Order by PO number or image file name.</h3>
-    <input type="text" placeholder="90000">
+    <input type="text" placeholder="PO# or image name">
     <button @click="search">Search</button>
-
     <div class="po_wrapper">
       <div class="po" v-for="(order, index) in orders" :key="index">
-        <label class="po_label">PO Number: {{order.po}}
-          <input class="po_radio" type="radio" v-model="orderPicked" :value="order">
-          <span class="radio po_radio"></span>
-        </label>
         <div class="po_image">
           <img class="image" :src="order.items[0].image">
         </div>
+        <label class="po_number">
+          PO Number: {{order.po}}
+          <input class="po_radio" type="radio" v-model="orderPicked" :value="order">
+          <span class="radio po_radio"></span>
+        </label>
       </div>
     </div>
-    <hr v-if="orderPicked">
 
     <!-- show order details -->
-    <h3 v-if="orderPicked">Order Detail</h3>
-    <div class="order_wrapper" v-for="(detail, index) in orderPicked.items" :key="index">
-
-      <!-- edit item -->
-      <span class="order_item" v-if="edit && index === indexNum">
-        <!-- item -->
-        <select class="item" v-model="editOrder.item">
-          <option v-for="(item, index) in items" :value="item" :key="index">
-            {{item}}
-          </option>
-        </select>
-
-        <!-- location -->
-        <select class="location" style="width:150px" v-model="editOrder.location">
-          <option v-for="(location, index) in locationCap" :value="location" :key="index">
-            {{location}}
-          </option>
-        </select>
-
-        <!-- quantity -->
-        <input class="quantity" type="number" v-model="editOrder.quantity">
-      </span>
-
-      <span class="order_item" v-else>
-        {{detail.item}} / {{detail.location}} / {{detail.quantity}}
-      </span>
-
-      <!-- for edit item buttons -->
-      <div class="order_buttons">
-        <button @click="editItem(index, detail)">Edit</button>
-        <button v-if="edit && index === indexNum" @click="updateItem(index)">Update</button>
-        <button @click="removeItem(index)">Delete</button>
-      </div>
-
-    </div>
-
-    <!-- add item  -->
-    <div v-if="orderPicked">
-      <h3>Need to add new item(s) to this order?</h3>
+    <div class="order_detail" v-if="orderPicked">
+      <hr />
+      <h3>Order Detail</h3>
       <table style="width:100%">
         <thead>
           <tr style="color:#56c0c4">
@@ -69,58 +31,118 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <!-- item -->
-            <td>
-              <select class="item" v-model="addedItem.item">
-                <option v-for="(item, index) in items" :value="item" :key="index">
-                  {{item}}
-                </option>
-              </select>
-            </td>
-            <!-- location -->
-            <td>
-              <select class="location" v-model="addedItem.location">
-                <option v-for="(location, index) in locationCap" :value="location" :key="index">
-                  {{location}}
-                </option>
-              </select>
-            </td>
-            <!-- quantity -->
-            <td>
-              <input class="quantity" type="number" min="1" v-model="addedItem.quantity">
-            </td>
-            <!-- image -->
-            <td>
-              <vue-clip class="clip" v-if="files.length === 0" ref="vc" :options="options" :on-added-file="fileAdded">
-                <template slot="clip-uploader-action" slot-scope="props">
-                  <div class="uploader-action" :class="{dragging: props.dragging}">
-                    <div class="dz-message">
-                      Select file
-                    </div>
-                  </div>
-                </template>
-              </vue-clip>
-              <div v-for="(file, index) in files" :key="index">
-                {{file.name}}
-                <button @click="removeFile">Delete</button>
-              </div>
-            </td>
-            <td>
-              <button @click="addItem">Add</button>
+          <tr v-for="(detail, index) in orderPicked.items" :key="index">
+              <!-- item -->
+              <td v-if="edit && index === indexNum" class="order_item">
+                <select class="item" v-model="editOrder.item">
+                  <option v-for="(item, index) in items" :value="item" :key="index">
+                    {{item}}
+                  </option>
+                </select>
+              </td>
+              <td v-else>{{detail.item}}</td>
+
+              <!-- location -->
+              <td v-if="edit && index === indexNum">
+                <select class="location" style="width:150px" v-model="editOrder.location">
+                  <option v-for="(location, index) in locationCap" :value="location" :key="index">
+                    {{location}}
+                  </option>
+                </select>
+              </td>
+              <td v-else>{{detail.location}}</td>
+
+              <!-- quantity -->
+              <td v-if="edit && index === indexNum">
+                <input class="quantity" type="number" v-model="editOrder.quantity">
+              </td>
+              <td v-else>{{detail.quantity}}</td>
+
+              <td class="po_image">
+                <img class="image" :src="detail.image">
+              </td>
+
+            <!-- for edit item buttons -->
+            <td class="order_buttons">
+              <button @click="editItem(index, detail)">Edit</button>
+              <button v-if="edit && index === indexNum" @click="updateItem(index)">Update</button>
+              <button @click="removeItem(index)">Delete</button>
             </td>
           </tr>
         </tbody>
       </table>
-      <p v-if="!fileCheck && files.length === 0">Please add file.</p>
+
+      <!-- add item  -->
+      <div v-if="orderPicked">
+        <h3>Need to add new item(s) to this order?</h3>
+        <table style="width:100%">
+          <thead>
+            <tr style="color:#56c0c4">
+              <th>Item</th>
+              <th>Location</th>
+              <th>Quantity</th>
+              <th>File/Image</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <!-- item -->
+              <td>
+                <select class="item" v-model="addedItem.item">
+                  <option v-for="(item, index) in items" :value="item" :key="index">
+                    {{item}}
+                  </option>
+                </select>
+              </td>
+              <!-- location -->
+              <td>
+                <select class="location" v-model="addedItem.location">
+                  <option v-for="(location, index) in locationCap" :value="location" :key="index">
+                    {{location}}
+                  </option>
+                </select>
+              </td>
+              <!-- quantity -->
+              <td>
+                <input class="quantity" type="number" min="1" v-model="addedItem.quantity">
+              </td>
+              <!-- image -->
+              <td>
+                <vue-clip class="clip" v-if="files.length === 0" ref="vc" :options="options" :on-added-file="fileAdded">
+                  <template slot="clip-uploader-action" slot-scope="props">
+                    <div class="uploader-action" :class="{dragging: props.dragging}">
+                      <div class="dz-message">
+                        Select file
+                      </div>
+                    </div>
+                  </template>
+                </vue-clip>
+                <div v-for="(file, index) in files" :key="index">
+                  {{file.name}}
+                  <button @click="removeFile">Delete</button>
+                </div>
+              </td>
+              <td>
+                <button @click="addItem">Add</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <p v-if="!fileCheck && files.length === 0">Please add file.</p>
+      </div>
     </div>
+
   </div>
 </template>
 
 <script>
+import json from '../../assets/fakeOrder.json'
+
 export default {
   data () {
     return {
+      test: json,
       options: {
         url: '/details',
         maxFiles: 1
@@ -279,7 +301,6 @@ input {
   padding: 7px 10px;
   font-size: 100%;
 }
-
 /* for order(po number) selection */
 .po_wrapper {
   margin: 2rem 0;
@@ -287,36 +308,22 @@ input {
 .po {
   display: flex;
   align-items: center;
-  height: 50px;
-}
-.po_label {
-  width: 350px;
-}
-.po_radio {
-  float: right;
+  justify-content: center;
+  height: 40px;
 }
 .po_image {
-  flex: 1;
+  width: 120px;
+}
+.po_number {
+  width: 300px;
 }
 .image {
   max-width: 100px;
-  max-height: 50px;
+  max-height: 30px;
   width: auto;
   height: auto;
   padding-left: 1rem;
-}
-
-/* for order detail */
-.order_wrapper {
-  display: flex;
-  align-items: center;
-  height: 40px;
-}
-.order_item {
-  width: 400px;
-}
-.order_buttons {
-  flex: 1;
+  border: 1px solid #ededed;
 }
 
 /* for display add item */

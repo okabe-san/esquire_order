@@ -8,7 +8,10 @@ p {
   font-size: 1.2rem;
 }
 hr {
-  border-top: 1px solid #dcdcdc;
+  height: 1px;
+  color: #ed1d61;
+  background: #dcdcdc;
+  border: 0;
 }
 header {
   align-items: center;
@@ -90,7 +93,7 @@ input:focus {
     border: 1px solid #999;
 }
 input::placeholder {
-    color: #e4e4e4;
+    color: #b6b6b6;
 }
 
 /* radio button style */
@@ -103,9 +106,9 @@ input[type=radio] {
   display: inline-block;
   position: relative;
   top: .25rem;
-  left: -1.5rem;
-  height: 1rem;
-  width: 1rem;
+  left: -1rem;
+  height: .75rem;
+  width: .75rem;
   border: 3px solid #56c0c4;
   border-radius: 50%;
   -webkit-transition: all 0.25s linear;
