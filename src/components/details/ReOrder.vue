@@ -28,7 +28,9 @@
             <th>Item</th>
             <th>Location</th>
             <th>Quantity</th>
-            <th>File/Image</th>
+            <th>Logo</th>
+            <th>Stich</th>
+            <th>File Name</th>
             <th></th>
           </tr>
         </thead>
@@ -64,6 +66,16 @@
             <!-- image -->
             <td class="po_image">
               <img class="image" :src="detail.image">
+            </td>
+
+            <!-- stich -->
+            <td class="po_stich">
+
+            </td>
+
+            <!-- file name -->
+            <td class="po_file">
+
             </td>
 
             <!-- for edit item buttons -->
