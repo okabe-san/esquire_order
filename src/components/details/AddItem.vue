@@ -2,7 +2,7 @@
   <div>
     <table style="width:100%">
       <thead>
-        <tr style="color:#56c0c4">
+        <tr>
           <th>Item</th>
           <th>Location</th>
           <th>Quantity</th>
@@ -12,7 +12,7 @@
       </thead>
       <tbody>
         <tr>
-
+          <!-- item -->
           <td>
             <select class="item" v-model="addedItem.item">
               <option v-for="(item, index) in items" :value="item" :key="index">
@@ -20,7 +20,7 @@
               </option>
             </select>
           </td>
-
+          <!-- location -->
           <td>
             <select class="location" v-model="addedItem.location">
               <option v-for="(location, index) in locationCap" :value="location" :key="index">
@@ -28,11 +28,11 @@
               </option>
             </select>
           </td>
-
+          <!-- quantity -->
           <td>
             <input class="quantity" type="number" min="1" v-model="addedItem.quantity">
           </td>
-
+          <!-- image -->
           <td>
             <vue-clip class="clip" v-if="files.length === 0" ref="vc" :options="options" :on-added-file="fileAdded">
               <template slot="clip-uploader-action" slot-scope="props">
@@ -48,6 +48,7 @@
               <button @click="removeFile">Delete</button>
             </div>
           </td>
+          <!-- button -->
           <td>
             <button @click="addItem">Add</button>
           </td>
