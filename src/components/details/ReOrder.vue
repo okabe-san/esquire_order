@@ -80,7 +80,10 @@
       <!-- add item  -->
       <div v-if="orderPicked" style="margin-top:2rem">
         <h3 style="display:inline-block;padding-right:2rem">Need to add new item(s) to this order?</h3>
-        <input type="checkbox" v-model="add">
+        <label class="container">
+          <input type="checkbox" v-model="add">
+          <span class="checkbox"></span>
+        </label>
         <addItem v-if="add" @close="add=false"></addItem>
         <p v-if="!fileCheck && files.length === 0">Please add file.</p>
       </div>
