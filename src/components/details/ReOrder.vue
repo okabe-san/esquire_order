@@ -168,13 +168,14 @@ export default {
           [{
             'item': 'Cap',
             'location': 'Front Center',
-            'image': require(`@/assets/images/sanmar.png`),
+            'image': require(`@/assets/images/townsend.jpg`),
             'quantity': 10
           },
           {
             'item': 'Tops',
             'location': 'Front Chest',
-            'quantity': 20
+            'quantity': 20,
+            'image': require(`@/assets/images/townsend2.jpg`)
           }]
         },
         { 'po': '101',
@@ -182,7 +183,7 @@ export default {
           [{
             'item': 'Cap',
             'location': 'Front Center',
-            'image': require(`@/assets/images/alphabroder.jpg`),
+            'image': require(`@/assets/images/Earned it.jpg`),
             'quantity': 30
           }]
         },
@@ -191,7 +192,7 @@ export default {
           [{
             'item': 'Cap',
             'location': 'Front Center',
-            'image': require(`@/assets/images/alphabroder2.jpg`),
+            'image': require(`@/assets/images/Earned it2.jpg`),
             'quantity': 30
           }]
         }
@@ -258,13 +259,13 @@ input {
   max-height: 30px;
   width: auto;
   height: auto;
-  padding-left: 1rem;
+  padding: .125rem .25rem;
   border: 1px solid #ededed;
 }
 
 /* for display order */
 .order_detail {
-  padding: 0 2rem;
+  padding: 0 2rem 2rem;
   border-radius: 7px;
   border: 1px solid #dccd;
 }
