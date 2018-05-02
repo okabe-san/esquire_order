@@ -168,6 +168,9 @@ export default {
     async search () {
       // clear message
       this.message = ''
+      // clear order picked data
+      this.$store.state.order_picked = ''
+
       // FIXME: use query to search orders (fuzzy search)
       let data = []
       if (this.searchKey.startsWith('100')) {
