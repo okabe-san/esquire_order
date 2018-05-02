@@ -1,8 +1,11 @@
 <template>
   <div>
     <!-- search/select order -->
-    <input type="text" placeholder="PO# or image name">
+    <input type="text" placeholder="PO# or image name" v-model="searchKey">
     <button @click="search">Search</button>
+    <h4 class="required">
+      {{message}}
+    </h4>
     <div class="po_wrapper">
       <div class="po" v-for="(order, index) in orders" :key="index">
         <div class="po_image">
@@ -25,7 +28,9 @@
             <th>Item</th>
             <th>Location</th>
             <th>Quantity</th>
-            <th>File/Image</th>
+            <th>Logo</th>
+            <th>Stich</th>
+            <th>File Name</th>
             <th></th>
           </tr>
         </thead>
@@ -63,6 +68,16 @@
               <img class="image" :src="detail.image">
             </td>
 
+            <!-- stich -->
+            <td class="po_stich">
+
+            </td>
+
+            <!-- file name -->
+            <td class="po_file">
+
+            </td>
+
             <!-- for edit item buttons -->
             <td class="order_buttons">
               <button @click="editItem(index, detail)">Edit</button>
@@ -77,7 +92,10 @@
       <!-- add item  -->
       <div v-if="orderPicked" style="margin-top:2rem">
         <h3 style="display:inline-block;padding-right:2rem">Need to add new item(s) to this order?</h3>
-        <button @click="add=true">Add</button>
+        <label class="container">
+          <input type="checkbox" v-model="add">
+          <span class="checkbox"></span>
+        </label>
         <addItem v-if="add" @close="add=false"></addItem>
         <p v-if="!fileCheck && files.length === 0">Please add file.</p>
       </div>
@@ -95,6 +113,8 @@ export default {
   },
   data () {
     return {
+      searchKey: '',
+      message: '',
       options: {
         url: '/details',
         maxFiles: 1
@@ -161,42 +181,88 @@ export default {
   },
   methods: {
     async search () {
+      // clear message
+      this.message = ''
+      // clear order picked data
+      this.$store.state.order_picked = ''
+
       // FIXME: use query to search orders (fuzzy search)
-      const data = [
-        { 'po': '100',
-          'items':
-          [{
-            'item': 'Cap',
-            'location': 'Front Center',
-            'image': require(`@/assets/images/townsend.jpg`),
-            'quantity': 10
+      let data = []
+      if (this.searchKey.startsWith('100')) {
+        data = [
+          { 'po': '1000',
+            'items':
+            [{
+              'item': 'Cap',
+              'location': 'Front Center',
+              'image': require(`@/assets/images/townsend.jpg`),
+              'quantity': 10
+            },
+            {
+              'item': 'Tops',
+              'location': 'Front Chest',
+              'quantity': 20,
+              'image': require(`@/assets/images/townsend2.jpg`)
+            }]
           },
-          {
-            'item': 'Tops',
-            'location': 'Front Chest',
-            'quantity': 20,
-            'image': require(`@/assets/images/townsend2.jpg`)
-          }]
-        },
-        { 'po': '101',
-          'items':
-          [{
-            'item': 'Cap',
-            'location': 'Front Center',
-            'image': require(`@/assets/images/Earned it.jpg`),
-            'quantity': 30
-          }]
-        },
-        { 'po': '106',
-          'items':
-          [{
-            'item': 'Cap',
-            'location': 'Front Center',
-            'image': require(`@/assets/images/Earned it2.jpg`),
-            'quantity': 30
-          }]
-        }
-      ]
+          { 'po': '10020',
+            'items':
+            [{
+              'item': 'Cap',
+              'location': 'Front Center',
+              'image': require(`@/assets/images/Earned it.jpg`),
+              'quantity': 30
+            }]
+          },
+          { 'po': '100A100',
+            'items':
+            [{
+              'item': 'Cap',
+              'location': 'Front Center',
+              'image': require(`@/assets/images/Earned it2.jpg`),
+              'quantity': 30
+            }]
+          }
+        ]
+      } else if (this.searchKey.startsWith('200')) {
+        data = [
+          { 'po': '2020',
+            'items':
+            [{
+              'item': 'Cap',
+              'location': 'Front Center',
+              'image': require(`@/assets/images/ACV Auctions.jpg`),
+              'quantity': 10
+            },
+            {
+              'item': 'Tops',
+              'location': 'Front Chest',
+              'quantity': 20,
+              'image': require(`@/assets/images/ACV Auctions2.jpg`)
+            }]
+          },
+          { 'po': '20020',
+            'items':
+            [{
+              'item': 'Cap',
+              'location': 'Front Center',
+              'image': require(`@/assets/images/LinkedIn Franklin.jpg`),
+              'quantity': 30
+            }]
+          },
+          { 'po': '200Z100',
+            'items':
+            [{
+              'item': 'Cap',
+              'location': 'Front Center',
+              'image': require(`@/assets/images/triple ring.jpg`),
+              'quantity': 30
+            }]
+          }
+        ]
+      } else {
+        this.message = 'No search result found. Please search again.'
+      }
       // max results
       data.slice(0, 5)
       this.orders = data
