@@ -2,7 +2,7 @@
   <div>
     <div class="logo_wrapper">
       <div class="logo">
-        <img src="./dist/static/img/logo.png">
+        <img src="dist/static/img/logo.png">
       </div>
     </div>
     <div class="body">
