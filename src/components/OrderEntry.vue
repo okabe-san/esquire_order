@@ -48,7 +48,7 @@
             </div>
 
             <!-- nav buttons -->
-            <button class="next" @click="next">Next</button>
+            <button class="next" v-if="orderPicked" @click="next">Next</button>
           </div>
 
         </div>
