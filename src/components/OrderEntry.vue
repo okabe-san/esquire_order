@@ -2,10 +2,10 @@
   <div id="order">
     <!-- display steps -->
     <section>
-      <h3 class="step">
+      <h2 class="step">
         STEP 1<br />
         <small>Order Entry</small>
-      </h3>
+      </h2>
       <i class="material-icons step">keyboard_arrow_down</i>
       <h3>STEP 2</h3>
       <i class="material-icons">keyboard_arrow_down</i>
@@ -20,7 +20,7 @@
         <div class="form">
           <!-- check re-order or not -->
           <div>
-            <h2 style="display:inline-block;padding-right:2rem">Re-Order?</h2>
+            <h2 style="display:inline-block;padding-right:2rem">REORDER?</h2>
               <label>YES (able to edit)
                 <input type="radio" v-model="reOrder" v-on:change="orderCheck()" vaule="yes">
                 <span class="radio"></span>
@@ -116,8 +116,12 @@ export default {
 <style scoped>
 @import '../assets/css/button_lib.css';
 @import '../assets/css/order_lib.css';
+h2{
+  font-weight: 700;
+  margin: 0;
+}
 h3 {
-  margin: 0 0 1.5rem;
+  color: rgba(255, 255, 255, 0.5);
 }
 .order_entry {
   padding-top: .5rem;

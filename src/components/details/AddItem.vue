@@ -33,20 +33,10 @@
             <input class="quantity" type="number" min="1" v-model="addedItem.quantity">
           </td>
           <!-- image -->
-          <td>
-            <vue-clip class="clip" v-if="files.length === 0" ref="vc" :options="options" :on-added-file="fileAdded">
-              <template slot="clip-uploader-action" slot-scope="props">
-                <div class="uploader-action" :class="{dragging: props.dragging}">
-                  <div class="dz-message">
-                    Select file
-                  </div>
-                </div>
-              </template>
-            </vue-clip>
-            <div v-for="(file, index) in files" :key="index">
-              {{file.name}}
-              <button @click="removeFile">Delete</button>
-            </div>
+          <td class="table_image">
+            <img class="image" :src="addedItem.image">
+            <button @click="select=true">Select Image</button>
+            <selectImage v-if="select" @close="select=false" @select="addedItem.image = $event"></selectImage>
           </td>
           <!-- button -->
           <td>
@@ -59,14 +49,15 @@
 </template>
 
 <script>
+import selectImage from './SelectImage.vue'
+
 export default {
+  components: {
+    selectImage
+  },
   data () {
     return {
-      options: {
-        url: '/details',
-        maxFiles: 1
-      },
-      files: [],
+      select: false,
       // for adding item
       addedItem: {
         'item': 'Cap',
@@ -122,15 +113,8 @@ export default {
       const data = ['Cap', 'Tops', 'Beanie', 'Bag', 'Pants']
       this.items = data
     },
-    fileAdded (file) {
-      this.files.push(file)
-    },
-    removeFile () {
-      this.files.splice(0, 1)
-    },
     addItem () {
-      if (this.files.length > 0) {
-        this.addedItem.image = this.files[0].name
+      if (this.addedItem.image.length > 0) {
         this.orderPicked.items.push(this.addedItem)
         this.fileCheck = true
         // back to default values
@@ -140,7 +124,6 @@ export default {
           'image': '',
           'quantity': 1
         }
-        this.files.splice(0, 1)
       } else {
         this.fileCheck = false
       }
@@ -151,70 +134,9 @@ export default {
 
 <style scoped>
 @import '../../assets/css/button_lib.css';
-.image {
-  max-width: 100px;
-  max-height: 30px;
-  width: auto;
-  height: auto;
-  padding-left: 1rem;
-  border: 1px solid #ededed;
-}
-
-/* for display order */
-.order_detail {
-  padding: 0 2rem;
-  border-radius: 7px;
-  border: 1px solid #dccd;
-}
-table {
-  border-collapse: collapse;
-}
-thead {
-  border-bottom: 1px solid #666;
-  margin-bottom: 1rem;
-}
-th {
-  padding: 0 0 .5rem;
-}
-td {
-  padding: .5rem 0 0;
-}
-td {
-  flex: 1;
-}
-
-/* for display add item */
-.clip {
-  display: inline-block;
-}
-
-/* for input/select style */
-select.item {
-  width: 100px;
-  padding: .25rem;
-  font-size: 1rem;
-  border-radius: 0;
-  background: #fff;
-  background-image: url(../../assets/images/arrow-down.png);
-  background-repeat: no-repeat;
-  background-position: 69px;
-  -webkit-appearance: none;
-  outline: none
-}
-select.location {
-  width: 150px;
-  padding: .25rem;
-  font-size: 1rem;
-  border-radius: 0;
-  background: #fff;
-  background-image: url(../../assets/images/arrow-down.png);
-  background-repeat: no-repeat;
-  background-position: 120px;
-  -webkit-appearance: none;
-  outline: none
-}
-input.quantity {
-  width: 50px;
-  height: 13px;
+@import '../../assets/css/order_lib.css';
+.table_image {
+  display: flex;
+  justify-content: center;
 }
 </style>

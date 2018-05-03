@@ -2,13 +2,13 @@
   <div>
     <!-- search/select order -->
     <input type="text" placeholder="PO# or image name" v-model="searchKey">
-    <button @click="search">Search</button>
+    <button @click="search">Search Orders</button>
     <h4 class="required">
       {{message}}
     </h4>
     <div class="po_wrapper">
       <div class="po" v-for="(order, index) in orders" :key="index">
-        <div class="po_image">
+        <div class="po_image_search">
           <img class="image" :src="order.items[0].image">
         </div>
         <label class="po_number">
@@ -29,7 +29,7 @@
             <th>Location</th>
             <th>Quantity</th>
             <th>Logo</th>
-            <th>Stich</th>
+            <th>Stitch</th>
             <th>File Name</th>
             <th></th>
           </tr>
@@ -59,7 +59,7 @@
 
             <!-- quantity -->
             <td v-if="edit && index === indexNum">
-              <input class="quantity" type="number" v-model="editOrder.quantity">
+              <input class="quantity" type="number" min="1" v-model="editOrder.quantity">
             </td>
             <td v-else>{{detail.quantity}}</td>
 
@@ -300,33 +300,35 @@ export default {
 
 <style scoped>
 @import '../../assets/css/button_lib.css';
-input {
-  padding: 7px 10px;
-  font-size: 100%;
-}
+@import '../../assets/css/order_lib.css';
+
 /* for order(po number) selection */
 .po_wrapper {
   margin: 2rem 0;
+    transition: all .3s ease;
 }
 .po {
   display: flex;
   align-items: center;
-  justify-content: center;
   height: 40px;
+}
+.po_image_search {
+  width: 120px;
+  margin-left: 30%;
+  margin-right: 7%;
 }
 .po_image {
   width: 120px;
 }
-.po_number {
-  width: 300px;
+.po_image_search .image {
+  float: left;
 }
-.image {
-  max-width: 100px;
-  max-height: 30px;
-  width: auto;
-  height: auto;
-  padding: .125rem .25rem;
-  border: 1px solid #ededed;
+.image_left {
+  float: left;
+}
+.po_number {
+  text-align: left;
+  width: 300px;
 }
 
 /* for display order */
@@ -334,57 +336,6 @@ input {
   padding: 0 2rem 2rem;
   border-radius: 7px;
   border: 1px solid #dccd;
-}
-table {
-  border-collapse: collapse;
-}
-thead {
-  border-bottom: 1px solid #666;
-  margin-bottom: 1rem;
-}
-th {
-  padding: 0 0 .5rem;
-}
-td {
-  padding: .5rem 0 0;
-}
-td {
-  flex: 1;
-}
-
-/* for display add item */
-.clip {
-  display: inline-block;
-}
-
-/* for input/select style */
-select.item {
-  width: 100px;
-  padding: .25rem;
-  font-size: 1rem;
-  border-radius: 0;
-  background: #fff;
-  background-image: url(../../assets/images/arrow-down.png);
-  background-repeat: no-repeat;
-  background-position: 69px;
-  -webkit-appearance: none;
-  outline: none
-}
-select.location {
-  width: 150px;
-  padding: .25rem;
-  font-size: 1rem;
-  border-radius: 0;
-  background: #fff;
-  background-image: url(../../assets/images/arrow-down.png);
-  background-repeat: no-repeat;
-  background-position: 120px;
-  -webkit-appearance: none;
-  outline: none
-}
-input.quantity {
-  width: 50px;
-  height: 13px;
 }
 
 </style>
