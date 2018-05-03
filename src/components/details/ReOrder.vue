@@ -1,9 +1,21 @@
 <template>
   <div>
     <!-- search/select order -->
-    <input type="text" placeholder="PO# or image name" v-model="searchKey">
-    <button @click="search">Search Orders</button>
-    <h4 class="required">
+    <div class="search_wrapper">
+      <input
+        type="text"
+        placeholder="PO # or Logo file name"
+        v-model="searchKey"
+        style="width:250px">
+      <button @click="search">
+        <span class="button">
+          <i class="material-icons">search</i>
+          Search Orders
+        </span>
+      </button>
+    </div>
+    <h4 class="message">
+      <span v-if="message" class="required">*</span>
       {{message}}
     </h4>
     <div class="po_wrapper">
@@ -80,8 +92,8 @@
 
             <!-- for edit item buttons -->
             <td class="order_buttons">
-              <button @click="editItem(index, detail)">Edit</button>
-              <button v-if="edit && index === indexNum" @click="updateItem(index)">Update</button>
+              <button class="edit" @click="editItem(index, detail)">Edit</button>
+              <button class="update" v-if="edit && index === indexNum" @click="updateItem(index)">Update</button>
               <button @click="removeItem(index)">Delete</button>
             </td>
 
@@ -302,10 +314,15 @@ export default {
 @import '../../assets/css/button_lib.css';
 @import '../../assets/css/order_lib.css';
 
+.search_wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 /* for order(po number) selection */
 .po_wrapper {
   margin: 2rem 0;
-    transition: all .3s ease;
 }
 .po {
   display: flex;
@@ -314,8 +331,8 @@ export default {
 }
 .po_image_search {
   width: 120px;
-  margin-left: 30%;
-  margin-right: 7%;
+  margin-left: 29%;
+  margin-right: 8%;
 }
 .po_image {
   width: 120px;

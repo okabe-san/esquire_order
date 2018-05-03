@@ -32,13 +32,13 @@
             </div>
 
           <!-- for re-order -->
-          <div v-if="order">
-            <reOrder class="order_entry"></reOrder>
+          <div v-if="order" class="order_entry">
+            <reOrder></reOrder>
           </div>
 
           <!-- for new-order -->
-          <div v-else>
-            <newOrder class="order_entry"></newOrder>
+          <div v-else class="order_entry">
+            <newOrder></newOrder>
           </div>
 
           <!-- error message -->
@@ -48,7 +48,12 @@
             </div>
 
             <!-- nav buttons -->
-            <button class="next" v-if="orderPicked" @click="next">Next</button>
+            <button class="next" v-if="orderPicked" @click="next">
+              <span class="button">
+                Next
+                <i class="material-icons">navigate_next</i>
+              </span>
+            </button>
           </div>
 
         </div>
@@ -114,8 +119,10 @@ export default {
 </script>
 
 <style scoped>
-@import '../assets/css/button_lib.css';
 @import '../assets/css/order_lib.css';
+@import '../assets/css/button_lib.css';
+
+/* for steps */
 h2{
   font-weight: 700;
   margin: 0;
@@ -124,14 +131,9 @@ h3 {
   color: rgba(255, 255, 255, 0.5);
 }
 .order_entry {
-  padding-top: .5rem;
+  margin-top: 3rem;
 }
 .action {
   margin-top: 3rem;
-}
-.next {
-  position: absolute;
-  bottom: .75rem;
-  right: 1rem;
 }
 </style>
