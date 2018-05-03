@@ -35,7 +35,8 @@
           <!-- image -->
           <td>
             <button @click="select=true">Select Image</button>
-            <selectImage v-if="select" @close="select=false"></selectImage>
+            <selectImage v-if="select" @close="select=false" @select="addedItem.image = $event"></selectImage>
+            <img class="image" :src="addedItem.image">
           </td>
           <!-- button -->
           <td>

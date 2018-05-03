@@ -1,40 +1,40 @@
 <template>
   <transition name="modal">
     <div class="modal-mask">
+      <div class="modal-container">
 
-        <div class="modal-container">
+        <div class="modal-header">
+          Select Image
+        </div>
 
-          <div class="modal-header">
-            Select Image
-          </div>
-
-          <div class="modal-body">
-            <div v-for="(detail, index) in orderPicked.items" :key="index">
+        <div class="modal-body">
+          <div v-for="(detail, index) in orderPicked.items" :key="index">
+            <div @click="$emit('select', detail.image)">
               <img class="image" :src="detail.image">
             </div>
-            <vue-clip class="clip" v-if="files.length === 0" ref="vc" :options="options" :on-added-file="fileAdded">
-              <template slot="clip-uploader-action" slot-scope="props">
-                <div class="uploader-action" :class="{dragging: props.dragging}">
-                  <div class="dz-message">
-                    Select file
-                  </div>
-                </div>
-              </template>
-            </vue-clip>
-            <div v-for="(file, index) in files" :key="index">
-              {{file.name}}
-              <button @click="removeFile">Delete</button>
-            </div>
           </div>
-
-          <div class="modal-footer">
-            <button @click="$emit('close')">
-              OK
-            </button>
+          <vue-clip class="clip" v-if="files.length === 0" ref="vc" :options="options" :on-added-file="fileAdded">
+            <template slot="clip-uploader-action" slot-scope="props">
+              <div class="uploader-action" :class="{dragging: props.dragging}">
+                <div class="dz-message">
+                  Select new image
+                </div>
+              </div>
+            </template>
+          </vue-clip>
+          <div v-for="(file, index) in files" :key="index">
+            {{file.name}}
+            <button @click="removeFile">Delete</button>
           </div>
         </div>
-      </div>
 
+        <div class="modal-footer">
+          <button @click="$emit('close')">
+            OK
+          </button>
+        </div>
+      </div>
+    </div>
   </transition>
 </template>
 
@@ -88,10 +88,9 @@ export default {
   margin: 0px auto;
   padding: 20px 30px;
   background-color: #fff;
-  border-radius: 2px;
+  border-radius: 5px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, .33);
   transition: all .3s ease;
-  font-family: Helvetica, Arial, sans-serif;
 }
 .modal-header h3 {
   margin-top: 0;
