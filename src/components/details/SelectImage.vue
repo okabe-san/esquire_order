@@ -1,13 +1,13 @@
 <template>
   <transition name="modal">
-    <div class="modal-mask">
-      <div class="modal-container">
+    <div class="modal_mask">
+      <div class="modal_container">
 
-        <div class="modal-header">
+        <div class="modal_header">
           Select Image
         </div>
 
-        <div class="modal-body">
+        <div class="modal_body">
           <div v-for="(detail, index) in orderPicked.items" :key="index">
             <div @click="$emit('select', detail.image)">
               <img class="image" :src="detail.image">
@@ -70,7 +70,7 @@ export default {
 <style scoped>
 @import '../../assets/css/button_lib.css';
 @import '../../assets/css/order_lib.css';
-.modal-mask {
+.modal_mask {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -83,7 +83,7 @@ export default {
   background: rgba(0, 0, 0, .5);
   transition: opacity .3s ease;
 }
-.modal-container {
+.modal_container {
   width: 500px;
   margin: 0px auto;
   padding: 20px 30px;
@@ -92,21 +92,21 @@ export default {
   box-shadow: 0 2px 8px rgba(0, 0, 0, .33);
   transition: all .3s ease;
 }
-.modal-header h3 {
+.modal_header h3 {
   margin-top: 0;
   color: #42b983;
 }
-.modal-body {
+.modal_body {
   margin: 20px 0;
 }
-.modal-enter {
+.modal_enter {
   opacity: 0;
 }
-.modal-leave-active {
+.modal_leave_active {
   opacity: 0;
 }
-.modal-enter .modal-container,
-.modal-leave-active .modal-container {
+.modal_enter .modal_container,
+.modal_leave_active .modal_container {
   -webkit-transform: scale(1.1);
   transform: scale(1.1);
 }
