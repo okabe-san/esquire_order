@@ -34,19 +34,8 @@
           </td>
           <!-- image -->
           <td>
-            <vue-clip class="clip" v-if="files.length === 0" ref="vc" :options="options" :on-added-file="fileAdded">
-              <template slot="clip-uploader-action" slot-scope="props">
-                <div class="uploader-action" :class="{dragging: props.dragging}">
-                  <div class="dz-message">
-                    Select file
-                  </div>
-                </div>
-              </template>
-            </vue-clip>
-            <div v-for="(file, index) in files" :key="index">
-              {{file.name}}
-              <button @click="removeFile">Delete</button>
-            </div>
+            <button @click="select=true">Select Image</button>
+            <selectImage v-if="select" @close="select=false"></selectImage>
           </td>
           <!-- button -->
           <td>
@@ -59,14 +48,15 @@
 </template>
 
 <script>
+import selectImage from './SelectImage.vue'
+
 export default {
+  components: {
+    selectImage
+  },
   data () {
     return {
-      options: {
-        url: '/details',
-        maxFiles: 1
-      },
-      files: [],
+      select: false,
       // for adding item
       addedItem: {
         'item': 'Cap',
@@ -121,12 +111,6 @@ export default {
       // FIXME: use query to get items
       const data = ['Cap', 'Tops', 'Beanie', 'Bag', 'Pants']
       this.items = data
-    },
-    fileAdded (file) {
-      this.files.push(file)
-    },
-    removeFile () {
-      this.files.splice(0, 1)
     },
     addItem () {
       if (this.files.length > 0) {
