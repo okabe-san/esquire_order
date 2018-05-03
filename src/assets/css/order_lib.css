@@ -67,10 +67,8 @@ th {
   padding: 0 0 .5rem;
 }
 td {
-  padding: .5rem 0 0;
-}
-td {
   flex: 1;
+  padding: .5rem 0 0;
 }
 
 /* for display add item */
@@ -86,6 +84,7 @@ select.item {
   border-radius: 0;
   background: #fff;
   background-image: url(../../assets/images/arrow-down.png);
+  background-size: 18px 18px;
   background-repeat: no-repeat;
   background-position: 69px;
   -webkit-appearance: none;
@@ -98,6 +97,7 @@ select.location {
   border-radius: 0;
   background: #fff;
   background-image: url(../../assets/images/arrow-down.png);
+  background-size: 18px 18px;
   background-repeat: no-repeat;
   background-position: 120px;
   -webkit-appearance: none;

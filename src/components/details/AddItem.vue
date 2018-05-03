@@ -33,7 +33,7 @@
             <input class="quantity" type="number" min="1" v-model="addedItem.quantity">
           </td>
           <!-- image -->
-          <td>
+          <td class="table_image">
             <img class="image" :src="addedItem.image">
             <button @click="select=true">Select Image</button>
             <selectImage v-if="select" @close="select=false" @select="addedItem.image = $event"></selectImage>
@@ -135,4 +135,8 @@ export default {
 <style scoped>
 @import '../../assets/css/button_lib.css';
 @import '../../assets/css/order_lib.css';
+.table_image {
+  display: flex;
+  justify-content: center;
+}
 </style>

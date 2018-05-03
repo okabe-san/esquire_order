@@ -2,7 +2,7 @@
   <div>
     <!-- search/select order -->
     <input type="text" placeholder="PO# or image name" v-model="searchKey">
-    <button @click="search">Search</button>
+    <button @click="search">Search Orders</button>
     <h4 class="required">
       {{message}}
     </h4>
@@ -305,6 +305,7 @@ export default {
 /* for order(po number) selection */
 .po_wrapper {
   margin: 2rem 0;
+    transition: all .3s ease;
 }
 .po {
   display: flex;

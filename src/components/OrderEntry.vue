@@ -20,7 +20,7 @@
         <div class="form">
           <!-- check re-order or not -->
           <div>
-            <h2 style="display:inline-block;padding-right:2rem">Re-Order?</h2>
+            <h2 style="display:inline-block;padding-right:2rem">REORDER?</h2>
               <label>YES (able to edit)
                 <input type="radio" v-model="reOrder" v-on:change="orderCheck()" vaule="yes">
                 <span class="radio"></span>
