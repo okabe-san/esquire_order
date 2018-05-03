@@ -5,39 +5,32 @@
         <div class="modal-container">
 
           <div class="modal-header">
-            <slot name="header">
-              Select Image
-            </slot>
+            Select Image
           </div>
 
           <div class="modal-body">
-            <slot name="body">
-              <div v-for="(detail, index) in orderPicked.items" :key="index">
-                <img class="image" :src="detail.image">
-              </div>
-              <vue-clip class="clip" v-if="files.length === 0" ref="vc" :options="options" :on-added-file="fileAdded">
-                <template slot="clip-uploader-action" slot-scope="props">
-                  <div class="uploader-action" :class="{dragging: props.dragging}">
-                    <div class="dz-message">
-                      Select file
-                    </div>
+            <div v-for="(detail, index) in orderPicked.items" :key="index">
+              <img class="image" :src="detail.image">
+            </div>
+            <vue-clip class="clip" v-if="files.length === 0" ref="vc" :options="options" :on-added-file="fileAdded">
+              <template slot="clip-uploader-action" slot-scope="props">
+                <div class="uploader-action" :class="{dragging: props.dragging}">
+                  <div class="dz-message">
+                    Select file
                   </div>
-                </template>
-              </vue-clip>
-              <div v-for="(file, index) in files" :key="index">
-                {{file.name}}
-                <button @click="removeFile">Delete</button>
-              </div>
-
-            </slot>
+                </div>
+              </template>
+            </vue-clip>
+            <div v-for="(file, index) in files" :key="index">
+              {{file.name}}
+              <button @click="removeFile">Delete</button>
+            </div>
           </div>
 
           <div class="modal-footer">
-            <slot name="footer">
-              <button class="modal-default-button" @click="$emit('close')">
-                OK
-              </button>
-            </slot>
+            <button @click="$emit('close')">
+              OK
+            </button>
           </div>
         </div>
       </div>
@@ -93,7 +86,6 @@ export default {
   display: table-cell;
   vertical-align: middle;
 }
-
 .modal-container {
   width: 500px;
   margin: 0px auto;
@@ -104,28 +96,19 @@ export default {
   transition: all .3s ease;
   font-family: Helvetica, Arial, sans-serif;
 }
-
 .modal-header h3 {
   margin-top: 0;
   color: #42b983;
 }
-
 .modal-body {
   margin: 20px 0;
 }
-
-.modal-default-button {
-  float: right;
-}
-
 .modal-enter {
   opacity: 0;
 }
-
 .modal-leave-active {
   opacity: 0;
 }
-
 .modal-enter .modal-container,
 .modal-leave-active .modal-container {
   -webkit-transform: scale(1.1);
