@@ -80,8 +80,9 @@ img {
   width: 300px;
 }
 .border {
+  color: #fff;
+  background: #555;
   padding: .25rem 1rem;
-  border: 1px solid #999;
   cursor: pointer;
 }
 .modal_mask {
