@@ -8,7 +8,7 @@
     </h4>
     <div class="po_wrapper">
       <div class="po" v-for="(order, index) in orders" :key="index">
-        <div class="po_image">
+        <div class="po_image_search">
           <img class="image" :src="order.items[0].image">
         </div>
         <label class="po_number">
@@ -29,7 +29,7 @@
             <th>Location</th>
             <th>Quantity</th>
             <th>Logo</th>
-            <th>Stich</th>
+            <th>Stitch</th>
             <th>File Name</th>
             <th></th>
           </tr>
@@ -309,13 +309,24 @@ export default {
 .po {
   display: flex;
   align-items: center;
-  justify-content: center;
   height: 40px;
+}
+.po_image_search {
+  width: 120px;
+  margin-left: 30%;
+  margin-right: 7%;
 }
 .po_image {
   width: 120px;
 }
+.po_image_search .image {
+  float: left;
+}
+.image_left {
+  float: left;
+}
 .po_number {
+  text-align: left;
   width: 300px;
 }
 
