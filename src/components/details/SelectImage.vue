@@ -12,7 +12,9 @@
 
           <div class="modal-body">
             <slot name="body">
-
+              <div v-for="(detail, index) in orderPicked.items" :key="index">
+                <img class="image" :src="detail.image">
+              </div>
               <vue-clip class="clip" v-if="files.length === 0" ref="vc" :options="options" :on-added-file="fileAdded">
                 <template slot="clip-uploader-action" slot-scope="props">
                   <div class="uploader-action" :class="{dragging: props.dragging}">
@@ -55,6 +57,11 @@ export default {
     }
   },
   computed: {
+    orderPicked: {
+      get () {
+        return this.$store.state.order_picked
+      }
+    }
   },
   methods: {
     fileAdded (file) {
@@ -68,6 +75,8 @@ export default {
 </script>
 
 <style scoped>
+@import '../../assets/css/button_lib.css';
+@import '../../assets/css/order_lib.css';
 .modal-mask {
   position: fixed;
   z-index: 9998;
