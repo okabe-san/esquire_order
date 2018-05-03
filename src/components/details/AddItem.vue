@@ -34,7 +34,7 @@
           </td>
           <!-- image -->
           <td class="table_image">
-            <img class="image" :src="addedItem.image">
+            <img v-if="addedItem.image" class="image" :src="addedItem.image">
             <button @click="select=true">Select Image</button>
             <selectImage v-if="select" @close="select=false" @select="addedItem.image = $event"></selectImage>
           </td>

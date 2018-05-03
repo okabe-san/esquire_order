@@ -4,20 +4,20 @@
       <div class="modal_container">
 
         <div class="modal_header">
-          Select Image
+          <h3>SELECT IMAGE</h3>
         </div>
 
         <div class="modal_body">
           <div v-for="(detail, index) in orderPicked.items" :key="index">
             <div @click="$emit('select', detail.image)">
-              <img class="image" :src="detail.image">
+              <img @click="isActive=!isActive" class="image" :src="detail.image">
             </div>
           </div>
           <vue-clip class="clip" v-if="files.length === 0" ref="vc" :options="options" :on-added-file="fileAdded">
             <template slot="clip-uploader-action" slot-scope="props">
               <div class="uploader-action" :class="{dragging: props.dragging}">
                 <div class="dz-message">
-                  Select new image
+                  <p class="border">Select new image</p>
                 </div>
               </div>
             </template>
@@ -29,8 +29,8 @@
         </div>
 
         <div class="modal-footer">
-          <button @click="$emit('close')">
-            OK
+          <button style="float:right" @click="$emit('close')">
+            CLOSE
           </button>
         </div>
       </div>
@@ -68,8 +68,22 @@ export default {
 </script>
 
 <style scoped>
-@import '../../assets/css/button_lib.css';
 @import '../../assets/css/order_lib.css';
+@import '../../assets/css/button_lib.css';
+h3 {
+  margin-top: 0;
+}
+img {
+  cursor: pointer;
+}
+.test {
+  width: 300px;
+}
+.border {
+  padding: .25rem 1rem;
+  border: 1px solid #999;
+  cursor: pointer;
+}
 .modal_mask {
   display: flex;
   justify-content: center;
@@ -84,17 +98,16 @@ export default {
   transition: opacity .3s ease;
 }
 .modal_container {
-  width: 500px;
+  width: 400px;
   margin: 0px auto;
-  padding: 20px 30px;
+  padding: 2rem;
   background-color: #fff;
   border-radius: 5px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, .33);
   transition: all .3s ease;
 }
-.modal_header h3 {
-  margin-top: 0;
-  color: #42b983;
+.modal_header {
+  border-bottom: 1px solid #dcdcdc;
 }
 .modal_body {
   margin: 20px 0;

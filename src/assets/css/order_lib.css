@@ -1,10 +1,7 @@
 h1 {
   margin: 0;
 }
-input {
-  padding: 7px 10px;
-  font-size: 100%;
-}
+
 #order {
   display: flex;
   flex-direction: row;
@@ -22,7 +19,7 @@ input {
 section {
   box-sizing: border-box;
   width: 210px;
-  padding-top: 3.5rem;
+  padding-top: 3rem;
   padding-left: 55px;
   text-align: left;
   color: #fff;
@@ -50,7 +47,7 @@ main {
 .form {
   position: relative;
   box-sizing: border-box;
-  width: 80%;
+  width: 90%;
   min-height: 60vh;
   padding: 3rem;
 }
@@ -74,36 +71,4 @@ td {
 /* for display add item */
 .clip {
   display: inline-block;
-}
-
-/* for input/select style */
-select.item {
-  width: 100px;
-  padding: .25rem;
-  font-size: 1rem;
-  border-radius: 0;
-  background: #fff;
-  background-image: url(../../assets/images/arrow-down.png);
-  background-size: 18px 18px;
-  background-repeat: no-repeat;
-  background-position: 69px;
-  -webkit-appearance: none;
-  outline: none
-}
-select.location {
-  width: 150px;
-  padding: .25rem;
-  font-size: 1rem;
-  border-radius: 0;
-  background: #fff;
-  background-image: url(../../assets/images/arrow-down.png);
-  background-size: 18px 18px;
-  background-repeat: no-repeat;
-  background-position: 120px;
-  -webkit-appearance: none;
-  outline: none
-}
-input.quantity {
-  width: 50px;
-  height: 13px;
 }
