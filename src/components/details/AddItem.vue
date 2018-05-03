@@ -34,9 +34,9 @@
           </td>
           <!-- image -->
           <td>
+            <img class="image" :src="addedItem.image">
             <button @click="select=true">Select Image</button>
             <selectImage v-if="select" @close="select=false" @select="addedItem.image = $event"></selectImage>
-            <img class="image" :src="addedItem.image">
           </td>
           <!-- button -->
           <td>
@@ -114,8 +114,7 @@ export default {
       this.items = data
     },
     addItem () {
-      if (this.files.length > 0) {
-        this.addedItem.image = this.files[0].name
+      if (this.addedItem.image.length > 0) {
         this.orderPicked.items.push(this.addedItem)
         this.fileCheck = true
         // back to default values
@@ -125,7 +124,6 @@ export default {
           'image': '',
           'quantity': 1
         }
-        this.files.splice(0, 1)
       } else {
         this.fileCheck = false
       }
