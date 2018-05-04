@@ -71,9 +71,7 @@ export default {
 @import '../../assets/css/order_lib.css';
 @import '../../assets/css/button_lib.css';
 @import '../../assets/css/modal_lib.css';
-h3 {
-  margin-top: 0;
-}
+
 img {
   cursor: pointer;
 }

@@ -97,6 +97,7 @@
               <button @click="remove=true">Delete</button>
               <deleteItem
                 v-if="remove"
+                @cancel="remove = false"
                 @remove="removeItem(index)"
                 :data="index">
               </deleteItem>

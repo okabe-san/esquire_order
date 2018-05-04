@@ -8,12 +8,22 @@
         </div>
 
         <div class="modal_body">
-          {{index}}
+          <p style="margin-top:0">
+            <span style="color:#ff19d8">*</span>
+            Are you sure delete this item?
+          </p>
+          {{orderPicked.items[index].item}} -
+          {{orderPicked.items[index].location}} -
+          {{orderPicked.items[index].quantity}} -
+          <img class="image" :src="orderPicked.items[index].image">
         </div>
 
-        <div class="modal-footer">
+        <div class="modal_footer">
+          <button style="float:left" @click="$emit('cancel')">
+            CANCEL
+          </button>
           <button style="float:right" @click="$emit('remove')">
-            CLOSE
+            DELETE
           </button>
         </div>
       </div>
@@ -30,6 +40,11 @@ export default {
     }
   },
   computed: {
+    orderPicked: {
+      get () {
+        return this.$store.state.order_picked
+      }
+    }
   }
 }
 </script>
@@ -38,7 +53,4 @@ export default {
 @import '../../assets/css/order_lib.css';
 @import '../../assets/css/button_lib.css';
 @import '../../assets/css/modal_lib.css';
-h3 {
-  margin-top: 0;
-}
 </style>

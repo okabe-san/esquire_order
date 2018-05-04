@@ -1,3 +1,6 @@
+h3 {
+  margin-top: 0;
+}
 .modal_mask {
   display: flex;
   justify-content: center;
@@ -14,9 +17,9 @@
 
 /* small */
 .modal_container_small {
-  width: 200px;
-  margin: 0px auto;
-  padding: 2rem;
+  width: 350px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
   background-color: #fff;
   border-radius: 5px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, .33);
@@ -25,9 +28,9 @@
 
 /* big */
 .modal_container {
-  width: 400px;
-  margin: 0px auto;
-  padding: 2rem;
+  width: 450px;
+  margin: 0 auto;
+  padding: 2rem 2rem;
   background-color: #fff;
   border-radius: 5px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, .33);
@@ -39,7 +42,10 @@
   border-bottom: 1px solid #dcdcdc;
 }
 .modal_body {
-  margin: 20px 0;
+  padding: 2rem 0;
+}
+.modal_footer {
+  padding-top: 2rem;
 }
 .modal_enter {
   opacity: 0;
