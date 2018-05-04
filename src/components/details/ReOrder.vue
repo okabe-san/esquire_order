@@ -99,7 +99,7 @@
                 @click="updateItem(index)">
                 Update
               </button>
-              <button @click="removeModal(index)">Delete</button>
+              <button @click="removeModal()">Delete</button>
               <deleteItem
                 v-if="remove"
                 @cancel="remove = false"
@@ -196,6 +196,7 @@ export default {
     this.item()
   },
   watch: {
+    // clear removeMessage
     add: function () {
       this.removeMessage = ''
     }
@@ -331,8 +332,8 @@ export default {
       this.orderPicked.items[index] = this.editOrder
       this.edit = !this.edit
     },
-    removeModal (index) {
-      if (index === 0) {
+    removeModal () {
+      if (this.orderPicked.items.length === 1) {
         this.removeMessage = 'Not able to delete the last item in the order.'
       } else {
         this.remove = true
