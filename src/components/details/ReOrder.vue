@@ -95,7 +95,7 @@
               <button class="edit" @click="editItem(index, detail)">Edit</button>
               <button class="update" v-if="edit && index === indexNum" @click="updateItem(index)">Update</button>
               <button @click="remove=true">Delete</button>
-              <deleteItem v-if="remove" @close="remove=false"></deleteItem>
+              <deleteItem v-if="remove" @close="remove=false" :data="index"></deleteItem>
             </td>
 
           </tr>

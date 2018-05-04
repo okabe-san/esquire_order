@@ -8,6 +8,7 @@
         </div>
 
         <div class="modal_body">
+          {{index}}
         </div>
 
         <div class="modal-footer">
@@ -22,6 +23,12 @@
 
 <script>
 export default {
+  props: ['data'],
+  data () {
+    return {
+      index: this.data
+    }
+  },
   computed: {
   }
 }
