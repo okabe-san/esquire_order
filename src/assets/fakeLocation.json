@@ -1,0 +1,18 @@
+{"locationCap": [
+  "Front Center",
+  "Front Left",
+  "Front Right",
+  "Left",
+  "Right",
+  "Back Center"
+],
+"locationShirt": [
+  "Left Chest",
+  "Right Chest",
+  "Left Bottom",
+  "Right Bottom",
+  "Upper Left Sleeves",
+  "Upper right Sleeves",
+  "Left Wrist",
+  "Right Wrist"
+]}

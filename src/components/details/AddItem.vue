@@ -50,6 +50,7 @@
 
 <script>
 import selectImage from './SelectImage.vue'
+import locations from '../../assets/fakeLocation.json'
 
 export default {
   components: {
@@ -66,24 +67,8 @@ export default {
         quantity: 1
       },
       items: [],
-      locationCap: [
-        'Front Center',
-        'Front Left',
-        'Front Right',
-        'Left',
-        'Right',
-        'Back Center'
-      ],
-      locationShirt: [
-        'Left Chest',
-        'Right Chest',
-        'Left Bottom',
-        'Right Bottom',
-        'Upper Left Sleeves',
-        'Upper right Sleeves',
-        'Left Wrist',
-        'Right Wrist'
-      ]
+      locationCap: locations.locationCap,
+      locationShirt: locations.locationShirt
     }
   },
   created () {
