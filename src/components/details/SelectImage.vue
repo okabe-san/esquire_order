@@ -70,14 +70,10 @@ export default {
 <style scoped>
 @import '../../assets/css/order_lib.css';
 @import '../../assets/css/button_lib.css';
-h3 {
-  margin-top: 0;
-}
+@import '../../assets/css/modal_lib.css';
+
 img {
   cursor: pointer;
-}
-.test {
-  width: 300px;
 }
 .border {
   color: #fff;
@@ -85,44 +81,4 @@ img {
   padding: .25rem 1rem;
   cursor: pointer;
 }
-.modal_mask {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: fixed;
-  z-index: 9998;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, .5);
-  transition: opacity .3s ease;
-}
-.modal_container {
-  width: 400px;
-  margin: 0px auto;
-  padding: 2rem;
-  background-color: #fff;
-  border-radius: 5px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, .33);
-  transition: all .3s ease;
-}
-.modal_header {
-  border-bottom: 1px solid #dcdcdc;
-}
-.modal_body {
-  margin: 20px 0;
-}
-.modal_enter {
-  opacity: 0;
-}
-.modal_leave_active {
-  opacity: 0;
-}
-.modal_enter .modal_container,
-.modal_leave_active .modal_container {
-  -webkit-transform: scale(1.1);
-  transform: scale(1.1);
-}
-
 </style>

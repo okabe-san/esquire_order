@@ -10,7 +10,7 @@
       <button @click="search">
         <span class="button">
           <i class="material-icons">search</i>
-          Search Orders
+          Search Order
         </span>
       </button>
     </div>
@@ -80,8 +80,8 @@
               <img class="image" :src="detail.image">
             </td>
 
-            <!-- stich -->
-            <td class="po_stich">
+            <!-- stitch -->
+            <td class="po_stitch">
 
             </td>
 
@@ -93,13 +93,30 @@
             <!-- for edit item buttons -->
             <td class="order_buttons">
               <button class="edit" @click="editItem(index, detail)">Edit</button>
-              <button class="update" v-if="edit && index === indexNum" @click="updateItem(index)">Update</button>
-              <button @click="removeItem(index)">Delete</button>
+              <button
+                class="update"
+                v-if="edit && index === indexNum"
+                @click="updateItem(index)">
+                Update
+              </button>
+              <button @click="removeModal()">Delete</button>
+              <deleteItem
+                v-if="remove"
+                @cancel="remove = false"
+                @remove="removeItem(index)"
+                :data="index">
+              </deleteItem>
             </td>
 
           </tr>
         </tbody>
       </table>
+      <div v-if="removeMessage.length > 0">
+        <p>
+          <span style="color:#ff19d8">*</span>
+          {{removeMessage}}
+        </p>
+      </div>
 
       <!-- add item  -->
       <div v-if="orderPicked" style="margin-top:2rem">
@@ -117,10 +134,12 @@
 </template>
 
 <script>
+import deleteItem from './deleteItem.vue'
 import addItem from './AddItem.vue'
 
 export default {
   components: {
+    deleteItem,
     addItem
   },
   data () {
@@ -141,6 +160,9 @@ export default {
         quantity: 0
       },
       fileCheck: true,
+      // for delete item
+      remove: false,
+      removeMessage: '',
       // for adding item
       add: false,
       addedItem: {
@@ -172,6 +194,12 @@ export default {
   },
   created () {
     this.item()
+  },
+  watch: {
+    // clear removeMessage
+    add: function () {
+      this.removeMessage = ''
+    }
   },
   computed: {
     orderPicked: {
@@ -295,16 +323,26 @@ export default {
     //   this.$refs.vc.removeFile(file)
     // },
     editItem (index, detail) {
+      this.removeMessage = ''
       this.edit = !this.edit
       this.indexNum = index
       this.editOrder = detail
     },
     updateItem (index) {
+      this.removeMessage = ''
       this.orderPicked.items[index] = this.editOrder
       this.edit = !this.edit
     },
+    removeModal () {
+      if (this.orderPicked.items.length === 1) {
+        this.removeMessage = 'Not able to delete the last item in the order.'
+      } else {
+        this.remove = true
+      }
+    },
     removeItem (index) {
       this.orderPicked.items.splice(index, 1)
+      this.remove = false
     }
   }
 }
