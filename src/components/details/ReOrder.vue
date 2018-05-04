@@ -95,7 +95,11 @@
               <button class="edit" @click="editItem(index, detail)">Edit</button>
               <button class="update" v-if="edit && index === indexNum" @click="updateItem(index)">Update</button>
               <button @click="remove=true">Delete</button>
-              <deleteItem v-if="remove" @close="remove=false" :data="index"></deleteItem>
+              <deleteItem
+                v-if="remove"
+                @remove="removeItem(index)"
+                :data="index">
+              </deleteItem>
             </td>
 
           </tr>
@@ -309,8 +313,8 @@ export default {
       this.edit = !this.edit
     },
     removeItem (index) {
-      console.log(this.orderPicked)
       this.orderPicked.items.splice(index, 1)
+      this.remove = false
     }
   }
 }

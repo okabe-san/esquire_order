@@ -12,7 +12,7 @@
         </div>
 
         <div class="modal-footer">
-          <button style="float:right" @click="$emit('close')">
+          <button style="float:right" @click="$emit('remove')">
             CLOSE
           </button>
         </div>
