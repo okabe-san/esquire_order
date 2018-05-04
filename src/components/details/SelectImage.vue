@@ -8,9 +8,9 @@
         </div>
 
         <div class="modal_body">
-          <div v-for="(detail, index) in orderPicked.items" :key="index">
-            <div @click="$emit('select', detail.image)">
-              <img @click="isActive=!isActive" class="image" :src="detail.image">
+          <div v-for="(image, index) in images" :key="index">
+            <div @click="$emit('select', image)">
+              <img @click="isActive=!isActive" class="image" :src="image">
             </div>
           </div>
           <vue-clip class="clip" v-if="files.length === 0" ref="vc" :options="options" :on-added-file="fileAdded">
@@ -42,12 +42,16 @@
 export default {
   data () {
     return {
+      images: [],
       options: {
         url: '/details',
         maxFiles: 1
       },
       files: []
     }
+  },
+  created () {
+    this.getImages()
   },
   computed: {
     orderPicked: {
@@ -57,6 +61,25 @@ export default {
     }
   },
   methods: {
+    async getImages () {
+      // FIXME: use query to get images
+      let data = [
+        require(`@/assets/images/logos/2in house canary.jpg`),
+        require(`@/assets/images/logos/ACV Auctions.jpg`),
+        require(`@/assets/images/logos/ACV Auctions2.jpg`),
+        require(`@/assets/images/logos/B_Corp.jpg`),
+        require(`@/assets/images/logos/B_Corp2.jpg`),
+        require(`@/assets/images/logos/Earned It.jpg`),
+        require(`@/assets/images/logos/Earned It2.jpg`),
+        require(`@/assets/images/logos/island Institute.jpg`),
+        require(`@/assets/images/logos/LinkedIn Franklin.jpg`),
+        require(`@/assets/images/logos/townsend.jpg`),
+        require(`@/assets/images/logos/townsend2.jpg`),
+        require(`@/assets/images/logos/townsend3.jpg`),
+        require(`@/assets/images/logos/triple ring.jpg`)
+      ]
+      this.images = data
+    },
     fileAdded (file) {
       this.files.push(file)
     },

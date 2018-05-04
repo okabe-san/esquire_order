@@ -220,14 +220,14 @@ export default {
             [{
               'item': 'Cap',
               'location': 'Front Center',
-              'image': require(`@/assets/images/townsend.jpg`),
+              'image': require(`@/assets/images/logos/townsend.jpg`),
               'quantity': 10
             },
             {
               'item': 'Tops',
               'location': 'Front Chest',
               'quantity': 20,
-              'image': require(`@/assets/images/townsend2.jpg`)
+              'image': require(`@/assets/images/logos/townsend2.jpg`)
             }]
           },
           { 'po': '10020',
@@ -235,7 +235,7 @@ export default {
             [{
               'item': 'Cap',
               'location': 'Front Center',
-              'image': require(`@/assets/images/Earned it.jpg`),
+              'image': require(`@/assets/images/logos/Earned it.jpg`),
               'quantity': 30
             }]
           },
@@ -244,7 +244,7 @@ export default {
             [{
               'item': 'Cap',
               'location': 'Front Center',
-              'image': require(`@/assets/images/Earned it2.jpg`),
+              'image': require(`@/assets/images/logos/Earned it2.jpg`),
               'quantity': 30
             }]
           }
@@ -256,14 +256,14 @@ export default {
             [{
               'item': 'Cap',
               'location': 'Front Center',
-              'image': require(`@/assets/images/ACV Auctions.jpg`),
+              'image': require(`@/assets/images/logos/ACV Auctions.jpg`),
               'quantity': 10
             },
             {
               'item': 'Tops',
               'location': 'Front Chest',
               'quantity': 20,
-              'image': require(`@/assets/images/ACV Auctions2.jpg`)
+              'image': require(`@/assets/images/logos/ACV Auctions2.jpg`)
             }]
           },
           { 'po': '20020',
@@ -271,7 +271,7 @@ export default {
             [{
               'item': 'Cap',
               'location': 'Front Center',
-              'image': require(`@/assets/images/LinkedIn Franklin.jpg`),
+              'image': require(`@/assets/images/logos/LinkedIn Franklin.jpg`),
               'quantity': 30
             }]
           },
@@ -280,7 +280,7 @@ export default {
             [{
               'item': 'Cap',
               'location': 'Front Center',
-              'image': require(`@/assets/images/triple ring.jpg`),
+              'image': require(`@/assets/images/logos/triple ring.jpg`),
               'quantity': 30
             }]
           }
