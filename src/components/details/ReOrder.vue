@@ -329,6 +329,7 @@ export default {
       this.editOrder = detail
     },
     updateItem (index) {
+      this.removeMessage = ''
       this.orderPicked.items[index] = this.editOrder
       this.edit = !this.edit
     },

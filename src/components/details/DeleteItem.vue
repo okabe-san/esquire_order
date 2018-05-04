@@ -1,7 +1,7 @@
 <template>
   <transition name="modal">
     <div class="modal_mask">
-      <div class="modal_container_small">
+      <div class="modal_container">
 
         <div class="modal_header">
           <h3>DELETE ITEM</h3>
@@ -12,10 +12,28 @@
             <span style="color:#ff19d8">*</span>
             Are you sure delete this item?
           </p>
-          {{orderPicked.items[index].item}} -
-          {{orderPicked.items[index].location}} -
-          {{orderPicked.items[index].quantity}} -
-          <img class="image" :src="orderPicked.items[index].image">
+          <table style="width:100%">
+            <thead>
+              <tr>
+                <th>Item</th>
+                <th>Location</th>
+                <th>Quantity</th>
+                <th>Logo</th>
+                <th>Stitch</th>
+                <th>File Name</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>{{orderPicked.items[index].item}}</td>
+                <td>{{orderPicked.items[index].location}}</td>
+                <td>{{orderPicked.items[index].quantity}}</td>
+                <td><img class="image" :src="orderPicked.items[index].image"></td>
+                <td></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
         </div>
 
         <div class="modal_footer">
