@@ -94,7 +94,8 @@
             <td class="order_buttons">
               <button class="edit" @click="editItem(index, detail)">Edit</button>
               <button class="update" v-if="edit && index === indexNum" @click="updateItem(index)">Update</button>
-              <button @click="removeItem(index)">Delete</button>
+              <button @click="remove=true">Delete</button>
+              <deleteItem v-if="remove" @close="remove=false"></deleteItem>
             </td>
 
           </tr>
@@ -117,10 +118,12 @@
 </template>
 
 <script>
+import deleteItem from './deleteItem.vue'
 import addItem from './AddItem.vue'
 
 export default {
   components: {
+    deleteItem,
     addItem
   },
   data () {
@@ -141,6 +144,8 @@ export default {
         quantity: 0
       },
       fileCheck: true,
+      // for delete item
+      remove: false,
       // for adding item
       add: false,
       addedItem: {
@@ -304,6 +309,7 @@ export default {
       this.edit = !this.edit
     },
     removeItem (index) {
+      console.log(this.orderPicked)
       this.orderPicked.items.splice(index, 1)
     }
   }
