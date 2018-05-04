@@ -8,9 +8,9 @@
         </div>
 
         <div class="modal_body">
-          <div v-for="(image, index) in images" :key="index">
-            <div @click="$emit('select', image)">
-              <img @click="isActive=!isActive" class="image" :src="image">
+          <div v-for="(detail, index) in images" :key="index">
+            <div @click="$emit('select', detail.image)">
+              <img @click="isActive=!isActive" class="image" :src="detail.image">
             </div>
           </div>
           <vue-clip class="clip" v-if="files.length === 0" ref="vc" :options="options" :on-added-file="fileAdded">
@@ -64,19 +64,32 @@ export default {
     async getImages () {
       // FIXME: use query to get images
       let data = [
-        require(`@/assets/images/logos/2in house canary.jpg`),
-        require(`@/assets/images/logos/ACV Auctions.jpg`),
-        require(`@/assets/images/logos/ACV Auctions2.jpg`),
-        require(`@/assets/images/logos/B_Corp.jpg`),
-        require(`@/assets/images/logos/B_Corp2.jpg`),
-        require(`@/assets/images/logos/Earned It.jpg`),
-        require(`@/assets/images/logos/Earned It2.jpg`),
-        require(`@/assets/images/logos/island Institute.jpg`),
-        require(`@/assets/images/logos/LinkedIn Franklin.jpg`),
-        require(`@/assets/images/logos/townsend.jpg`),
-        require(`@/assets/images/logos/townsend2.jpg`),
-        require(`@/assets/images/logos/townsend3.jpg`),
-        require(`@/assets/images/logos/triple ring.jpg`)
+        {image: require(`@/assets/images/logos/2in house canary.jpg`),
+          name: '2in house canary'},
+        {image: require(`@/assets/images/logos/ACV Auctions.jpg`),
+          name: 'ACV Auctions'},
+        {image: require(`@/assets/images/logos/ACV Auctions2.jpg`),
+          name: 'ACV Auctions2'},
+        {image: require(`@/assets/images/logos/B_Corp.jpg`),
+          name: 'B_Corp'},
+        {image: require(`@/assets/images/logos/B_Corp2.jpg`),
+          name: 'B_Corp2'},
+        {image: require(`@/assets/images/logos/Earned It.jpg`),
+          name: 'Earned It'},
+        {image: require(`@/assets/images/logos/Earned It2.jpg`),
+          name: 'Earned It2'},
+        {image: require(`@/assets/images/logos/island Institute.jpg`),
+          name: 'island Institute'},
+        {image: require(`@/assets/images/logos/LinkedIn Franklin.jpg`),
+          name: 'LinkedIn Franklin'},
+        {image: require(`@/assets/images/logos/townsend.jpg`),
+          name: 'townsend'},
+        {image: require(`@/assets/images/logos/townsend2.jpg`),
+          name: 'townsend2'},
+        {image: require(`@/assets/images/logos/townsend3.jpg`),
+          name: 'townsend3'},
+        {image: require(`@/assets/images/logos/triple ring.jpg`),
+          name: 'triple ring'}
       ]
       this.images = data
     },
