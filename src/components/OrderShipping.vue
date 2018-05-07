@@ -1,94 +1,125 @@
 <template>
-  <div>
+  <div id="order">
     <section>
-      <h3 class="step">Step 1</h3>
-      <h3 class="step">Step 2</h3>
+      <h3>Step 1</h3>
+      <i class="material-icons step">keyboard_arrow_down</i>
+      <h2 class="step">
+        Step 2<br />
+        <small>Shipping</small>
+      </h2>
+      <i class="material-icons step">keyboard_arrow_down</i>
       <h3>Step 3</h3>
+      <i class="material-icons step">keyboard_arrow_down</i>
       <h3>Review</h3>
     </section>
+
     <main>
-      <h1>Garment and Shipping info</h1>
+      <div class="form_wrapper">
+        <div class="form">
+          <h2>Shipping Info</h2>
+          <div class="display">
+            <!-- type rep name -->
+            <h3>Representative</h3>
+            <input type="text" v-model="rep"><br />
 
-      Company Name: Test<br />
-      <!-- type rep name -->
-      Representative Name:
-      <input type="text" v-model="rep"><br />
+            <!-- show shipping details -->
+            <!-- Need split shipping? Then, please write shipping details. -->
+            <h3>Shipping Address(es)</h3>
+            <table style="width:100%">
+              <thead>
+                <tr>
+                  <th>Method</th>
+                  <th>Address</th>
+                  <th>Detail</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="(detail, index) in shipping" :key="index">
 
-      <!-- garments list -->
-      Where the garments from?
-      <ul>
-        <li v-for="garment in garments" :key="garment">
-          <input type="radio" v-model="garmentChecked" :value="garment">
-            {{garment}}
-        </li>
-      </ul>
+                  <!-- method -->
+                  <td v-if="edit && index === indexNum">
+                    <select class="item" v-model="editShipping.method">
+                      <option v-for="(method, index) in methods" :value="method" :key="index">
+                         {{method}}
+                      </option>
+                    </select>
+                  </td>
+                  <td v-else>{{detail.method}}</td>
 
-      <!-- show shipping details -->
-      Need split shipping? Then, please write shipping details.
-      <div v-for="(detail, index) in shipping" :key="index">
+                  <!-- address -->
+                  <td v-if="edit && index === indexNum">
+                    <textarea cols="40" rows="3" v-model="editShipping.address">
+                    </textarea>
+                  </td>
+                  <td v-else>{{detail.address}}</td>
 
-        <!-- edit shipping -->
-        <span v-if="edit && index === indexNum">
+                    <!-- detail -->
+                  <td v-if="edit && index === indexNum">
+                    <textarea cols="40" rows="3" v-model="editShipping.detail">
+                    </textarea>
+                  </td>
+                  <td v-else>{{detail.detail || 'No Shipping Detail'}}</td>
 
-          <!-- address -->
-          <input type="text" v-model="editShipping.address">
+                  <td>
+                    <button class="edit" @click="editAddress(index, detail)">Edit</button>
+                    <button
+                      class="update"
+                      v-if="edit && index === indexNum" @click="updateAddress(index)">Update</button>
+                    <button @click="removeAddress(index)">Delete</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
 
-          <!-- shipping method -->
-          <select v-model="editShipping.method">
-            <option v-for="(method, index) in methods" :value="method" :key="index">
-               {{method}}
-            </option>
-          </select>
+          <!-- add shipping -->
+          <h3>Add Shipping Address</h3>
+          <div class="shipping_wrapper">
 
-          <!-- detail -->
-          Detail:
-          <input type="text" v-model="editShipping.detail">
-        </span>
+            <!-- shipping method -->
+            <span class="shipping_method">
+              <label>Method:</label>
+              <select class="item" v-model="addedAddress.method">
+                <option v-for="(method, index) in methods" :value="method" :key="index">
+                   {{method}}
+                </option>
+              </select>
+            </span>
 
-        <span v-else>
-          Address: {{detail.address}} <br />
-          Method: {{detail.method}} <br />
-          Detail: {{detail.detail || 'No Shipping Detail'}} <br />
-        </span>
+            <!-- address -->
+            <span class="shipping_address">
+              <label>Address:</label>
+              <textarea cols="40" rows="3" v-model="addedAddress.address">
+              </textarea>
+            </span>
 
-        <button @click="editAddress(index, detail)">Edit</button>
-        <button v-if="edit && index === indexNum" @click="updateAddress(index)">Update</button>
-        <button @click="removeAddress(index)">Delete</button>
+            <!-- detail -->
+            <span class="shipping_detail">
+              <label>Detail:</label>
+              <textarea cols="40" rows="3" v-model="addedAddress.detail">
+              </textarea>
+            </span>
+
+            <button class="add" @click="addAddress">Add</button>
+            <p v-if="!addressCheck">Please put Address</p>
+          </div>
+
+          <!-- error message -->
+          <div>
+            {{messageRep}}
+            {{messageShipping}}
+          </div>
+
+          <!-- nav buttons -->
+          <div class="action">
+            <button class="back" @click="back">Back</button>
+            <button class="next" @click="next">Next</button>
+          </div>
+        </div>
       </div>
-
-      <!-- add shipping -->
-      <div>
-
-        <!-- address -->
-        Address:
-        <input type="text" v-model="addedAddress.address">
-
-        <!-- shipping method -->
-        <select v-model="addedAddress.method">
-          <option v-for="(method, index) in methods" :value="method" :key="index">
-             {{method}}
-          </option>
-        </select>
-
-        <!-- detail -->
-        Detail:
-        <input type="text" v-model="addedAddress.detail">
-
-        <button @click="addAddress">Add</button>
-        <p v-if="!addressCheck">Please put Address</p>
-      </div>
-
-      <!-- error message -->
-      <div>
-        {{messageRep}}
-        {{messageGarment}}
-        {{messageShipping}}
-      </div>
-
-      <!-- nav buttons -->
-      <button @click="back">Back</button>
-      <button @click="next">Next</button>
     </main>
+
   </div>
 </template>
 
@@ -113,12 +144,10 @@ export default {
       },
       addressCheck: true,
       messageRep: '',
-      messageGarment: '',
       messageShipping: ''
     }
   },
   created () {
-    this.loadGarments()
     this.loadMethod()
   },
   computed: {
@@ -128,14 +157,6 @@ export default {
       },
       set (value) {
         this.$store.dispatch('updateRep', value)
-      }
-    },
-    garmentChecked: {
-      get () {
-        return this.$store.state.garment
-      },
-      set (value) {
-        this.$store.dispatch('updateGarment', value)
       }
     },
     shipping: {
@@ -153,11 +174,6 @@ export default {
         this.messageRep = ''
       }
     },
-    garmentChecked () {
-      if (this.$store.state.garment.length > 0) {
-        this.messageGarment = ''
-      }
-    },
     shipping () {
       // check address detail is not empty
       let detail = this.$store.state.shipping.every(add => add.detail)
@@ -171,13 +187,6 @@ export default {
     }
   },
   methods: {
-    async loadGarments () {
-      // FIXME: use query to load garments
-      const data = [
-        'Sanmar', 'Alphabrorder', 'Other Apparel', 'Drop Off'
-      ]
-      this.garments = data
-    },
     async loadMethod () {
       // FIXME: use query to load shipping methods
       const data = [
@@ -246,22 +255,44 @@ export default {
 </script>
 
 <style scoped>
-main {
-  box-sizing: border-box;
-  float: right;
-  width: 80%;
+@import '../assets/css/order_lib.css';
+@import '../assets/css/button_lib.css';
+/* for steps */
+h2{
+  font-weight: 700;
+  margin: 0;
+}
+section > h3 {
+  color: rgba(255, 255, 255, 0.5);
+}
 
-  padding-right: 10%;
+/* for adding shipping address */
+.shipping_wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 0 15%;
 }
-section {
-  box-sizing: border-box;
-  float: left;
-  width: 20%;
+.shipping_address,
+.shipping_method,
+.shipping_detail
+{
+  width: 80%;
+  text-align: left;
+  margin: .5rem 0;
 }
-li {
-  list-style-type: none;
+label {
+  display: inline-block;
+  width: 80px;
 }
-.step {
-  color: orange;
+.add {
+  align-self: flex-end;
+  text-align: right;
+  height: 35px;
 }
+
+.action {
+  margin-top: 3rem;
+}
+
 </style>
