@@ -8,6 +8,12 @@
         </div>
 
         <div class="modal_body">
+          <button @click="search">
+            <span class="button">
+              <i class="material-icons">search</i>
+              Search Order
+            </span>
+          </button>
           <div v-for="(detail, index) in images" :key="index">
             <div @click="$emit('select', detail.image)">
               <img @click="isActive=!isActive" class="image" :src="detail.image">
@@ -43,6 +49,7 @@ export default {
   data () {
     return {
       images: [],
+      searchedImages: [],
       options: {
         url: '/details',
         maxFiles: 1
@@ -69,19 +76,19 @@ export default {
         {image: require(`@/assets/images/logos/ACV Auctions.jpg`),
           name: 'ACV Auctions'},
         {image: require(`@/assets/images/logos/ACV Auctions2.jpg`),
-          name: 'ACV Auctions2'},
+          name: 'ACVAuctions2'},
         {image: require(`@/assets/images/logos/B_Corp.jpg`),
           name: 'B_Corp'},
         {image: require(`@/assets/images/logos/B_Corp2.jpg`),
           name: 'B_Corp2'},
-        {image: require(`@/assets/images/logos/Earned It.jpg`),
-          name: 'Earned It'},
-        {image: require(`@/assets/images/logos/Earned It2.jpg`),
-          name: 'Earned It2'},
+        {image: require(`@/assets/images/logos/Earned it.jpg`),
+          name: 'EarnedIt'},
+        {image: require(`@/assets/images/logos/Earned it2.jpg`),
+          name: 'EarnedIt2'},
         {image: require(`@/assets/images/logos/island Institute.jpg`),
-          name: 'island Institute'},
+          name: 'islandInstitute'},
         {image: require(`@/assets/images/logos/LinkedIn Franklin.jpg`),
-          name: 'LinkedIn Franklin'},
+          name: 'LinkedInFranklin'},
         {image: require(`@/assets/images/logos/townsend.jpg`),
           name: 'townsend'},
         {image: require(`@/assets/images/logos/townsend2.jpg`),
