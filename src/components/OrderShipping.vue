@@ -21,7 +21,10 @@
             <!-- type rep name -->
             <h3>Representative</h3>
             <select class="rep" v-model="rep">
-              <option selected disabled :value="temp">Please selet rep name</option>
+              <option
+                selected
+                disabled
+                :value="rep">Selet representative name</option>
               <option v-for="(name, index) in reps" :value="name" :key="index">
                  {{name}}
               </option>
@@ -64,7 +67,7 @@
                     <textarea cols="40" rows="3" v-model="editShipping.detail">
                     </textarea>
                   </td>
-                  <td v-else>{{detail.detail || 'No Shipping Detail'}}</td>
+                  <td v-else>{{detail.detail || '-'}}</td>
 
                   <td>
                     <button class="edit" @click="editAddress(index, detail)">Edit</button>
@@ -107,14 +110,19 @@
             </span>
 
             <button class="add" @click="addAddress">Add</button>
-            <p v-if="!addressCheck">Please put Address</p>
+            <h4 v-if="!addressCheck">
+              <span class="required">*</span>
+              Please put Address
+            </h4>
           </div>
 
           <!-- error message -->
-          <div>
+          <h4 class="message">
+            <span v-if="messageRep" class="required">*</span>
             {{messageRep}}
+            <span v-if="messageShipping" class="required">*</span>
             {{messageShipping}}
-          </div>
+          </h4>
 
           <!-- nav buttons -->
           <div class="action">
@@ -238,17 +246,12 @@ export default {
 
       // check address detail is not empty
       let detail = store.shipping.every(add => add.detail)
-
       if (store.rep.length === 0 ||
-        store.garment.length === 0 ||
         store.shipping.length === 0 ||
         (store.shipping.length > 1 && !detail)) {
         // add error messages
         if (store.rep.length === 0) {
-          this.messageRep = 'Please add representative name.'
-        }
-        if (store.garment.length === 0) {
-          this.messageGarment = 'Please select garment.'
+          this.messageRep = 'Please select representative name.'
         }
         if (store.shipping.length === 0) {
           this.messageShipping = 'Please add shipping address.'
