@@ -49,7 +49,7 @@
             </span>
           </button>
           <button style="float:right" @click="$emit('close')">
-            <span @click="$emit('select', selectedImage.image)">
+            <span @click="$emit('select', selectedImage)">
               Add Image
             </span>
           </button>

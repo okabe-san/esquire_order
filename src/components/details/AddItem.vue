@@ -36,7 +36,13 @@
           <td class="table_image">
             <img v-if="addedItem.image" class="image" :src="addedItem.image">
             <button @click="select=true">Select Image</button>
-            <selectImage v-if="select" @close="select=false" @select="addedItem.image = $event"></selectImage>
+            <selectImage
+              v-if="select"
+              @close="select=false"
+              @select="addedItem.image = $event.image;
+                addedItem.stitch = $event.stitch;
+                addedItem.name = $event.name">
+            </selectImage>
           </td>
           <!-- button -->
           <td>
@@ -64,7 +70,9 @@ export default {
         'item': 'Cap',
         'location': 'Front Center',
         'image': '',
-        quantity: 1
+        'quantity': 1,
+        'stich': 0,
+        'name': ''
       },
       items: [],
       locationCap: locations.locationCap,
@@ -99,6 +107,7 @@ export default {
       this.items = data
     },
     addItem () {
+      console.log(this.addedItem)
       if (this.addedItem.image.length > 0) {
         this.orderPicked.items.push(this.addedItem)
         this.fileCheck = true
