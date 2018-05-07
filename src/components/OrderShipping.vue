@@ -21,6 +21,7 @@
             <!-- type rep name -->
             <h3>Representative</h3>
             <select class="rep" v-model="rep">
+              <option selected disabled :value="temp">Please selet rep name</option>
               <option v-for="(name, index) in reps" :value="name" :key="index">
                  {{name}}
               </option>
@@ -132,7 +133,7 @@ export default {
   name: 'Shipping',
   data () {
     return {
-      garments: [],
+      reps: [],
       methods: [],
       edit: false,
       indexNum: 0,
@@ -152,13 +153,11 @@ export default {
     }
   },
   created () {
+    this.loadRep()
     this.loadMethod()
   },
   computed: {
     rep: {
-      get () {
-        return this.$store.state.rep
-      },
       set (value) {
         this.$store.dispatch('updateRep', value)
       }
@@ -191,6 +190,13 @@ export default {
     }
   },
   methods: {
+    async loadRep () {
+      // FIXME: use query to load shipping methods
+      const data = [
+        'Jane Smith', 'Mike Tanaka', 'Coco Logan'
+      ]
+      this.reps = data
+    },
     async loadMethod () {
       // FIXME: use query to load shipping methods
       const data = [
