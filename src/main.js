@@ -4,10 +4,12 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import { store } from './store/store'
+import {ClientTable} from 'vue-tables-2'
 import VueClip from 'vue-clip'
 
 import './assets/css/main_lib.css'
 
+Vue.use(ClientTable)
 Vue.use(VueClip)
 
 Vue.config.productionTip = false

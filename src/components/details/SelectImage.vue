@@ -8,17 +8,17 @@
         </div>
 
         <div class="modal_body">
-          <button @click="search">
-            <span class="button">
-              <i class="material-icons">search</i>
-              Search Order
-            </span>
-          </button>
-          <div v-for="(detail, index) in images" :key="index">
+          <v-client-table :data="tableData" :columns="columns" :options="options">
+            <div slot="image" slot-scope="props">
+              <img :src="props.row.image">
+            </div>
+          </v-client-table>
+
+          <!-- <div v-for="(detail, index) in images" :key="index">
             <div @click="$emit('select', detail.image)">
               <img @click="isActive=!isActive" class="image" :src="detail.image">
             </div>
-          </div>
+          </div> -->
           <vue-clip class="clip" v-if="files.length === 0" ref="vc" :options="options" :on-added-file="fileAdded">
             <template slot="clip-uploader-action" slot-scope="props">
               <div class="uploader-action" :class="{dragging: props.dragging}">
@@ -39,6 +39,7 @@
             CLOSE
           </button>
         </div>
+
       </div>
     </div>
   </transition>
@@ -48,9 +49,14 @@
 export default {
   data () {
     return {
-      images: [],
+      columns: ['image'],
+      tableData: [],
       searchedImages: [],
       options: {
+        // for table data
+        sortable: ['name'],
+        filterable: ['name'],
+        // for image loader
         url: '/details',
         maxFiles: 1
       },
@@ -71,34 +77,47 @@ export default {
     async getImages () {
       // FIXME: use query to get images
       let data = [
-        {image: require(`@/assets/images/logos/2in house canary.jpg`),
+        {id: 1,
+          image: require(`@/assets/images/logos/2in house canary.jpg`),
           name: '2in house canary'},
-        {image: require(`@/assets/images/logos/ACV Auctions.jpg`),
+        {id: 2,
+          image: require(`@/assets/images/logos/ACV Auctions.jpg`),
           name: 'ACV Auctions'},
-        {image: require(`@/assets/images/logos/ACV Auctions2.jpg`),
+        {id: 3,
+          image: require(`@/assets/images/logos/ACV Auctions2.jpg`),
           name: 'ACVAuctions2'},
-        {image: require(`@/assets/images/logos/B_Corp.jpg`),
+        {id: 4,
+          image: require(`@/assets/images/logos/B_Corp.jpg`),
           name: 'B_Corp'},
-        {image: require(`@/assets/images/logos/B_Corp2.jpg`),
+        {id: 5,
+          image: require(`@/assets/images/logos/B_Corp2.jpg`),
           name: 'B_Corp2'},
-        {image: require(`@/assets/images/logos/Earned it.jpg`),
+        {id: 6,
+          image: require(`@/assets/images/logos/Earned it.jpg`),
           name: 'EarnedIt'},
-        {image: require(`@/assets/images/logos/Earned it2.jpg`),
+        {id: 7,
+          image: require(`@/assets/images/logos/Earned it2.jpg`),
           name: 'EarnedIt2'},
-        {image: require(`@/assets/images/logos/island Institute.jpg`),
+        {id: 8,
+          image: require(`@/assets/images/logos/island Institute.jpg`),
           name: 'islandInstitute'},
-        {image: require(`@/assets/images/logos/LinkedIn Franklin.jpg`),
+        {id: 9,
+          image: require(`@/assets/images/logos/LinkedIn Franklin.jpg`),
           name: 'LinkedInFranklin'},
-        {image: require(`@/assets/images/logos/townsend.jpg`),
+        {id: 10,
+          image: require(`@/assets/images/logos/townsend.jpg`),
           name: 'townsend'},
-        {image: require(`@/assets/images/logos/townsend2.jpg`),
+        {id: 11,
+          image: require(`@/assets/images/logos/townsend2.jpg`),
           name: 'townsend2'},
-        {image: require(`@/assets/images/logos/townsend3.jpg`),
+        {id: 12,
+          image: require(`@/assets/images/logos/townsend3.jpg`),
           name: 'townsend3'},
-        {image: require(`@/assets/images/logos/triple ring.jpg`),
+        {id: 13,
+          image: require(`@/assets/images/logos/triple ring.jpg`),
           name: 'triple ring'}
       ]
-      this.images = data
+      this.tableData = data
     },
     fileAdded (file) {
       this.files.push(file)
@@ -117,6 +136,9 @@ export default {
 
 img {
   cursor: pointer;
+  max-width: 100px;
+  max-height: 40px;
+  border: 1px solid #999;
 }
 .border {
   color: #fff;
