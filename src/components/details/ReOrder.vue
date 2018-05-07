@@ -32,7 +32,7 @@
     </div>
 
     <!-- show order details -->
-    <div class="order_detail" v-if="orderPicked">
+    <div class="display" v-if="orderPicked">
       <h3>PO Number: {{orderPicked.po}} - Order Detail</h3>
       <table style="width:100%">
         <thead>
@@ -384,13 +384,6 @@ export default {
 .po_number {
   text-align: left;
   width: 300px;
-}
-
-/* for display order */
-.order_detail {
-  padding: 0 2rem 2rem;
-  border-radius: 7px;
-  border: 1px solid #dccd;
 }
 
 </style>
