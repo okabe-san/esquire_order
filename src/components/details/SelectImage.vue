@@ -31,7 +31,6 @@
           </vue-clip>
           <div v-for="(file, index) in files" :key="index">
             {{file.name}}
-            <button @click="removeFile">Delete</button>
           </div>
 
           <div v-if="selectedImage.image">
@@ -66,6 +65,7 @@ export default {
     return {
       images: [],
       selectedImage: {},
+      // for vue clip
       options: {
         url: '/details',
         maxFiles: 1
@@ -87,9 +87,6 @@ export default {
     async getImages () {
       // FIXME: use query to get images
       let data = [
-        {image: require(`@/assets/images/logos/2in house canary.jpg`),
-          name: '2in house canary.jpg',
-          stitch: 3832},
         {image: require(`@/assets/images/logos/ACV Auctions.jpg`),
           name: 'ACV Auctions.jpg',
           stitch: 4815},
@@ -130,10 +127,10 @@ export default {
       this.images = data
     },
     fileAdded (file) {
-      this.files.push(file)
-    },
-    removeFile () {
-      this.files.splice(0, 1)
+      // FIXME: use query to get images
+      this.selectedImage = {image: require(`@/assets/images/logos/2in house canary.jpg`),
+        name: '2in house canary.jpg',
+        stitch: 3832}
     }
   }
 }
