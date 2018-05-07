@@ -5,20 +5,14 @@
 
         <div class="modal_header">
           <h3>SELECT IMAGE</h3>
-        </div>
-
-        <div class="modal_body">
-          <v-client-table :data="tableData" :columns="columns" :options="options">
-            <div slot="image" slot-scope="props">
-              <img :src="props.row.image">
+          <div class="image_wrapper">
+            <div v-for="(detail, index) in images" :key="index">
+              <div @click="$emit('select', detail.image)">
+                <img @click="isActive=!isActive" class="image" :src="detail.image">
+              </div>
             </div>
-          </v-client-table>
+          </div>
 
-          <!-- <div v-for="(detail, index) in images" :key="index">
-            <div @click="$emit('select', detail.image)">
-              <img @click="isActive=!isActive" class="image" :src="detail.image">
-            </div>
-          </div> -->
           <vue-clip class="clip" v-if="files.length === 0" ref="vc" :options="options" :on-added-file="fileAdded">
             <template slot="clip-uploader-action" slot-scope="props">
               <div class="uploader-action" :class="{dragging: props.dragging}">
@@ -49,14 +43,9 @@
 export default {
   data () {
     return {
-      columns: ['image'],
-      tableData: [],
+      images: [],
       searchedImages: [],
       options: {
-        // for table data
-        sortable: ['name'],
-        filterable: ['name'],
-        // for image loader
         url: '/details',
         maxFiles: 1
       },
@@ -117,7 +106,7 @@ export default {
           image: require(`@/assets/images/logos/triple ring.jpg`),
           name: 'triple ring'}
       ]
-      this.tableData = data
+      this.images = data
     },
     fileAdded (file) {
       this.files.push(file)
@@ -139,6 +128,10 @@ img {
   max-width: 100px;
   max-height: 40px;
   border: 1px solid #999;
+}
+.image_wrapper {
+  display: flex;
+  flex-wrap: wrap;
 }
 .border {
   color: #fff;
