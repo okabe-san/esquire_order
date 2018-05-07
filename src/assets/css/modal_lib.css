@@ -28,7 +28,8 @@ h3 {
 
 /* big */
 .modal_container {
-  width: 450px;
+  width: 650px;
+  max-height: 80vh;
   margin: 0 auto;
   padding: 2rem 2rem;
   background-color: #fff;
@@ -37,12 +38,12 @@ h3 {
   transition: all .3s ease;
 }
 
-
 .modal_header {
   border-bottom: 1px solid #dcdcdc;
 }
 .modal_body {
-  padding: 2rem 0;
+  padding: 2rem 0 1rem;
+  border-bottom: 1px solid #dcdcdc;
 }
 .modal_footer {
   padding-top: 2rem;

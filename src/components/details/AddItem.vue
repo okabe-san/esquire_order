@@ -36,7 +36,13 @@
           <td class="table_image">
             <img v-if="addedItem.image" class="image" :src="addedItem.image">
             <button @click="select=true">Select Image</button>
-            <selectImage v-if="select" @close="select=false" @select="addedItem.image = $event"></selectImage>
+            <selectImage
+              v-if="select"
+              @close="select=false"
+              @select="addedItem.image = $event.image;
+                addedItem.stitch = $event.stitch;
+                addedItem.name = $event.name">
+            </selectImage>
           </td>
           <!-- button -->
           <td>
@@ -50,6 +56,7 @@
 
 <script>
 import selectImage from './SelectImage.vue'
+import locations from '../../assets/fakeLocation.json'
 
 export default {
   components: {
@@ -63,27 +70,13 @@ export default {
         'item': 'Cap',
         'location': 'Front Center',
         'image': '',
-        quantity: 1
+        'quantity': 1,
+        'stich': 0,
+        'name': ''
       },
       items: [],
-      locationCap: [
-        'Front Center',
-        'Front Left',
-        'Front Right',
-        'Left',
-        'Right',
-        'Back Center'
-      ],
-      locationShirt: [
-        'Left Chest',
-        'Right Chest',
-        'Left Bottom',
-        'Right Bottom',
-        'Upper Left Sleeves',
-        'Upper right Sleeves',
-        'Left Wrist',
-        'Right Wrist'
-      ]
+      locationCap: locations.locationCap,
+      locationShirt: locations.locationShirt
     }
   },
   created () {
@@ -114,7 +107,14 @@ export default {
       this.items = data
     },
     addItem () {
+      // for new order - create initial orderPicked
+      if (!this.orderPicked) {
+        this.orderPicked = {}
+        this.orderPicked.items = []
+      }
+
       if (this.addedItem.image.length > 0) {
+        console.log(this.orderPicked)
         this.orderPicked.items.push(this.addedItem)
         this.fileCheck = true
         // back to default values

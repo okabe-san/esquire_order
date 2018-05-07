@@ -82,12 +82,12 @@
 
             <!-- stitch -->
             <td class="po_stitch">
-
+              {{detail.stitch}}
             </td>
 
             <!-- file name -->
             <td class="po_file">
-
+              {{detail.name}}
             </td>
 
             <!-- for edit item buttons -->
@@ -107,7 +107,6 @@
                 :data="index">
               </deleteItem>
             </td>
-
           </tr>
         </tbody>
       </table>
@@ -136,6 +135,7 @@
 <script>
 import deleteItem from './deleteItem.vue'
 import addItem from './AddItem.vue'
+import locations from '../../assets/fakeLocation.json'
 
 export default {
   components: {
@@ -172,24 +172,8 @@ export default {
         quantity: 1
       },
       items: [],
-      locationCap: [
-        'Front Center',
-        'Front Left',
-        'Front Right',
-        'Left',
-        'Right',
-        'Back Center'
-      ],
-      locationShirt: [
-        'Left Chest',
-        'Right Chest',
-        'Left Bottom',
-        'Right Bottom',
-        'Upper Left Sleeves',
-        'Upper right Sleeves',
-        'Left Wrist',
-        'Right Wrist'
-      ]
+      locationCap: locations.locationCap,
+      locationShirt: locations.locationShirt
     }
   },
   created () {
@@ -235,14 +219,18 @@ export default {
             [{
               'item': 'Cap',
               'location': 'Front Center',
-              'image': require(`@/assets/images/townsend.jpg`),
-              'quantity': 10
+              'image': require(`@/assets/images/logos/townsend.jpg`),
+              'quantity': 10,
+              'stitch': 3747,
+              'name': 'townsend.jpg'
             },
             {
               'item': 'Tops',
               'location': 'Front Chest',
               'quantity': 20,
-              'image': require(`@/assets/images/townsend2.jpg`)
+              'image': require(`@/assets/images/logos/townsend2.jpg`),
+              'stitch': 3747,
+              'name': 'townsend2.jpg'
             }]
           },
           { 'po': '10020',
@@ -250,8 +238,10 @@ export default {
             [{
               'item': 'Cap',
               'location': 'Front Center',
-              'image': require(`@/assets/images/Earned it.jpg`),
-              'quantity': 30
+              'image': require(`@/assets/images/logos/Earned it.jpg`),
+              'quantity': 30,
+              'stitch': 4698,
+              'name': 'Earned It.jpg'
             }]
           },
           { 'po': '100A100',
@@ -259,8 +249,10 @@ export default {
             [{
               'item': 'Cap',
               'location': 'Front Center',
-              'image': require(`@/assets/images/Earned it2.jpg`),
-              'quantity': 30
+              'image': require(`@/assets/images/logos/Earned it2.jpg`),
+              'quantity': 30,
+              'stitch': 4698,
+              'name': 'Earned It2.jpg'
             }]
           }
         ]
@@ -271,14 +263,18 @@ export default {
             [{
               'item': 'Cap',
               'location': 'Front Center',
-              'image': require(`@/assets/images/ACV Auctions.jpg`),
-              'quantity': 10
+              'image': require(`@/assets/images/logos/ACV Auctions.jpg`),
+              'quantity': 10,
+              'stitch': 4815,
+              'name': 'ACV Auctions.jpg'
             },
             {
               'item': 'Tops',
               'location': 'Front Chest',
+              'image': require(`@/assets/images/logos/ACV Auctions2.jpg`),
               'quantity': 20,
-              'image': require(`@/assets/images/ACV Auctions2.jpg`)
+              'stitch': 4815,
+              'name': 'ACV Auctions2.jpg'
             }]
           },
           { 'po': '20020',
@@ -286,8 +282,10 @@ export default {
             [{
               'item': 'Cap',
               'location': 'Front Center',
-              'image': require(`@/assets/images/LinkedIn Franklin.jpg`),
-              'quantity': 30
+              'image': require(`@/assets/images/logos/LinkedIn Franklin.jpg`),
+              'quantity': 30,
+              'stitch': 4059,
+              'name': 'LinkedIn Franklin.jpg'
             }]
           },
           { 'po': '200Z100',
@@ -295,8 +293,10 @@ export default {
             [{
               'item': 'Cap',
               'location': 'Front Center',
-              'image': require(`@/assets/images/triple ring.jpg`),
-              'quantity': 30
+              'image': require(`@/assets/images/logos/triple ring.jpg`),
+              'quantity': 30,
+              'stitch': 3764,
+              'name': 'triple ring.jpg'
             }]
           }
         ]

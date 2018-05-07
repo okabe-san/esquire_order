@@ -1,79 +1,119 @@
 <template>
   <div>
+
     <!-- show order details -->
-    <div v-for="(detail, index) in orderPicked.items" :key="index">
-      <!-- edit item -->
-      <span v-if="edit && index === indexNum">
-        <!-- item -->
-        <select v-model="editOrder.item">
-          <option v-for="(item, index) in items" :value="item" :key="index">
-            {{item}}
-          </option>
-        </select>
+    <div v-if="orderPicked" class="order_detail">
+      <h3>Order Detail</h3>
+      <table style="width:100%">
+        <thead>
+          <tr>
+            <th>Item</th>
+            <th>Location</th>
+            <th>Quantity</th>
+            <th>Logo</th>
+            <th>Stitch</th>
+            <th>File Name</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="(detail, index) in orderPicked.items" :key="index">
 
-        <!-- location -->
-        <select v-model="editOrder.location">
-          <option v-for="(location, index) in locationCap" :value="location" :key="index">
-            {{location}}
-          </option>
-        </select>
+            <!-- item -->
+            <td v-if="edit && index === indexNum">
+              <select class="item" v-model="editOrder.item">
+                <option v-for="(item, index) in items" :value="item" :key="index">
+                  {{item}}
+                </option>
+              </select>
+            </td>
+            <td v-else>{{detail.item}}</td>
 
-        <!-- quantity -->
-        <input type="number" v-model="editOrder.quantity">
-      </span>
+            <!-- location -->
+            <td v-if="edit && index === indexNum">
+              <select class="location" style="width:150px" v-model="editOrder.location">
+                <option v-for="(location, index) in locationCap" :value="location" :key="index">
+                  {{location}}
+                </option>
+              </select>
+            </td>
+            <td v-else>{{detail.location}}</td>
 
-      <span v-else>
-        {{detail.item}} / {{detail.location}} / {{detail.quantity}}
-      </span>
+            <!-- quantity -->
+            <td v-if="edit && index === indexNum">
+              <input class="quantity" type="number" min="1" v-model="editOrder.quantity">
+            </td>
+            <td v-else>{{detail.quantity}}</td>
 
-      <button @click="editItem(index, detail)">Edit</button>
-      <button v-if="edit && index === indexNum" @click="updateItem(index)">Update</button>
-      <button @click="removeItem(index)">Delete</button>
+            <!-- image -->
+            <td class="po_image">
+              <img class="image" :src="detail.image">
+            </td>
+
+            <!-- stitch -->
+            <td class="po_stitch">
+              {{detail.stitch}}
+            </td>
+
+            <!-- file name -->
+            <td class="po_file">
+              {{detail.name}}
+            </td>
+
+            <!-- for edit item buttons -->
+            <td class="order_buttons">
+              <button class="edit" @click="editItem(index, detail)">Edit</button>
+              <button
+                class="update"
+                v-if="edit && index === indexNum"
+                @click="updateItem(index)">
+                Update
+              </button>
+              <button @click="removeModal()">Delete</button>
+              <deleteItem
+                v-if="remove"
+                @cancel="remove = false"
+                @remove="removeItem(index)"
+                :data="index">
+              </deleteItem>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div v-if="removeMessage.length > 0">
+        <p>
+          <span style="color:#ff19d8">*</span>
+          {{removeMessage}}
+        </p>
+      </div>
     </div>
 
     <!-- add item  -->
-    <!-- item -->
-    <select v-model="addedItem.item">
-      <option v-for="(item, index) in items" :value="item" :key="index">
-        {{item}}
-      </option>
-    </select>
-    <!-- location -->
-    <select v-model="addedItem.location">
-      <option v-for="(location, index) in locationCap" :value="location" :key="index">
-        {{location}}
-      </option>
-    </select>
-    <!-- quantity -->
-    <input type="number" min="1" v-model="addedItem.quantity">
-    <!-- image -->
-    <vue-clip v-if="files.length === 0" ref="vc" :options="options" :on-added-file="fileAdded">
-      <template slot="clip-uploader-action" slot-scope="props">
-        <div class="uploader-action" :class="{dragging: props.dragging}">
-          <div class="dz-message">
-            Select file
-          </div>
-        </div>
-      </template>
-    </vue-clip>
-    <div v-for="(file, index) in files" :key="index">
-      {{file.name}}
-      <button @click="removeFile">Delete</button>
+    <div style="margin-top:2rem">
+      <addItem></addItem>
+      <p v-if="!fileCheck && files.length === 0">Please add file.</p>
     </div>
-    <p v-if="!fileCheck && files.length === 0">Please add file.</p>
-    <button @click="addItem">Add</button>
+
   </div>
 </template>
 
 <script>
+import addItem from './AddItem.vue'
+import locations from '../../assets/fakeLocation.json'
+
 export default {
+  components: {
+    addItem
+  },
   data () {
     return {
+      message: '',
       options: {
         url: '/details',
         maxFiles: 1
       },
       files: [],
+      orders: [],
       edit: false,
       indexNum: 0,
       editOrder: {
@@ -82,6 +122,9 @@ export default {
         quantity: 0
       },
       fileCheck: true,
+      // for delete item
+      remove: false,
+      removeMessage: '',
       // for adding item
       addedItem: {
         'item': 'Cap',
@@ -90,28 +133,18 @@ export default {
         quantity: 1
       },
       items: [],
-      locationCap: [
-        'Front Center',
-        'Front Left',
-        'Front Right',
-        'Left',
-        'Right',
-        'Back Center'
-      ],
-      locationShirt: [
-        'Left Chest',
-        'Right Chest',
-        'Left Bottom',
-        'Right Bottom',
-        'Upper Left Sleeves',
-        'Upper right Sleeves',
-        'Left Wrist',
-        'Right Wrist'
-      ]
+      locationCap: locations.locationCap,
+      locationShirt: locations.locationShirt
     }
   },
   created () {
     this.item()
+  },
+  watch: {
+    // clear removeMessage
+    add: function () {
+      this.removeMessage = ''
+    }
   },
   computed: {
     orderPicked: {
@@ -181,16 +214,13 @@ export default {
 </script>
 
 <style scoped>
-.uploader-action {
-  padding: 1rem;
-  background: lightgray;
-  cursor: pointer;
-  transition: background 200ms ease;
-}
-.uploader-action.dragging {
-  background: #effff6;
-}
-.uploader-action .dz-messge {
-  text-align: center;
+@import '../../assets/css/button_lib.css';
+@import '../../assets/css/order_lib.css';
+
+/* for display order */
+.order_detail {
+  padding: 0 2rem 2rem;
+  border-radius: 7px;
+  border: 1px solid #dccd;
 }
 </style>
