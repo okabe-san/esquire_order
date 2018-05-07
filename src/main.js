@@ -5,6 +5,7 @@ import App from './App'
 import router from './router'
 import { store } from './store/store'
 import {ClientTable} from 'vue-tables-2'
+import {Pagination} from 'vue-pagination-2'
 import VueClip from 'vue-clip'
 
 import './assets/css/main_lib.css'
@@ -19,6 +20,6 @@ new Vue({
   el: '#app',
   router,
   store,
-  components: { App },
+  components: { App, Pagination },
   template: '<App/>'
 })
