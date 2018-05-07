@@ -38,12 +38,12 @@ h3 {
   transition: all .3s ease;
 }
 
-
 .modal_header {
   border-bottom: 1px solid #dcdcdc;
 }
 .modal_body {
-  padding: 2rem 0;
+  padding: 2rem 0 1rem;
+  border-bottom: 1px solid #dcdcdc;
 }
 .modal_footer {
   padding-top: 2rem;

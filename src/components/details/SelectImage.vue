@@ -5,10 +5,17 @@
 
         <div class="modal_header">
           <h3>SELECT IMAGE</h3>
+        </div>
+
+        <div class="modal_body">
+          <div class="search">
+            <input type="text" placeholder="Image Search">
+            <button>Search</button>
+          </div>
           <div class="image_wrapper">
             <div v-for="(detail, index) in images" :key="index">
-              <div @click="$emit('select', detail.image)">
-                <img @click="isActive=!isActive" class="image" :src="detail.image">
+              <div @click="selectedImage=detail">
+                <img class="image" :src="detail.image">
               </div>
             </div>
           </div>
@@ -26,11 +33,25 @@
             {{file.name}}
             <button @click="removeFile">Delete</button>
           </div>
+
+          <div v-if="selectedImage.image">
+            <p>
+              Image: <b><u>'{{selectedImage.name}}'</u></b> was selected.
+            </p>
+          </div>
+
         </div>
 
-        <div class="modal-footer">
+        <div class="modal_footer">
+          <button style="float:left" @click="$emit('close')">
+            <span @click="$emit('select', '')">
+              Cancel
+            </span>
+          </button>
           <button style="float:right" @click="$emit('close')">
-            CLOSE
+            <span @click="$emit('select', selectedImage.image)">
+              Add Image
+            </span>
           </button>
         </div>
 
@@ -44,7 +65,7 @@ export default {
   data () {
     return {
       images: [],
-      searchedImages: [],
+      selectedImage: {},
       options: {
         url: '/details',
         maxFiles: 1
@@ -66,44 +87,31 @@ export default {
     async getImages () {
       // FIXME: use query to get images
       let data = [
-        {id: 1,
-          image: require(`@/assets/images/logos/2in house canary.jpg`),
+        {image: require(`@/assets/images/logos/2in house canary.jpg`),
           name: '2in house canary'},
-        {id: 2,
-          image: require(`@/assets/images/logos/ACV Auctions.jpg`),
+        {image: require(`@/assets/images/logos/ACV Auctions.jpg`),
           name: 'ACV Auctions'},
-        {id: 3,
-          image: require(`@/assets/images/logos/ACV Auctions2.jpg`),
-          name: 'ACVAuctions2'},
-        {id: 4,
-          image: require(`@/assets/images/logos/B_Corp.jpg`),
+        {image: require(`@/assets/images/logos/ACV Auctions2.jpg`),
+          name: 'ACV Auctions2'},
+        {image: require(`@/assets/images/logos/B_Corp.jpg`),
           name: 'B_Corp'},
-        {id: 5,
-          image: require(`@/assets/images/logos/B_Corp2.jpg`),
+        {image: require(`@/assets/images/logos/B_Corp2.jpg`),
           name: 'B_Corp2'},
-        {id: 6,
-          image: require(`@/assets/images/logos/Earned it.jpg`),
-          name: 'EarnedIt'},
-        {id: 7,
-          image: require(`@/assets/images/logos/Earned it2.jpg`),
-          name: 'EarnedIt2'},
-        {id: 8,
-          image: require(`@/assets/images/logos/island Institute.jpg`),
-          name: 'islandInstitute'},
-        {id: 9,
-          image: require(`@/assets/images/logos/LinkedIn Franklin.jpg`),
-          name: 'LinkedInFranklin'},
-        {id: 10,
-          image: require(`@/assets/images/logos/townsend.jpg`),
+        {image: require(`@/assets/images/logos/Earned it.jpg`),
+          name: 'Earned It'},
+        {image: require(`@/assets/images/logos/Earned it2.jpg`),
+          name: 'Earned It2'},
+        {image: require(`@/assets/images/logos/island Institute.jpg`),
+          name: 'island Institute'},
+        {image: require(`@/assets/images/logos/LinkedIn Franklin.jpg`),
+          name: 'Linked InFranklin'},
+        {image: require(`@/assets/images/logos/townsend.jpg`),
           name: 'townsend'},
-        {id: 11,
-          image: require(`@/assets/images/logos/townsend2.jpg`),
+        {image: require(`@/assets/images/logos/townsend2.jpg`),
           name: 'townsend2'},
-        {id: 12,
-          image: require(`@/assets/images/logos/townsend3.jpg`),
+        {image: require(`@/assets/images/logos/townsend3.jpg`),
           name: 'townsend3'},
-        {id: 13,
-          image: require(`@/assets/images/logos/triple ring.jpg`),
+        {image: require(`@/assets/images/logos/triple ring.jpg`),
           name: 'triple ring'}
       ]
       this.images = data
@@ -122,7 +130,9 @@ export default {
 @import '../../assets/css/order_lib.css';
 @import '../../assets/css/button_lib.css';
 @import '../../assets/css/modal_lib.css';
-
+.search {
+  margin-bottom: 2rem;
+}
 img {
   cursor: pointer;
   max-width: 100px;
