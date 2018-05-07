@@ -8,10 +8,19 @@
         </div>
 
         <div class="modal_body">
-          <div class="search">
-            <input type="text" placeholder="Image Search">
-            <button>Search</button>
+          <div class="search_wrapper">
+            <input
+              type="text"
+              placeholder="Image Name"
+              style="width:250px">
+            <button>
+              <span class="button">
+                <i class="material-icons">search</i>
+                Search Image
+              </span>
+            </button>
           </div>
+
           <div class="image_wrapper">
             <div v-for="(detail, index) in images" :key="index">
               <div @click="selectedImage=detail">
@@ -140,9 +149,13 @@ export default {
 @import '../../assets/css/order_lib.css';
 @import '../../assets/css/button_lib.css';
 @import '../../assets/css/modal_lib.css';
-.search {
-  margin-bottom: 2rem;
+.search_wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 1.75rem;
 }
+
 img {
   cursor: pointer;
   max-width: 100px;

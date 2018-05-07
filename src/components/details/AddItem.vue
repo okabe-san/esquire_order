@@ -107,8 +107,14 @@ export default {
       this.items = data
     },
     addItem () {
-      console.log(this.addedItem)
+      // for new order - create initial orderPicked
+      if (!this.orderPicked) {
+        this.orderPicked = {}
+        this.orderPicked.items = []
+      }
+
       if (this.addedItem.image.length > 0) {
+        console.log(this.orderPicked)
         this.orderPicked.items.push(this.addedItem)
         this.fileCheck = true
         // back to default values

@@ -107,7 +107,6 @@
                 :data="index">
               </deleteItem>
             </td>
-
           </tr>
         </tbody>
       </table>
