@@ -20,7 +20,11 @@
           <div class="display">
             <!-- type rep name -->
             <h3>Representative</h3>
-            <input type="text" v-model="rep"><br />
+            <select class="rep" v-model="rep">
+              <option v-for="(name, index) in reps" :value="name" :key="index">
+                 {{name}}
+              </option>
+            </select>
 
             <!-- show shipping details -->
             <!-- Need split shipping? Then, please write shipping details. -->

@@ -23,6 +23,9 @@ button:hover {
 .update {
   background: #ff19d8;
 }
+.display button {
+  width: 88px;
+}
 .back {
   position: absolute;
   bottom: .75rem;
@@ -95,6 +98,20 @@ select.location {
   background-size: 18px 18px;
   background-repeat: no-repeat;
   background-position: 120px;
+  -webkit-appearance: none;
+  outline: none
+}
+select.rep {
+  width: 250px;
+  padding: .25rem;
+  margin: 0 .125rem;
+  font-size: 1rem;
+  border-radius: 0;
+  background: #fff;
+  background-image: url(../../assets/images/arrow-down.png);
+  background-size: 18px 18px;
+  background-repeat: no-repeat;
+  background-position: 220px;
   -webkit-appearance: none;
   outline: none
 }
