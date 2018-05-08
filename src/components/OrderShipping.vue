@@ -106,7 +106,7 @@
           </div>
 
           <!-- add shipping -->
-          <h3>Add Shipping Infomation</h3>
+          <h3>Add Shipping Address</h3>
           <div class="shipping_wrapper">
 
             <!-- shipping method -->
@@ -323,7 +323,7 @@ section > h3 {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  margin: 0 18%;
+  margin: 0 20%;
 }
 .shipping_address,
 .shipping_method,
