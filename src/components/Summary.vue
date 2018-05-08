@@ -7,13 +7,15 @@
       <i class="material-icons step">keyboard_arrow_down</i>
       <h3>Step 3</h3>
       <i class="material-icons step">keyboard_arrow_down</i>
-      <h2 class="step">Review</h2>
+      <h2 class="step">
+        Review
+      </h2>
     </section>
 
     <main>
       <div class="form_wrapper">
         <div class="form">
-          <h2>REVIEW</h2>
+          <h2>REVIEW ORDER</h2>
           <div class="display">
 
             <!-- step 1 -->
@@ -22,9 +24,33 @@
                 Step 1
                  <button @click="backToDetails">Edit</button>
                </h3>
-               : {{state.re_order}} <br />
-               Order {{state.order_picked}} <br />
-               Need edit: {{state.edit_order}} <br />
+               <h4>PO #: {{state.order_picked.po}}</h4>
+               <div v-for="(detail, index) in state.order_picked.items" :key="index">
+                <h4>Item: {{index + 1}}</h4>
+                <table style="width:100%">
+                  <thead>
+                    <tr>
+                      <th>items</th>
+                      <th>Location</th>
+                      <th>QTY</th>
+                      <th>Stitch</th>
+                      <th>Logo</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>{{detail.item}}</td>
+                      <td>{{detail.location}}</td>
+                      <td>{{detail.quantity}}</td>
+                      <td>{{detail.stitch}}</td>
+                      <td>
+                        {{detail.name}}<br />
+                        <img class="image" :src="detail.image">
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+               </div>
              </div>
 
             <!-- step 2 -->
@@ -34,18 +60,18 @@
                 <button @click="backToShipping">Edit</button>
               </h3>
 
-              Representative Name: {{state.rep}} <br />
-              Garments from: {{state.garment}} <br />
-              Shipping method: {{state.method}} <br />
-              Split Shipping: {{state.split}} <br />
-              Shipping Address:
-              <ul>
-                <li v-for="(input, index) in state.addresses" :key="index">
-                  {{index + 1}}
-                  Address: {{input.address}}
-                  Detail: {{input.detail}}
-                </li>
-              </ul>
+              <h4>Representative Name</h4>
+              <P>{{state.rep}}</P>
+
+              <h4>Shipping Address(es)</h4>
+              <div v-for="(detail, index) in state.shipping" :key="index">
+               <h4>Shipping: {{index + 1}}</h4>
+               <div class="shipping">
+                  Method: {{detail.method}}<br />
+                  Address: {{detail.address}}<br />
+                  Detail: {{detail.detail}}
+                </div>
+              </div>
             </div>
 
             <!-- step 3 -->
@@ -55,12 +81,13 @@
                 <button @click="backToOptions">Edit</button>
               </h3>
 
+              <h4>Option(s)</h4>
               <ul>
                 <li v-for="(option, index) in state.option_checked" :key="index">
-                  {{index + 1}} {{option}}
+                  {{option}}
                 </li>
               </ul>
-              Comment(s) <br />
+              <h4>Comments</h4>
               {{state.comments}}
             </div>
           </div>
@@ -123,7 +150,12 @@ section > h3 {
   display: flex;
   flex-direction: row;
 }
-.one, .two, .three {
-  width: calc(100% / 3);
+.one {
+  flex: 1.2;
+}
+.two, .three {
+  flex: 1.2;
+}
+.shipping {
 }
 </style>
