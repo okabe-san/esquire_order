@@ -15,80 +15,84 @@
     <main>
       <div class="form_wrapper">
         <div class="form">
-          <h2>REVIEW ORDER</h2>
-          <div class="display">
+          <div>
+            <h2>REVIEW ORDER</h2>
+            <div class="display">
 
-            <!-- step 1 -->
-            <div class="one">
-              <h3>
-                Step 1
-                 <button @click="backToDetails">Edit</button>
-               </h3>
-               <h4>PO #: {{state.order_picked.po}}</h4>
-               <div v-for="(detail, index) in state.order_picked.items" :key="index">
-                <h4>Item: {{index + 1}}</h4>
-                <table style="width:100%">
-                  <thead>
-                    <tr>
-                      <th>items</th>
-                      <th>Location</th>
-                      <th>QTY</th>
-                      <th>Stitch</th>
-                      <th>Logo</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>{{detail.item}}</td>
-                      <td>{{detail.location}}</td>
-                      <td>{{detail.quantity}}</td>
-                      <td>{{detail.stitch}}</td>
-                      <td>
-                        {{detail.name}}<br />
-                        <img class="image" :src="detail.image">
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
+              <!-- step 1 -->
+              <div class="one">
+                <h3 class="title">Step 1
+                  <button @click="backToDetails">Edit</button>
+                </h3>
+                <h4 class="highlight">PO #: {{state.order_picked.po}}</h4>
+                <div v-for="(detail, index) in state.order_picked.items" :key="index">
+                  <h4>Item: {{index + 1}}</h4>
+                  <table style="width:100%">
+                    <thead>
+                      <tr>
+                        <th>Item</th>
+                        <th>Location</th>
+                        <th>QTY</th>
+                        <th>Stitch</th>
+                        <th>Logo</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>{{detail.item}}</td>
+                        <td>{{detail.location}}</td>
+                        <td>{{detail.quantity}}</td>
+                        <td>{{detail.stitch}}</td>
+                        <td>
+                          {{detail.name}}<br />
+                          <img class="image" :src="detail.image">
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                 </div>
                </div>
-             </div>
 
-            <!-- step 2 -->
-            <div class="two">
-              <h3>
-                Step 2
-                <button @click="backToShipping">Edit</button>
-              </h3>
+              <!-- step 2 -->
+              <div class="two">
+                <h3 class="title">Step 2
+                  <button @click="backToShipping">Edit</button>
+                </h3>
 
-              <h4>Representative Name</h4>
-              <P>{{state.rep}}</P>
+                <h4 class="highlight">Representative Name</h4>
+                <P>{{state.rep}}</P>
 
-              <h4>Shipping Address(es)</h4>
-              <div v-for="(detail, index) in state.shipping" :key="index">
-               <h4>Shipping: {{index + 1}}</h4>
-               <div class="shipping">
-                  Method: {{detail.method}}<br />
-                  Address: {{detail.address}}<br />
-                  Detail: {{detail.detail}}
+                <h4 class="highlight">Shipping Address(es)</h4>
+                <div v-for="(detail, index) in state.shipping" :key="index">
+                 <h4>Shipping: {{index + 1}}</h4>
+                 <div class="shipping">
+                    Method: {{detail.method}}<br />
+                    Address: {{detail.address}}<br />
+                    Detail: {{detail.detail}}
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <!-- step 3 -->
-            <div>
-              <h3>
-                Step 3
-                <button @click="backToOptions">Edit</button>
-              </h3>
+              <!-- step 3 -->
+              <div>
+                <h3 class="title">Step 3
+                  <button @click="backToOptions">Edit</button>
+                </h3>
 
-              <h4>Option(s)</h4>
-              <ul>
-                <li v-for="(option, index) in state.option_checked" :key="index">
-                  {{option}}
-                </li>
-              </ul>
-              <h4>Comments</h4>
-              {{state.comments}}
+                <h4 class="highlight">Option(s)</h4>
+                <div v-if="state.option_checked.length > 0">
+                  <ul>
+                    <li v-for="(option, index) in state.option_checked" :key="index">
+                      {{option}}
+                    </li>
+                  </ul>
+                </div>
+                <div v-else>No Option was selected.</div>
+
+                <h4 class="highlight">Comments</h4>
+                  <div v-if="state.comments.lenght > 0">{{state.comments}}</div>
+                  <div v-else>No Comment</div>
+              </div>
             </div>
           </div>
 
@@ -157,5 +161,18 @@ section > h3 {
   flex: 1.2;
 }
 .shipping {
+}
+.action {
+  margin-top: 3rem;
+}
+.title {
+  padding-bottom: .5rem;
+  border-bottom: 1px solid #555;
+}
+.highlight {
+  display: inline-block;
+  padding: .25rem 1rem;
+  color: #555;
+  background: #fcd020;
 }
 </style>
