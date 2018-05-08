@@ -41,6 +41,12 @@ button:hover {
 .next:hover {
   background: #00334c;
 }
+.submit {
+  background: #006699;
+}
+.submit:hover {
+  background: #00334c;
+}
 
 /* textarea */
 textarea {

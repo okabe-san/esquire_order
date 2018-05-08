@@ -21,16 +21,15 @@
 
             <!-- type rep name -->
             <h3>Representative Name</h3>
-
             <select
-              v-if="!addedRep"
+              v-if="!addedRep && !rep"
               class="rep"
               v-model="addedRep">
               <option
                 selected
                 disabled
                 :value="addedRep">
-                Please select name
+                <span class="test">Please select rep name</span>
               </option>
               <option v-for="(name, index) in reps" :value="name" :key="index">
                  {{name}}
@@ -157,8 +156,18 @@
 
           <!-- nav buttons -->
           <div class="action">
-            <button class="back" @click="back">Back</button>
-            <button class="next" @click="next">Next</button>
+            <button class="back" @click="back">
+              <span class="button">
+                <i class="material-icons">keyboard_arrow_left</i>
+                Back
+              </span>
+            </button>
+            <button class="next" @click="next">
+              <span class="button">
+                Next
+                <i class="material-icons">navigate_next</i>
+              </span>
+            </button>
           </div>
         </div>
       </div>
@@ -348,6 +357,11 @@ label {
 }
 .display button {
   width: 88px;
+}
+
+/* for defaut rep value */
+select.rep {
+  color: #999;
 }
 
 </style>
