@@ -307,5 +307,8 @@ label {
 .action {
   margin-top: 3rem;
 }
+.display button {
+  width: 88px;
+}
 
 </style>

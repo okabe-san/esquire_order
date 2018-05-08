@@ -386,4 +386,7 @@ export default {
   width: 300px;
 }
 
+.display button {
+  width: 88px;
+}
 </style>
