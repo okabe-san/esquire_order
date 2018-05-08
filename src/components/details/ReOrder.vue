@@ -360,7 +360,6 @@ export default {
 
 /* for order(po number) selection */
 .po_wrapper {
-  margin: 2rem 0;
 }
 .po {
   display: flex;
@@ -386,4 +385,7 @@ export default {
   width: 300px;
 }
 
+.display button {
+  width: 88px;
+}
 </style>

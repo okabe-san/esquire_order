@@ -2,7 +2,7 @@
   <div>
 
     <!-- show order details -->
-    <div v-if="orderPicked" class="order_detail">
+    <div v-if="orderPicked" class="display">
       <h3>Order Detail</h3>
       <table style="width:100%">
         <thead>
@@ -217,10 +217,7 @@ export default {
 @import '../../assets/css/button_lib.css';
 @import '../../assets/css/order_lib.css';
 
-/* for display order */
-.order_detail {
-  padding: 0 2rem 2rem;
-  border-radius: 7px;
-  border: 1px solid #dccd;
+.display button {
+  width: 88px;
 }
 </style>

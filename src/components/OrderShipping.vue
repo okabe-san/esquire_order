@@ -16,24 +16,46 @@
     <main>
       <div class="form_wrapper">
         <div class="form">
-          <h2>Shipping Info</h2>
+          <h2>SHIPPING INFORMATION</h2>
           <div class="display">
+
             <!-- type rep name -->
-            <h3>Representative</h3>
-            <select class="rep" v-model="rep">
+            <h3>Representative Name</h3>
+
+            <select
+              v-if="!addedRep"
+              class="rep"
+              v-model="addedRep">
               <option
                 selected
                 disabled
-                :value="rep">Selet representative name</option>
+                :value="addedRep">
+                Please select name
+              </option>
               <option v-for="(name, index) in reps" :value="name" :key="index">
                  {{name}}
               </option>
             </select>
+            <div v-else>
+              <select
+                v-if="editRep"
+                class="rep"
+                v-model="addedRep"
+                @change="editRep = !editRep">
+                <option v-for="(name, index) in reps" :value="name" :key="index">
+                   {{name}}
+                </option>
+              </select>
+              <span v-else>
+                {{rep}}
+                <button class="edit" @click="editRep = !editRep">Edit</button>
+              </span>
+
+            </div>
 
             <!-- show shipping details -->
-            <!-- Need split shipping? Then, please write shipping details. -->
             <h3>Shipping Address(es)</h3>
-            <table style="width:100%">
+            <table v-if="shipping.length > 0" style="width:100%">
               <thead>
                 <tr>
                   <th>Method</th>
@@ -79,6 +101,8 @@
                 </tr>
               </tbody>
             </table>
+            <div v-else>
+            </div>
           </div>
 
           <!-- add shipping -->
@@ -104,8 +128,15 @@
 
             <!-- detail -->
             <span class="shipping_detail">
-              <label>Detail:</label>
-              <textarea cols="40" rows="3" v-model="addedAddress.detail">
+              <label>
+                Detail:
+              </label>
+              <textarea
+                cols="40"
+                rows="3"
+                maxlength="200"
+                placeholder="Please write split shipping infomation here."
+                v-model="addedAddress.detail">
               </textarea>
             </span>
 
@@ -142,6 +173,7 @@ export default {
   data () {
     return {
       reps: [],
+      editRep: false,
       methods: [],
       edit: false,
       indexNum: 0,
@@ -150,6 +182,7 @@ export default {
         'method': 'UPS',
         'detail': ''
       },
+      addedRep: '',
       addedAddress: {
         'address': '',
         'method': 'UPS',
@@ -166,6 +199,9 @@ export default {
   },
   computed: {
     rep: {
+      get () {
+        return this.$store.state.rep
+      },
       set (value) {
         this.$store.dispatch('updateRep', value)
       }
@@ -180,6 +216,9 @@ export default {
     }
   },
   watch: {
+    addedRep () {
+      this.rep = this.addedRep
+    },
     rep () {
       if (this.$store.state.rep.length > 0) {
         this.messageRep = ''
@@ -284,7 +323,7 @@ section > h3 {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  margin: 0 15%;
+  margin: 0 20%;
 }
 .shipping_address,
 .shipping_method,
@@ -306,6 +345,9 @@ label {
 
 .action {
   margin-top: 3rem;
+}
+.display button {
+  width: 88px;
 }
 
 </style>

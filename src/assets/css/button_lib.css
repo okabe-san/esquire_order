@@ -23,9 +23,6 @@ button:hover {
 .update {
   background: #ff19d8;
 }
-.display button {
-  width: 88px;
-}
 .back {
   position: absolute;
   bottom: .75rem;
