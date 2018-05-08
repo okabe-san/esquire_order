@@ -1,72 +1,52 @@
 <template>
-  <div>
+  <div id="order">
     <section>
-      <h3 class="step">Step 1</h3>
-      <h3 class="step">Step 2</h3>
-      <h3 class="step">Step 3</h3>
+      <h3>Step 1</h3>
+      <i class="material-icons step">keyboard_arrow_down</i>
+      <h3>
+        Step 2<br />
+      </h3>
+      <i class="material-icons step">keyboard_arrow_down</i>
+      <h2 class="step">
+        Step 3<br />
+        <small>Options</small>
+      </h2>
+      <i class="material-icons step">keyboard_arrow_down</i>
       <h3>Review</h3>
     </section>
+
     <main>
-      <h1>Options</h1>
-      <!-- options list -->
-      Select option(s)
-      <ul>
-        <li v-for="option in options" :key="option">
-          {{option}}
-          <input type="checkbox" v-model="optionChecked" :value="option">
+      <div class="form_wrapper">
+        <div class="form">
+          <h2>Options</h2>
+          <div class="display">
 
-          <!-- FOR OPTION 2 -->
-          <div v-if="
-            optionChecked.includes(option) &&
-            option === 'Poly Bagged by name'">
-            <h3>Upload list</h3>
-            <!-- upload file -->
-            <vue-clip ref="vc" :options="optionDetails" :on-added-file="fileAddedBagged">
-              <template slot="clip-uploader-action" slot-scope="props">
-                <div class="uploader-action" :class="{dragging: props.dragging}">
-                  <div class="dz-message">
-                    Drag and Drop file
-                  </div>
-                </div>
-              </template>
-            </vue-clip>
-            <div v-for="(file, index) in baggedByName" :key="index">
-              {{file.name}}
-              <button @click="removeFileAddedBagged(index)">Delete</button>
-            </div>
+            <!-- options list -->
+            <ul>
+              <li v-for="option in options" :key="option">
+                {{option}}&nbsp;&nbsp;&nbsp;
+                <label class="container">
+                  <input type="checkbox" v-model="optionChecked" :value="option">
+                  <span class="checkbox"></span>
+                </label>
+              </li>
+            </ul>
+
+            <!-- comments -->
+            <h3>Additional Comments:</h3>
+            <textarea cols="60" rows="5" v-model="comments">
+            </textarea>
+
           </div>
 
-          <!-- FOR OPTION 5 -->
-          <div v-if="
-            optionChecked.includes(option) &&
-            option === 'Personalization'">
-            <h3>Upload list</h3>
-            <!-- upload file -->
-            <vue-clip ref="vc" :options="optionDetails" :on-added-file="fileAddedPersonal">
-              <template slot="clip-uploader-action" slot-scope="props">
-                <div class="uploader-action" :class="{dragging: props.dragging}">
-                  <div class="dz-message">
-                    Drag and Drop file
-                  </div>
-                </div>
-              </template>
-            </vue-clip>
-            <div v-for="(file, index) in personalizationName" :key="index">
-              {{file.name}}
-              <button @click="removeFileAddedPersonal(index)">Delete</button>
-            </div>
+          <!-- nav buttons -->
+          <div class="action">
+            <button class="back" @click="back">Back</button>
+            <button class="next" @click="next">Next</button>
           </div>
-        </li>
-      </ul>
 
-      <!-- comments -->
-      Additional Comments
-      <input type="text" v-model="comments">
-      <br />
-
-      <!-- nav buttons -->
-      <button @click="back">Back</button>
-      <button @click="next">Next</button>
+        </div>
+      </div>
     </main>
   </div>
 </template>
@@ -76,12 +56,7 @@ export default {
   name: 'Options',
   data () {
     return {
-      options: [],
-      optionDetails: {
-        url: '/details'
-      },
-      baggedByName: [],
-      personalizationName: []
+      options: []
     }
   },
   created () {
@@ -113,18 +88,6 @@ export default {
       ]
       this.options = data
     },
-    fileAddedBagged (file) {
-      this.baggedByName.push(file)
-    },
-    removeFileAddedBagged (index) {
-      this.baggedByName.splice(index, 1)
-    },
-    fileAddedPersonal (file) {
-      this.personalizationName.push(file)
-    },
-    removeFileAddedPersonal (index) {
-      this.personalizationName.splice(index, 1)
-    },
     back () {
       this.$router.push('/shipping')
     },
@@ -136,22 +99,23 @@ export default {
 </script>
 
 <style scoped>
-main {
-  box-sizing: border-box;
-  float: right;
-  width: 80%;
+@import '../assets/css/order_lib.css';
+@import '../assets/css/button_lib.css';
+/* for steps */
+h2 {
+  font-weight: 700;
+  margin: 0;
+}
+section > h3 {
+  color: rgba(255, 255, 255, 0.5);
+}
+.display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.action {
+  margin-top: 3rem;
+}
 
-  padding-right: 10%;
-}
-section {
-  box-sizing: border-box;
-  float: left;
-  width: 20%;
-}
-li {
-  list-style-type: none;
-}
-.step {
-  color: orange;
-}
 </style>

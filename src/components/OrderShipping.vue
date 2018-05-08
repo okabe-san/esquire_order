@@ -310,7 +310,7 @@ export default {
 @import '../assets/css/order_lib.css';
 @import '../assets/css/button_lib.css';
 /* for steps */
-h2{
+h2 {
   font-weight: 700;
   margin: 0;
 }
