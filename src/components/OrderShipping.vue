@@ -18,9 +18,38 @@
         <div class="form">
           <h2>Shipping Info</h2>
           <div class="display">
+
             <!-- type rep name -->
             <h3>Representative</h3>
-            {{rep}}
+
+            <select
+              v-if="!addedRep"
+              class="rep"
+              v-model="addedRep">
+              <option
+                selected
+                disabled
+                :value="addedRep">Please select name</option>
+              <option v-for="(name, index) in reps" :value="name" :key="index">
+                 {{name}}
+              </option>
+            </select>
+            <div v-else>
+              <select
+                v-if="editRep"
+                class="rep"
+                v-model="addedRep"
+                @change="editRep = !editRep">
+                <option v-for="(name, index) in reps" :value="name" :key="index">
+                   {{name}}
+                </option>
+              </select>
+              <span v-else>
+                {{rep}}
+                <button class="edit" @click="editRep = !editRep">Edit</button>
+              </span>
+
+            </div>
 
             <!-- show shipping details -->
             <h3>Shipping Address(es)</h3>
@@ -79,18 +108,6 @@
           <!-- add shipping -->
           <h3>Add Shipping Infomation</h3>
           <div class="shipping_wrapper">
-
-            <div class="rep_warpper">
-              <select class="rep" v-model="addedRep">
-                <option
-                  selected
-                  disabled
-                  :value="addedRep">Selet representative name</option>
-                <option v-for="(name, index) in reps" :value="name" :key="index">
-                   {{name}}
-                </option>
-              </select>
-            </div>
 
             <div class="address_wapper">
               <!-- shipping method -->
@@ -158,6 +175,7 @@ export default {
   data () {
     return {
       reps: [],
+      editRep: false,
       methods: [],
       edit: false,
       indexNum: 0,
@@ -200,6 +218,9 @@ export default {
     }
   },
   watch: {
+    addedRep () {
+      this.rep = this.addedRep
+    },
     rep () {
       if (this.$store.state.rep.length > 0) {
         this.messageRep = ''
@@ -245,7 +266,6 @@ export default {
       this.shipping.splice(index, 1)
     },
     addAddress () {
-      this.rep = this.addedRep
       if (this.addedAddress.address.length > 0) {
         this.shipping.push(this.addedAddress)
         this.addressCheck = true
