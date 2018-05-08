@@ -21,9 +21,8 @@
 
             <!-- type rep name -->
             <h3>Representative Name</h3>
-
             <select
-              v-if="!addedRep"
+              v-if="!addedRep && !rep"
               class="rep"
               v-model="addedRep">
               <option
