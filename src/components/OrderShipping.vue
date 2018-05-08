@@ -33,7 +33,7 @@
             <!-- show shipping details -->
             <!-- Need split shipping? Then, please write shipping details. -->
             <h3>Shipping Address(es)</h3>
-            <table style="width:100%">
+            <table v-if="shipping.length > 0" style="width:100%">
               <thead>
                 <tr>
                   <th>Method</th>
@@ -79,6 +79,9 @@
                 </tr>
               </tbody>
             </table>
+            <div v-else>
+              <p>Please add shipping address</p>
+            </div>
           </div>
 
           <!-- add shipping -->
@@ -104,8 +107,15 @@
 
             <!-- detail -->
             <span class="shipping_detail">
-              <label>Detail:</label>
-              <textarea cols="40" rows="3" v-model="addedAddress.detail">
+              <label>
+                Detail:
+              </label>
+              <textarea
+                cols="40"
+                rows="3"
+                maxlength="200"
+                placeholder="Please write split shipping infomation here."
+                v-model="addedAddress.detail">
               </textarea>
             </span>
 
