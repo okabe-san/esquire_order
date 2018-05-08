@@ -9,7 +9,7 @@
       <i class="material-icons step">keyboard_arrow_down</i>
       <h2 class="step">
         Step 3<br />
-        <small>Option</small>
+        <small>Options</small>
       </h2>
       <i class="material-icons step">keyboard_arrow_down</i>
       <h3>Review</h3>
@@ -19,28 +19,32 @@
       <div class="form_wrapper">
         <div class="form">
           <h2>Options</h2>
+          <div class="display">
 
-          <!-- options list -->
-          <ul>
-            <li v-for="option in options" :key="option">
-              {{option}}&nbsp;
-              <label class="container">
-                <input type="checkbox" v-model="optionChecked" :value="option">
-                <span class="checkbox"></span>
-              </label>
-            </li>
-          </ul>
+            <!-- options list -->
+            <ul>
+              <li v-for="option in options" :key="option">
+                {{option}}&nbsp;&nbsp;&nbsp;
+                <label class="container">
+                  <input type="checkbox" v-model="optionChecked" :value="option">
+                  <span class="checkbox"></span>
+                </label>
+              </li>
+            </ul>
 
-          <!-- comments -->
-          Additional Comments
-          <textarea cols="40" rows="3" v-model="comments">
-          </textarea>
+            <!-- comments -->
+            <h3>Additional Comments:</h3>
+            <textarea cols="60" rows="5" v-model="comments">
+            </textarea>
+
+          </div>
 
           <!-- nav buttons -->
           <div class="action">
-            <button @click="back">Back</button>
-            <button @click="next">Next</button>
+            <button class="back" @click="back">Back</button>
+            <button class="next" @click="next">Next</button>
           </div>
+
         </div>
       </div>
     </main>
@@ -84,18 +88,6 @@ export default {
       ]
       this.options = data
     },
-    fileAddedBagged (file) {
-      this.baggedByName.push(file)
-    },
-    removeFileAddedBagged (index) {
-      this.baggedByName.splice(index, 1)
-    },
-    fileAddedPersonal (file) {
-      this.personalizationName.push(file)
-    },
-    removeFileAddedPersonal (index) {
-      this.personalizationName.splice(index, 1)
-    },
     back () {
       this.$router.push('/shipping')
     },
@@ -116,6 +108,11 @@ h2 {
 }
 section > h3 {
   color: rgba(255, 255, 255, 0.5);
+}
+.display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .action {
   margin-top: 3rem;
