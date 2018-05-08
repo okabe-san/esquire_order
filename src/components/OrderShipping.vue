@@ -20,18 +20,9 @@
           <div class="display">
             <!-- type rep name -->
             <h3>Representative</h3>
-            <select class="rep" v-model="rep">
-              <option
-                selected
-                disabled
-                :value="rep">Selet representative name</option>
-              <option v-for="(name, index) in reps" :value="name" :key="index">
-                 {{name}}
-              </option>
-            </select>
+            {{rep}}
 
             <!-- show shipping details -->
-            <!-- Need split shipping? Then, please write shipping details. -->
             <h3>Shipping Address(es)</h3>
             <table v-if="shipping.length > 0" style="width:100%">
               <thead>
@@ -80,50 +71,65 @@
               </tbody>
             </table>
             <div v-else>
-              <p>Please add shipping address</p>
+              <p><span class="required">*</span>
+              Please add shipping address</p>
             </div>
           </div>
 
           <!-- add shipping -->
-          <h3>Add Shipping Address</h3>
+          <h3>Add Shipping Infomation</h3>
           <div class="shipping_wrapper">
 
-            <!-- shipping method -->
-            <span class="shipping_method">
-              <label>Method:</label>
-              <select class="item" v-model="addedAddress.method">
-                <option v-for="(method, index) in methods" :value="method" :key="index">
-                   {{method}}
+            <div class="rep_warpper">
+              <select class="rep" v-model="addedRep">
+                <option
+                  selected
+                  disabled
+                  :value="addedRep">Selet representative name</option>
+                <option v-for="(name, index) in reps" :value="name" :key="index">
+                   {{name}}
                 </option>
               </select>
-            </span>
+            </div>
 
-            <!-- address -->
-            <span class="shipping_address">
-              <label>Address:</label>
-              <textarea cols="40" rows="3" v-model="addedAddress.address">
-              </textarea>
-            </span>
+            <div class="address_wapper">
+              <!-- shipping method -->
+              <span class="shipping_method">
+                <label>Method:</label>
+                <select class="item" v-model="addedAddress.method">
+                  <option v-for="(method, index) in methods" :value="method" :key="index">
+                     {{method}}
+                  </option>
+                </select>
+              </span>
 
-            <!-- detail -->
-            <span class="shipping_detail">
-              <label>
-                Detail:
-              </label>
-              <textarea
-                cols="40"
-                rows="3"
-                maxlength="200"
-                placeholder="Please write split shipping infomation here."
-                v-model="addedAddress.detail">
-              </textarea>
-            </span>
+              <!-- address -->
+              <span class="shipping_address">
+                <label>Address:</label>
+                <textarea cols="40" rows="3" v-model="addedAddress.address">
+                </textarea>
+              </span>
 
-            <button class="add" @click="addAddress">Add</button>
-            <h4 v-if="!addressCheck">
-              <span class="required">*</span>
-              Please put Address
-            </h4>
+              <!-- detail -->
+              <span class="shipping_detail">
+                <label>
+                  Detail:
+                </label>
+                <textarea
+                  cols="40"
+                  rows="3"
+                  maxlength="200"
+                  placeholder="Please write split shipping infomation here."
+                  v-model="addedAddress.detail">
+                </textarea>
+              </span>
+
+              <button class="add" @click="addAddress">Add</button>
+              <h4 v-if="!addressCheck">
+                <span class="required">*</span>
+                Please put Address
+              </h4>
+            </div>
           </div>
 
           <!-- error message -->
@@ -160,6 +166,7 @@ export default {
         'method': 'UPS',
         'detail': ''
       },
+      addedRep: '',
       addedAddress: {
         'address': '',
         'method': 'UPS',
@@ -176,6 +183,9 @@ export default {
   },
   computed: {
     rep: {
+      get () {
+        return this.$store.state.rep
+      },
       set (value) {
         this.$store.dispatch('updateRep', value)
       }
@@ -235,6 +245,7 @@ export default {
       this.shipping.splice(index, 1)
     },
     addAddress () {
+      this.rep = this.addedRep
       if (this.addedAddress.address.length > 0) {
         this.shipping.push(this.addedAddress)
         this.addressCheck = true
@@ -293,8 +304,15 @@ section > h3 {
 .shipping_wrapper {
   display: flex;
   flex-wrap: wrap;
+}
+.rep_warpper {
+  flex: 2;
+}
+.address_wapper {
+  flex: 3;
+  display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
-  margin: 0 15%;
 }
 .shipping_address,
 .shipping_method,
