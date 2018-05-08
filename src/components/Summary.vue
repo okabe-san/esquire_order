@@ -66,9 +66,18 @@
                 <div v-for="(detail, index) in state.shipping" :key="index">
                  <h4>Shipping: {{index + 1}}</h4>
                  <div class="shipping">
-                    Method: {{detail.method}}<br />
-                    Address: {{detail.address}}<br />
-                    Detail: {{detail.detail}}
+                    <b>Method:</b> {{detail.method}}<br />
+                    <b style="display:inline-block;vertical-align:top;">Address:</b>
+                    <span class="address">
+                      {{detail.address}}
+                    </span><br />
+                    <b>Detail:</b>
+                    <span v-if="detail.detail.length > 0">
+                      {{detail.detail}}
+                    </span>
+                    <span v-else>
+                      No detail.
+                    </span>
                   </div>
                 </div>
               </div>
@@ -161,6 +170,13 @@ section > h3 {
   flex: 1.2;
 }
 .shipping {
+  max-width: 150px;
+  margin: 0 auto;
+  text-align: left;
+}
+.address {
+  display: inline-block;
+  max-width: 100px;
 }
 .action {
   margin-top: 3rem;

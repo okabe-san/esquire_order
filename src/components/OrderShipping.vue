@@ -29,7 +29,7 @@
                 selected
                 disabled
                 :value="addedRep">
-                Please select name
+                <span class="test">Please select rep name</span>
               </option>
               <option v-for="(name, index) in reps" :value="name" :key="index">
                  {{name}}
@@ -357,6 +357,11 @@ label {
 }
 .display button {
   width: 88px;
+}
+
+/* for defaut rep value */
+select.rep {
+  color: #999;
 }
 
 </style>
