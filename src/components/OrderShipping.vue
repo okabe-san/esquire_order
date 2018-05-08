@@ -157,8 +157,18 @@
 
           <!-- nav buttons -->
           <div class="action">
-            <button class="back" @click="back">Back</button>
-            <button class="next" @click="next">Next</button>
+            <button class="back" @click="back">
+              <span class="button">
+                <i class="material-icons">keyboard_arrow_left</i>
+                Back
+              </span>
+            </button>
+            <button class="next" @click="next">
+              <span class="button">
+                Next
+                <i class="material-icons">navigate_next</i>
+              </span>
+            </button>
           </div>
         </div>
       </div>
