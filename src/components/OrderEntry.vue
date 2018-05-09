@@ -18,8 +18,28 @@
     <main>
       <div class="form_wrapper">
         <div class="form">
+
+          <h2 style="margin-bottom:1rem">PO Number</h2>
+          <span v-if="messagePo.length > 0">
+            <span class="required">*</span>
+            {{messagePo}}
+          </span>
+          <div v-if="!editPo">
+            <input
+              type="text"
+              class="po"
+              v-model="po"
+              placeholder="Please put PO number">
+            <button @click="enterPo">Enter</button>
+          </div>
+          <div v-else>
+            <h2 style="display:inline-block;padding-right:2rem">{{poNumber}}</h2>
+            <button class="edit" @click="editPo = !editPo">Edit</button>
+          </div>
+
           <!-- check re-order or not -->
-          <div>
+          <div v-if="poNumber">
+            <hr />
             <h2 style="display:inline-block;padding-right:2rem">REORDER?</h2>
               <label>YES (able to edit)
                 <input type="radio" v-model="reOrder" @change="orderCheck()" vaule="yes">
@@ -29,31 +49,33 @@
                 <input type="radio" v-model="reOrder" @change="orderCheck()" value="no">
                 <span class="radio"></span>
               </label>
+
+            <!-- for re-order -->
+            <div v-if="order" class="order_entry">
+              <reOrder></reOrder>
             </div>
 
-          <!-- for re-order -->
-          <div v-if="order" class="order_entry">
-            <reOrder></reOrder>
-          </div>
-
-          <!-- for new-order -->
-          <div v-else class="order_entry">
-            <newOrder></newOrder>
-          </div>
-
-          <!-- error message -->
-          <div class="action">
-            <div class="required" style="margin-bottom:1rem">
-              {{message}}
+            <!-- for new-order -->
+            <div v-else class="order_entry">
+              <newOrder></newOrder>
             </div>
 
-            <!-- nav buttons -->
-            <button class="next" v-if="orderPicked" @click="next">
-              <span class="button">
-                Next
-                <i class="material-icons">navigate_next</i>
-              </span>
-            </button>
+            <!-- error message -->
+            <div class="action">
+              <div v-if="message.length > 0" style="margin-bottom:1rem">
+                <span class="required">*</span>
+                {{message}}
+              </div>
+
+              <!-- nav buttons -->
+              <button class="next" v-if="orderPicked" @click="next">
+                <span class="button">
+                  Next
+                  <i class="material-icons">navigate_next</i>
+                </span>
+              </button>
+            </div>
+
           </div>
 
         </div>
@@ -74,6 +96,9 @@ export default {
   },
   data () {
     return {
+      po: '',
+      editPo: false,
+      messagePo: '',
       order: true,
       message: ''
     }
@@ -87,6 +112,11 @@ export default {
     })
   },
   computed: {
+    poNumber: {
+      get () {
+        return this.$store.state.po_number
+      }
+    },
     reOrder: {
       get () {
         return this.$store.state.re_order
@@ -104,13 +134,23 @@ export default {
     }
   },
   methods: {
+    enterPo () {
+      this.message = ''
+      if (this.po.length < 3) {
+        this.messagePo = 'At least 3 characters long.'
+      } else {
+        this.messagePo = ''
+        this.editPo = !this.editPo
+        this.$store.state.po_number = this.po
+      }
+    },
     orderCheck () {
       this.order = !this.order
       this.$store.state.order_picked = ''
     },
     next () {
-      if (this.order && this.$store.state.order_picked.length === 0) {
-        this.message = 'Please search and select the order.'
+      if (this.po.length < 3) {
+        this.message = 'PO number is not vaild.'
       } else {
         this.$router.push('/shipping')
       }
@@ -130,6 +170,9 @@ h2{
 }
 h3 {
   color: rgba(255, 255, 255, 0.5);
+}
+.po {
+  width: 200px;
 }
 .order_entry {
   margin-top: 3rem;

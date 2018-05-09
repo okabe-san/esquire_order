@@ -1,4 +1,8 @@
 // for step 1
+export const updatePoNumber = (state, payload) => {
+  state.po_number = payload
+}
+
 export const updateReOrder = (state, payload) => {
   state.re_order = payload
 }

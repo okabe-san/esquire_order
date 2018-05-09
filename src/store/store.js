@@ -9,6 +9,7 @@ Vue.use(Vuex)
 export const store = new Vuex.Store({
   state: {
     // for step 1
+    po_number: '',
     re_order: null,
     edit_order: false,
     order_picked: '',

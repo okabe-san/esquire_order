@@ -1,4 +1,8 @@
 // for step 1
+export const updatePoNumber = ({commit}, payload) => {
+  commit('updatePoNumber', payload)
+}
+
 export const updateReOrder = ({commit}, payload) => {
   commit('updateReOrder', payload)
 }
