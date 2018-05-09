@@ -17,6 +17,15 @@
       <div class="form_wrapper">
         <div class="form">
           <h2>SHIPPING INFORMATION</h2>
+
+          <!-- error message -->
+          <h4 class="message">
+            <span v-if="messageRep" class="required">*</span>
+            {{messageRep}}
+            <span v-if="messageShipping" class="required">*</span>
+            {{messageShipping}}
+          </h4>
+
           <div class="display">
 
             <!-- type rep name -->
@@ -145,14 +154,6 @@
               Please put Address
             </h4>
           </div>
-
-          <!-- error message -->
-          <h4 class="message">
-            <span v-if="messageRep" class="required">*</span>
-            {{messageRep}}
-            <span v-if="messageShipping" class="required">*</span>
-            {{messageShipping}}
-          </h4>
 
           <!-- nav buttons -->
           <div class="action">

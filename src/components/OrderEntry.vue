@@ -22,11 +22,11 @@
           <div>
             <h2 style="display:inline-block;padding-right:2rem">REORDER?</h2>
               <label>YES (able to edit)
-                <input type="radio" v-model="reOrder" v-on:change="orderCheck()" vaule="yes">
+                <input type="radio" v-model="reOrder" @change="orderCheck()" vaule="yes">
                 <span class="radio"></span>
               </label>
               <label>NO (new order)
-                <input type="radio" v-model="reOrder" v-on:change="orderCheck()" value="no">
+                <input type="radio" v-model="reOrder" @change="orderCheck()" value="no">
                 <span class="radio"></span>
               </label>
             </div>
@@ -106,6 +106,7 @@ export default {
   methods: {
     orderCheck () {
       this.order = !this.order
+      this.$store.state.order_picked = ''
     },
     next () {
       if (this.order && this.$store.state.order_picked.length === 0) {
