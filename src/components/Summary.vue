@@ -99,7 +99,7 @@
                 <div v-else>No Option was selected.</div>
 
                 <h4 class="highlight">Comments</h4>
-                  <div v-if="state.comments.lenght > 0">{{state.comments}}</div>
+                  <div v-if="state.comments.length > 0">{{state.comments}}</div>
                   <div v-else>No Comment</div>
               </div>
             </div>

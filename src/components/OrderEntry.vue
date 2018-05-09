@@ -97,7 +97,6 @@ export default {
   data () {
     return {
       po: '',
-      editPo: false,
       messagePo: '',
       order: true,
       message: ''
@@ -105,16 +104,26 @@ export default {
   },
   mounted () {
     // check order was selected
-    this.$store.watch(this.$store.getters.order, order => {
-      if (order.po) {
-        this.message = ''
-      }
-    })
+
+    // this.$store.watch(this.$store.getters.order, order => {
+    //   if (order.po) {
+    //     this.message = ''
+    //   }
+    // })
   },
   computed: {
     poNumber: {
       get () {
         return this.$store.state.po_number
+      }
+    },
+    editPo: {
+      get () {
+        return this.$store.state.edit_po
+      },
+      set (value) {
+        this.po = this.$store.state.po_number
+        this.$store.dispatch('updateEditPo', value)
       }
     },
     reOrder: {
@@ -140,7 +149,7 @@ export default {
         this.messagePo = 'At least 3 characters long.'
       } else {
         this.messagePo = ''
-        this.editPo = !this.editPo
+        this.$store.state.edit_po = !this.$store.state.edit_po
         this.$store.state.po_number = this.po
       }
     },
@@ -149,8 +158,8 @@ export default {
       this.$store.state.order_picked = ''
     },
     next () {
-      if (this.po.length < 3) {
-        this.message = 'PO number is not vaild.'
+      if (!this.$store.state.edit_po) {
+        this.message = 'Have to enter PO number.'
       } else {
         this.$router.push('/shipping')
       }
