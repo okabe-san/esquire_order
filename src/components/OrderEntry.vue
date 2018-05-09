@@ -51,7 +51,7 @@
               </label>
 
             <!-- for re-order -->
-            <div v-if="order" class="order_entry">
+            <div v-if="!this.reOrder" class="order_entry">
               <reOrder></reOrder>
             </div>
 
@@ -98,7 +98,6 @@ export default {
     return {
       po: '',
       messagePo: '',
-      order: true,
       message: ''
     }
   },
@@ -154,7 +153,6 @@ export default {
       }
     },
     orderCheck () {
-      this.order = !this.order
       this.$store.state.order_picked = ''
     },
     next () {
