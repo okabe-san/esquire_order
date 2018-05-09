@@ -24,7 +24,7 @@
                 <h3 class="title">Step 1
                   <button @click="backToDetails">Edit</button>
                 </h3>
-                <h4 class="highlight">PO #: {{state.order_picked.po}}</h4>
+                <h4 class="highlight">PO #: {{state.po_number}}</h4>
                 <div v-for="(detail, index) in state.order_picked.items" :key="index">
                   <h4>Item: {{index + 1}}</h4>
                   <table style="width:100%">
