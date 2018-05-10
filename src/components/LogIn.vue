@@ -73,6 +73,7 @@ export default {
 </script>
 
 <style scoped>
+@import '../assets/css/button_lib.css';
 h2 {
   text-align: left;
   margin-left: 100px;
@@ -80,19 +81,10 @@ h2 {
 }
 h3 { margin-bottom: .5rem; }
 button {
-  margin-top: 20px;
+  margin: 20px 0 0;
   padding: 10px 20px;
-  font-size: 17px;
-  color: white;
-  background: #7dcdc8;
-  border: none;
-}
-button:hover {
-  background: #56c0c4;
 }
 input {
-  padding: 7px 10px;
-  font-size: 125%;
   width: 250px;
 }
 .body {
