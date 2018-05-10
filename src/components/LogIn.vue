@@ -14,7 +14,7 @@
           <h3>Password<span class="required"> *</span></h3>
           <input type="text" v-model="password"><br />
           <button @click="login">LOGIN</button>
-          Forgot password?
+          <span style="color:#56c0c4;float:right">Forgot password?</span>
         </div>
       </div>
     </div>
@@ -46,7 +46,7 @@
       <div class="info-wrapper">
         <div class="info">
           <h3>Supports</h3>
-          <p>support@esquireembroiery.com</p>
+          <p>xxxxx@esquireembroiery.com</p>
           <p>(303)xxx-xxxx</p>
         </div>
       </div>
@@ -104,7 +104,6 @@ input {
   padding-right:
 }
 .login {
-  width: 250px;
   text-align: left;
 }
 .image-wrapper {
