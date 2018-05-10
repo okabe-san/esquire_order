@@ -189,13 +189,13 @@ export default {
       indexNum: 0,
       editShipping: {
         'address': '',
-        'method': 'UPS',
+        'method': 'Fed-EX',
         'detail': ''
       },
       addedRep: '',
       addedAddress: {
         'address': '',
-        'method': 'UPS',
+        'method': 'Fed-EX',
         'detail': ''
       },
       addressCheck: true,
@@ -250,14 +250,14 @@ export default {
     async loadRep () {
       // FIXME: use query to load shipping methods
       const data = [
-        'Jane Smith', 'Mike Tanaka', 'Coco Logan'
+        'Jon', 'KeriAnne', 'Brandon', 'Shane'
       ]
       this.reps = data
     },
     async loadMethod () {
       // FIXME: use query to load shipping methods
       const data = [
-        'UPS', 'Fed-EX', 'Pickup', 'Other'
+        'Fed-EX', 'UPS', 'Pickup', 'Other'
       ]
       this.methods = data
     },

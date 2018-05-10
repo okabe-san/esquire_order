@@ -3,6 +3,10 @@ export const updatePoNumber = (state, payload) => {
   state.po_number = payload
 }
 
+export const updateEditPo = (state, payload) => {
+  state.edit_po = payload
+}
+
 export const updateReOrder = (state, payload) => {
   state.re_order = payload
 }

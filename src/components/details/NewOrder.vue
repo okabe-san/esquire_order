@@ -89,7 +89,8 @@
     </div>
 
     <!-- add item  -->
-    <div style="margin-top:2rem">
+    <div style="margin-top:3rem">
+      <h3>Add Item</h3>
       <addItem></addItem>
       <p v-if="!fileCheck && files.length === 0">Please add file.</p>
     </div>
