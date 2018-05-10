@@ -93,6 +93,7 @@
 
             <!-- for edit item buttons -->
             <td class="order_buttons">
+              <button v-if="!edit" @click="removeModal()">Delete</button>
               <button v-if="!edit" class="edit" @click="editItem(index, detail)">Edit</button>
               <button
                 class="update"
@@ -100,7 +101,6 @@
                 @click="updateItem(index)">
                 Update
               </button>
-              <button v-if="!edit" @click="removeModal()">Delete</button>
               <deleteItem
                 v-if="remove"
                 @cancel="remove = false"
