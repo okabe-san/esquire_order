@@ -3,6 +3,10 @@ export const updatePoNumber = ({commit}, payload) => {
   commit('updatePoNumber', payload)
 }
 
+export const updateEditPo = ({commit}, payload) => {
+  commit('updateEditPo', payload)
+}
+
 export const updateReOrder = ({commit}, payload) => {
   commit('updateReOrder', payload)
 }
