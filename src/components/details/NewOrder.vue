@@ -81,8 +81,7 @@
         </tbody>
       </table>
       <div v-if="removeMessage.length > 0">
-        <p>
-          <span style="color:#ff19d8">*</span>
+        <p class="message">
           {{removeMessage}}
         </p>
       </div>

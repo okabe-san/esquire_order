@@ -71,8 +71,10 @@ th {
   padding: 0 0 .5rem;
 }
 td {
-  flex: 1;
   padding: .5rem 0 0;
+}
+td > button {
+  float: right;
 }
 
 /* for display add item */

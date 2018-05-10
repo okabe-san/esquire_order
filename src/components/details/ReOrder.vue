@@ -6,6 +6,7 @@
         type="text"
         placeholder="PO # or Logo file name"
         v-model="searchKey"
+        @keyup.enter="search"
         style="width:250px">
       <button @click="search">
         <span class="button">
@@ -14,10 +15,9 @@
         </span>
       </button>
     </div>
-    <h4 class="message">
-      <span v-if="message" class="required">*</span>
+    <p class="message">
       {{message}}
-    </h4>
+    </p>
     <div class="po_wrapper">
       <div class="po" v-for="(order, index) in orders" :key="index">
         <div class="po_image_search">
@@ -92,14 +92,14 @@
 
             <!-- for edit item buttons -->
             <td class="order_buttons">
-              <button class="edit" @click="editItem(index, detail)">Edit</button>
+              <button v-if="!edit" @click="removeModal()">Delete</button>
+              <button v-if="!edit" class="edit" @click="editItem(index, detail)">Edit</button>
               <button
                 class="update"
                 v-if="edit && index === indexNum"
                 @click="updateItem(index)">
                 Update
               </button>
-              <button @click="removeModal()">Delete</button>
               <deleteItem
                 v-if="remove"
                 @cancel="remove = false"
@@ -111,10 +111,7 @@
         </tbody>
       </table>
       <div v-if="removeMessage.length > 0">
-        <p>
-          <span style="color:#ff19d8">*</span>
-          {{removeMessage}}
-        </p>
+        <p class="message">{{removeMessage}}</p>
       </div>
     </div>
 

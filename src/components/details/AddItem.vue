@@ -1,5 +1,8 @@
 <template>
   <div>
+    <p v-if="message.length > 0" style="padding-bottom:1rem" class="message">
+      {{message}}
+    </p>
     <table style="width:100%">
       <thead>
         <tr>
@@ -76,7 +79,13 @@ export default {
       },
       items: [],
       locationCap: locations.locationCap,
-      locationShirt: locations.locationShirt
+      locationShirt: locations.locationShirt,
+      message: ''
+    }
+  },
+  watch: {
+    addedItem: function () {
+      if (this.addedItem.image.length > 0) { this.message = '' }
     }
   },
   created () {
@@ -125,6 +134,7 @@ export default {
           'quantity': 1
         }
       } else {
+        this.message = 'Please add an image file before click \'Add\'.'
         this.fileCheck = false
       }
     }
