@@ -29,6 +29,7 @@
               type="text"
               class="po"
               v-model="po"
+              @keyup.enter="enterPo"
               placeholder="Please put PO number">
             <button @click="enterPo">Enter</button>
           </div>

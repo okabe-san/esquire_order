@@ -6,6 +6,7 @@
         type="text"
         placeholder="PO # or Logo file name"
         v-model="searchKey"
+        @keyup.enter="search"
         style="width:250px">
       <button @click="search">
         <span class="button">
