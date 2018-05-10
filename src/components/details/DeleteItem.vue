@@ -8,8 +8,7 @@
         </div>
 
         <div class="modal_body">
-          <p style="margin-top:0">
-            <span style="color:#ff19d8">*</span>
+          <p class="message" style="margin-top:0">
             Are you sure delete this item?
           </p>
           <table style="width:100%">

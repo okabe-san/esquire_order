@@ -15,10 +15,9 @@
         </span>
       </button>
     </div>
-    <h4 class="message">
-      <span v-if="message" class="required">*</span>
+    <p class="message">
       {{message}}
-    </h4>
+    </p>
     <div class="po_wrapper">
       <div class="po" v-for="(order, index) in orders" :key="index">
         <div class="po_image_search">
@@ -112,10 +111,7 @@
         </tbody>
       </table>
       <div v-if="removeMessage.length > 0">
-        <p>
-          <span style="color:#ff19d8">*</span>
-          {{removeMessage}}
-        </p>
+        <p class="message">{{removeMessage}}</p>
       </div>
     </div>
 

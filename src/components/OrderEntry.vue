@@ -20,10 +20,9 @@
         <div class="form">
 
           <h2 style="margin-bottom:1rem">PO Number</h2>
-          <span v-if="messagePo.length > 0">
-            <span class="required">*</span>
+          <p v-if="messagePo.length > 0" class="message">
             {{messagePo}}
-          </span>
+          </p>
           <div v-if="!editPo">
             <input
               type="text"

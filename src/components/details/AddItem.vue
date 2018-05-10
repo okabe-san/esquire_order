@@ -1,9 +1,8 @@
 <template>
   <div>
-    <div v-if="message.length > 0" style="padding-bottom:1rem">
-      <span class="required">*</span>
+    <p v-if="message.length > 0" style="padding-bottom:1rem" class="message">
       {{message}}
-    </div>
+    </p>
     <table style="width:100%">
       <thead>
         <tr>
@@ -135,7 +134,7 @@ export default {
           'quantity': 1
         }
       } else {
-        this.message = 'No able to add without image file.'
+        this.message = 'Please add an image file before click \'Add\'.'
         this.fileCheck = false
       }
     }
