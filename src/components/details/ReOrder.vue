@@ -51,7 +51,7 @@
 
             <!-- item -->
             <td v-if="edit && index === indexNum">
-              <select class="item" v-model="editOrder.item">
+              <select class="item" v-model="editOrder.item" @change="getLocations">
                 <option v-for="(item, index) in items" :value="item" :key="index">
                   {{item}}
                 </option>
@@ -62,7 +62,7 @@
             <!-- location -->
             <td v-if="edit && index === indexNum">
               <select class="location" style="width:150px" v-model="editOrder.location">
-                <option v-for="(location, index) in locationCap" :value="location" :key="index">
+                <option v-for="(location, index) in locations" :value="location" :key="index">
                   {{location}}
                 </option>
               </select>
@@ -169,7 +169,8 @@ export default {
       },
       items: [],
       locationCap: locations.locationCap,
-      locationShirt: locations.locationShirt
+      locationShirt: locations.locationShirt,
+      locations: []
     }
   },
   created () {
@@ -222,7 +223,7 @@ export default {
             },
             {
               'item': 'Tops',
-              'location': 'Front Chest',
+              'location': 'Left Chest',
               'quantity': 20,
               'image': require(`@/assets/images/logos/townsend2.jpg`),
               'stitch': 3747,
@@ -266,7 +267,7 @@ export default {
             },
             {
               'item': 'Tops',
-              'location': 'Front Chest',
+              'location': 'Left Chest',
               'image': require(`@/assets/images/logos/ACV Auctions2.jpg`),
               'quantity': 20,
               'stitch': 4815,
@@ -323,6 +324,13 @@ export default {
       this.edit = !this.edit
       this.indexNum = index
       this.editOrder = detail
+      if (detail.item === 'Tops' || detail.item === 'Beanie') {
+        this.locations = this.locationShirt
+        this.editOrder.location = 'Left Chest'
+      } else {
+        this.locations = this.locationCap
+        this.editOrder.location = 'Front Center'
+      }
     },
     updateItem (index) {
       this.removeMessage = ''
@@ -339,6 +347,15 @@ export default {
     removeItem (index) {
       this.orderPicked.items.splice(index, 1)
       this.remove = false
+    },
+    getLocations (e) {
+      if (e.target.value === 'Tops' || e.target.value === 'Beanie') {
+        this.locations = this.locationShirt
+        this.editOrder.location = 'Left Chest'
+      } else {
+        this.locations = this.locationCap
+        this.editOrder.location = 'Front Center'
+      }
     }
   }
 }

@@ -17,7 +17,7 @@
         <tr>
           <!-- item -->
           <td>
-            <select class="item" v-model="addedItem.item">
+            <select class="item" v-model="addedItem.item" @change="getLocations">
               <option v-for="(item, index) in items" :value="item" :key="index">
                 {{item}}
               </option>
@@ -26,7 +26,7 @@
           <!-- location -->
           <td>
             <select class="location" v-model="addedItem.location">
-              <option v-for="(location, index) in locationCap" :value="location" :key="index">
+              <option v-for="(location, index) in locations" :value="location" :key="index">
                 {{location}}
               </option>
             </select>
@@ -80,12 +80,8 @@ export default {
       items: [],
       locationCap: locations.locationCap,
       locationShirt: locations.locationShirt,
+      locations: locations.locationCap,
       message: ''
-    }
-  },
-  watch: {
-    addedItem: function () {
-      if (this.addedItem.image.length > 0) { this.message = '' }
     }
   },
   created () {
@@ -129,13 +125,22 @@ export default {
         // back to default values
         this.addedItem = {
           'item': 'Cap',
-          'location': 'Front Center',
+          'location': '',
           'image': '',
           'quantity': 1
         }
       } else {
         this.message = 'Please add an image file before click \'Add\'.'
         this.fileCheck = false
+      }
+    },
+    getLocations (e) {
+      if (e.target.value === 'Tops' || e.target.value === 'Beanie') {
+        this.locations = this.locationShirt
+        this.addedItem.location = 'Left Chest'
+      } else {
+        this.locations = this.locationCap
+        this.addedItem.location = 'Front Center'
       }
     }
   }
