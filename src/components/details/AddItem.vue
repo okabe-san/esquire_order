@@ -44,7 +44,8 @@
               @close="select=false"
               @select="addedItem.image = $event.image;
                 addedItem.stitch = $event.stitch;
-                addedItem.name = $event.name">
+                addedItem.name = $event.name;
+                message = ''">
             </selectImage>
           </td>
           <!-- button -->
