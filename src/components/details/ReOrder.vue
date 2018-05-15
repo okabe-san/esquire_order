@@ -122,7 +122,10 @@
         <input type="checkbox" v-model="add">
         <span class="checkbox"></span>
       </label>
-      <addItem v-if="add" @close="add=false"></addItem>
+      <addItem
+        v-if="add"
+        @close="add = false">
+      </addItem>
       <p v-if="!fileCheck && files.length === 0">Please add file.</p>
     </div>
   </div>
