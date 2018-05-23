@@ -17,6 +17,7 @@
           <span style="color:#56c0c4;float:right">Forgot password?</span>
         </div>
       </div>
+      <p style="margin-bottom:0">(Able to login without 'User name' and 'Password' for test.)</p>
     </div>
     <div class="image-wrapper">
       <img class="img-left" src="../assets/images/sample2.jpg">
