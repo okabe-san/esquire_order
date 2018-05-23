@@ -69,7 +69,7 @@
 
               <!-- nav buttons -->
               <button class="next" v-if="orderPicked" @click="next">
-                <span class="button">
+                <span class="button" @item="newItem">
                   Next
                   <i class="material-icons">navigate_next</i>
                 </span>
@@ -98,7 +98,8 @@ export default {
     return {
       po: '',
       messagePo: '',
-      message: ''
+      message: '',
+      newItem: false
     }
   },
   mounted () {
