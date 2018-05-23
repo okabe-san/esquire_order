@@ -31,6 +31,7 @@
               @keyup.enter="enterPo"
               placeholder="Please put PO number">
             <button @click="enterPo">Enter</button>
+            <p>(You can use any number for test.)</p>
           </div>
           <div v-else>
             <h2 style="display:inline-block;padding-right:2rem">{{poNumber}}</h2>

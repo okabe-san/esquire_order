@@ -15,6 +15,7 @@
         </span>
       </button>
     </div>
+    <p>(100 or 200 for 'Search Order' for test.)</p>
     <p class="message">
       {{message}}
     </p>
