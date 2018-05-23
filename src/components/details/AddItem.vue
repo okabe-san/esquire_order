@@ -50,7 +50,9 @@
           </td>
           <!-- button -->
           <td>
-            <button @click="addItem">Add</button>
+            <button @click="addItem">
+              Add
+            </button>
           </td>
         </tr>
       </tbody>
@@ -120,13 +122,13 @@ export default {
       }
 
       if (this.addedItem.image.length > 0) {
-        console.log(this.orderPicked)
+        // FIXME: not able to computed orderPicked
         this.orderPicked.items.push(this.addedItem)
         this.fileCheck = true
         // back to default values
         this.addedItem = {
           'item': 'Cap',
-          'location': '',
+          'location': 'Front Center',
           'image': '',
           'quantity': 1
         }

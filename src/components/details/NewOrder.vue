@@ -21,7 +21,7 @@
 
             <!-- item -->
             <td v-if="edit && index === indexNum">
-              <select class="item" v-model="editOrder.item">
+              <select class="item" v-model="editOrder.item" @change="getLocations">
                 <option v-for="(item, index) in items" :value="item" :key="index">
                   {{item}}
                 </option>
@@ -62,14 +62,14 @@
 
             <!-- for edit item buttons -->
             <td class="order_buttons">
-              <button class="edit" @click="editItem(index, detail)">Edit</button>
+              <button v-if="!edit" @click="removeModal()">Delete</button>
+              <button v-if="!edit" class="edit" @click="editItem(index, detail)">Edit</button>
               <button
                 class="update"
                 v-if="edit && index === indexNum"
                 @click="updateItem(index)">
                 Update
               </button>
-              <button @click="removeModal()">Delete</button>
               <deleteItem
                 v-if="remove"
                 @cancel="remove = false"
@@ -98,11 +98,13 @@
 </template>
 
 <script>
+import deleteItem from './deleteItem.vue'
 import addItem from './AddItem.vue'
 import locations from '../../assets/fakeLocation.json'
 
 export default {
   components: {
+    deleteItem,
     addItem
   },
   data () {
@@ -170,43 +172,46 @@ export default {
       const data = ['Cap', 'Tops', 'Beanie', 'Bag', 'Pants']
       this.items = data
     },
-    fileAdded (file) {
-      this.files.push(file)
-    },
-    removeFile (index) {
-      this.files.splice(index, 1)
-    },
     // FIXME: after connect to the server, turn on actual remove method
     // removeFile (file) {
     //   this.$refs.vc.removeFile(file)
     // },
     editItem (index, detail) {
+      this.removeMessage = ''
       this.edit = !this.edit
       this.indexNum = index
       this.editOrder = detail
+      if (detail.item === 'Tops' || detail.item === 'Beanie') {
+        this.locations = this.locationShirt
+        this.editOrder.location = 'Left Chest'
+      } else {
+        this.locations = this.locationCap
+        this.editOrder.location = 'Front Center'
+      }
     },
     updateItem (index) {
+      this.removeMessage = ''
       this.orderPicked.items[index] = this.editOrder
       this.edit = !this.edit
     },
+    removeModal () {
+      if (this.orderPicked.items.length === 1) {
+        this.removeMessage = 'Not able to delete the last item in the order.'
+      } else {
+        this.remove = true
+      }
+    },
     removeItem (index) {
       this.orderPicked.items.splice(index, 1)
+      this.remove = false
     },
-    addItem () {
-      if (this.files.length > 0) {
-        this.addedItem.image = this.files[0].name
-        this.orderPicked.items.push(this.addedItem)
-        this.fileCheck = true
-        // back to default values
-        this.addedItem = {
-          'item': 'Cap',
-          'location': 'Front Center',
-          'image': '',
-          'quantity': 1
-        }
-        this.files.splice(0, 1)
+    getLocations (e) {
+      if (e.target.value === 'Tops' || e.target.value === 'Beanie') {
+        this.locations = this.locationShirt
+        this.editOrder.location = 'Left Chest'
       } else {
-        this.fileCheck = false
+        this.locations = this.locationCap
+        this.editOrder.location = 'Front Center'
       }
     }
   }
