@@ -50,9 +50,9 @@
           </td>
           <!-- button -->
           <td>
-            <button
-              @click="addItem">
-              Add</button>
+            <button @click="addItem">
+              Add
+            </button>
           </td>
         </tr>
       </tbody>
@@ -122,19 +122,19 @@ export default {
       }
 
       if (this.addedItem.image.length > 0) {
+        // FIXME: not able to computed orderPicked
         this.orderPicked.items.push(this.addedItem)
         this.fileCheck = true
         // back to default values
         this.addedItem = {
           'item': 'Cap',
-          'location': '',
+          'location': 'Front Center',
           'image': '',
           'quantity': 1
         }
       } else {
         this.message = 'Please add an image file before click \'Add\'.'
         this.fileCheck = false
-        this.orderPicked = false
       }
     },
     getLocations (e) {

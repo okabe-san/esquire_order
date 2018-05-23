@@ -312,12 +312,6 @@ export default {
       const data = ['Cap', 'Tops', 'Beanie', 'Bag', 'Pants']
       this.items = data
     },
-    fileAdded (file) {
-      this.files.push(file)
-    },
-    removeFile () {
-      this.files.splice(0, 1)
-    },
     // FIXME: after connect to the server, turn on actual remove method
     // removeFile (file) {
     //   this.$refs.vc.removeFile(file)
